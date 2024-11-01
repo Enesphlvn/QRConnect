@@ -2,7 +2,7 @@
 
 namespace App.Domain.Entities
 {
-    public class Ticket : BaseEntity<Guid>
+    public class Ticket : BaseEntity<int>
     {
         public Guid EventId { get; set; }
         public Guid UserId { get; set; }

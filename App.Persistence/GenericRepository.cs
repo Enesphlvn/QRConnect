@@ -40,7 +40,7 @@ namespace App.Persistence
             return _dbSet.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
         }
 
-        public ValueTask<T?> GetByIdAsync(Guid id)
+        public ValueTask<T?> GetByIdAsync(int id)
         {
             return _dbSet.FindAsync(id);
         }

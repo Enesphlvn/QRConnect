@@ -2,7 +2,7 @@
 
 namespace App.Domain.Entities
 {
-    public class Event : BaseEntity<Guid>
+    public class Event : BaseEntity<int>
     {
         public string Name { get; set; } = default!;
         public DateTime Date { get; set; }

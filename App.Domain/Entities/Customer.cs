@@ -2,7 +2,7 @@
 
 namespace App.Domain.Entities
 {
-    public class Customer : BaseEntity<Guid>
+    public class Customer : BaseEntity<int>
     {
         public string FirstName { get; set; } = default!;
         public string LastName { get; set; } = default!;
