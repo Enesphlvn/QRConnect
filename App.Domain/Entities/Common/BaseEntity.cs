@@ -1,4 +1,4 @@
-﻿namespace App.Domain.Common
+﻿namespace App.Domain.Entities.Common
 {
     public class BaseEntity<T>
     {

@@ -1,4 +1,4 @@
-﻿using App.Domain.Common;
+﻿using App.Domain.Entities.Common;
 
 namespace App.Domain.Entities
 {

@@ -1,5 +1,5 @@
 ﻿using App.Application.Contracts.Persistence;
-using App.Domain.Common;
+using App.Domain.Entities.Common;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
