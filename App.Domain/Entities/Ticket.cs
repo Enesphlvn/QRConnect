@@ -4,8 +4,8 @@ namespace App.Domain.Entities
 {
     public class Ticket : BaseEntity<int>, IAuditEntity
     {
-        public Guid EventId { get; set; }
-        public Guid UserId { get; set; }
+        public int EventId { get; set; }
+        public int UserId { get; set; }
         public string QrCode { get; set; } = default!;
         public DateTime PurchaseDate { get; set; }
         public Event Event { get; set; } = default!;
