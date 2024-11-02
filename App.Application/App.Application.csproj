@@ -10,4 +10,16 @@
     <ProjectReference Include="..\App.Domain\App.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Customers\Create\" />
+    <Folder Include="Features\Customers\Dto\" />
+    <Folder Include="Features\Customers\Update\" />
+    <Folder Include="Features\Events\Create\" />
+    <Folder Include="Features\Events\Dto\" />
+    <Folder Include="Features\Events\Update\" />
+    <Folder Include="Features\Tickets\Create\" />
+    <Folder Include="Features\Tickets\Dto\" />
+    <Folder Include="Features\Tickets\Update\" />
+  </ItemGroup>
+
 </Project>
