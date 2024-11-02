@@ -7,13 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\App.Domain\App.Domain.csproj" />
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Customers\Dto\" />
-    <Folder Include="Features\Events\Dto\" />
-    <Folder Include="Features\Tickets\Dto\" />
+    <ProjectReference Include="..\App.Domain\App.Domain.csproj" />
   </ItemGroup>
 
 </Project>
