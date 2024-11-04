@@ -8,7 +8,7 @@ namespace App.Persistence
     {
         public DbSet<Event> Events { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<Customer> USers { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

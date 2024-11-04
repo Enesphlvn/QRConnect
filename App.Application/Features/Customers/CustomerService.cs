@@ -60,6 +60,20 @@ namespace App.Application.Features.Customers
             return ServiceResult<CustomerDto>.Success(customerAsDto);
         }
 
+        public async Task<ServiceResult<List<CustomerDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        {
+            if (pageNumber <= 0 || pageSize <= 0)
+            {
+                return ServiceResult<List<CustomerDto>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
+            }
+
+            var customers = await customerRepository.GetAllPagedAsync(pageNumber, pageSize);
+
+            var customersAsDto = mapper.Map<List<CustomerDto>>(customers);
+
+            return ServiceResult<List<CustomerDto>>.Success(customersAsDto);
+        }
+
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCustomerRequest request)
         {
             var isCustomerEmailExists = await customerRepository.AnyAsync(x => x.Email == request.Email && x.Id != id);

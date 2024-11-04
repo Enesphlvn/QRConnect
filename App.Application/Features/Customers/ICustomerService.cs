@@ -7,6 +7,7 @@ namespace App.Application.Features.Customers
     public interface ICustomerService
     {
         Task<ServiceResult<List<CustomerDto>>> GetAllListAsync();
+        Task<ServiceResult<List<CustomerDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
         Task<ServiceResult<CustomerDto>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateCustomerRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateCustomerRequest request);
