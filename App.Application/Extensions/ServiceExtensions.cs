@@ -1,4 +1,5 @@
 ﻿using App.Application.Features.Customers;
+using App.Application.Features.Events;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +14,7 @@ namespace App.Application.Extensions
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IEventService, EventService>();
 
             //services.AddFluentValidationAutoValidation();
 
