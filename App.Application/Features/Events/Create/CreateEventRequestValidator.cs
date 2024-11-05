@@ -11,11 +11,16 @@ namespace App.Application.Features.Events.Create
                 .Length(3, 50).WithMessage("Etkinlik adı 3 ile 50 karakter arasında olmalıdır.");
 
             RuleFor(x => x.Date)
+                .NotNull()
                 .GreaterThan(DateTime.Now).WithMessage("Etkinlik tarihi bugünden sonra olmalıdır.");
 
-            RuleFor(x => x.Address)
-                .NotEmpty().WithMessage("Adres zorunludur.")
-                .MaximumLength(250).WithMessage("Adres en fazla 250 karakter olabilir.");
+            RuleFor(x => x.City)
+                .NotEmpty().WithMessage("Şehir zorunludur.")
+                .MaximumLength(50).WithMessage("Adres en fazla 50 karakter olabilir.");
+
+            RuleFor(x => x.District)
+                .NotEmpty().WithMessage("İlçe zorunludur.")
+                .MaximumLength(50).WithMessage("Adres en fazla 50 karakter olabilir.");
 
             RuleFor(x => x.Price)
                 .GreaterThan(0).WithMessage("Fiyat sıfırdan büyük olmalıdır.")

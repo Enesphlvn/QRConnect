@@ -1,5 +1,7 @@
 ﻿using App.Application.Features.Customers;
 using App.Application.Features.Events;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,9 +18,9 @@ namespace App.Application.Extensions
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<IEventService, EventService>();
 
-            //services.AddFluentValidationAutoValidation();
+            services.AddFluentValidationAutoValidation();
 
-            //services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

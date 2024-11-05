@@ -14,11 +14,14 @@ namespace App.Application.Features.Events
 
             CreateMap<CreateEventRequest, Event>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLowerInvariant()))
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address.ToLowerInvariant()));
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City.ToLowerInvariant()))
+                .ForMember(dest => dest.District, opt => opt.MapFrom(src => src.District.ToLowerInvariant()));
 
             CreateMap<UpdateEventRequest, Event>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLowerInvariant()))
-                .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address.ToLowerInvariant()));
+                .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City.ToLowerInvariant()))
+                .ForMember(dest => dest.District, opt => opt.MapFrom(src => src.District.ToLowerInvariant()));
+
         }
     }
 }

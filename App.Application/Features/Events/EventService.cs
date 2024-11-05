@@ -12,7 +12,7 @@ namespace App.Application.Features.Events
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateEventRequest request)
         {
-            var isSameEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.Address == request.Address);
+            var isSameEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.City == request.City && x.District == request.District);
 
             if (isSameEvent)
             {
@@ -25,7 +25,6 @@ namespace App.Application.Features.Events
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult<int>.SuccessAsCreated(newEvent.Id, $"api/events/{newEvent.Id}");
-
         }
 
         public async Task<ServiceResult> DeleteAsync(int id)
@@ -77,7 +76,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateEventRequest request)
         {
-            var isDuplicateEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.Address == request.Address && x.Id != id);
+            var isDuplicateEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.City == request.City && x.District == request.District && x.Id != id);
 
             if (isDuplicateEvent)
             {

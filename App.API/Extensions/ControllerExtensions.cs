@@ -10,7 +10,7 @@ namespace App.API.Extensions
 
             services.AddControllers(options =>
             {
-                //options.Filters.Add<FluentValidationFilter>();
+                options.Filters.Add<FluentValidationFilter>();
                 options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true;
             });
 

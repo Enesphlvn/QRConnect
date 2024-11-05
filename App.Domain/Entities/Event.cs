@@ -6,7 +6,8 @@ namespace App.Domain.Entities
     {
         public string Name { get; set; } = default!;
         public DateTime Date { get; set; }
-        public string Address { get; set; } = default!;
+        public string City { get; set; } = default!;
+        public string District { get; set; } = default!;
         public decimal Price { get; set; }
         public string? Description { get; set; }
         public List<Ticket>? Tickets { get; set; }
