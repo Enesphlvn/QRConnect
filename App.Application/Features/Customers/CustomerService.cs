@@ -76,17 +76,12 @@ namespace App.Application.Features.Customers
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCustomerRequest request)
         {
-            var isCustomerEmailExists = await customerRepository.AnyAsync(x => x.Email == request.Email && x.Id != id);
+            var customer = await customerRepository.GetByIdAsync(id);
 
-            if (isCustomerEmailExists)
-            {
-                return ServiceResult.Fail("Email veritabanında bulunmaktadır.", HttpStatusCode.BadRequest);
-            }
+            customer!.FirstName = request.FirstName;
+            customer.LastName = request.LastName;
 
-            var customer = mapper.Map<Customer>(request);
-            customer.Id = id;
-
-            customerRepository.Update(customer);
+            customerRepository.Update(customer!);
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

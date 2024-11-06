@@ -17,4 +17,9 @@
     <ProjectReference Include="..\App.Domain\App.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Customers\UpdatePassword\" />
+    <Folder Include="Features\Customers\UpdateEmail\" />
+  </ItemGroup>
+
 </Project>
