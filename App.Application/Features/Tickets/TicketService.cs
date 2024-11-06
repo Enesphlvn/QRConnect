@@ -28,7 +28,6 @@ namespace App.Application.Features.Tickets
 
             var newTicket = mapper.Map<Ticket>(request);
             newTicket.QrCode = qrCodeBase64;
-            newTicket.PurchaseDate = DateTime.Now;
 
             await ticketRepository.AddAsync(newTicket);
             await unitOfWork.SaveChangesAsync();
@@ -96,9 +95,8 @@ namespace App.Application.Features.Tickets
             }
 
             mapper.Map(request, ticket);
-            ticket!.Updated = DateTime.Now;
 
-            ticketRepository.Update(ticket);
+            ticketRepository.Update(ticket!);
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
