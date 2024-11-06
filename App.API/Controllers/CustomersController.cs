@@ -2,6 +2,7 @@
 using App.Application.Features.Customers;
 using App.Application.Features.Customers.Create;
 using App.Application.Features.Customers.Update;
+using App.Application.Features.Customers.UpdateEmail;
 using App.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,13 @@ namespace App.API.Controllers
         public async Task<IActionResult> UpdateCustomer(int id, UpdateCustomerRequest request)
         {
             return CreateActionResult(await customerService.UpdateAsync(id, request));
+        }
+
+        [ServiceFilter(typeof(NotFoundFilter<Customer, int>))]
+        [HttpPatch("email/{id:int}")]
+        public async Task<IActionResult> UpdateEmail(int id, UpdateEmailCustomerRequest request)
+        {
+            return CreateActionResult(await customerService.UpdateEmailAsync(id, request));
         }
 
         [ServiceFilter(typeof(NotFoundFilter<Customer, int>))]

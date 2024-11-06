@@ -2,6 +2,7 @@
 using App.Application.Features.Customers.Create;
 using App.Application.Features.Customers.Dto;
 using App.Application.Features.Customers.Update;
+using App.Application.Features.Customers.UpdateEmail;
 using App.Domain.Entities;
 using AutoMapper;
 using System.Net;
@@ -78,8 +79,19 @@ namespace App.Application.Features.Customers
         {
             var customer = await customerRepository.GetByIdAsync(id);
 
-            customer!.FirstName = request.FirstName;
-            customer.LastName = request.LastName;
+            mapper.Map(request, customer);
+
+            customerRepository.Update(customer!);
+            await unitOfWork.SaveChangesAsync();
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
+        public async Task<ServiceResult> UpdateEmailAsync(int id, UpdateEmailCustomerRequest request)
+        {
+            var customer = await customerRepository.GetByIdAsync(id);
+
+            mapper.Map(request, customer);
 
             customerRepository.Update(customer!);
             await unitOfWork.SaveChangesAsync();
