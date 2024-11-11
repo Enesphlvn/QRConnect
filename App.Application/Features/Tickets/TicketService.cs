@@ -91,8 +91,6 @@ namespace App.Application.Features.Tickets
                 eventEntityExists.Name,
                 eventEntityExists.Date,
                 eventEntityExists.Price,
-                eventEntityExists.City,
-                eventEntityExists.District,
                 userEntityExists.Email
             };
 

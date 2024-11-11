@@ -13,7 +13,7 @@ namespace App.Application.Features.Events
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateEventRequest request)
         {
-            var isSameEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.City == request.City && x.District == request.District);
+            var isSameEvent = await eventRepository.AnyAsync(x => x.Date == request.Date);
 
             if (isSameEvent)
             {
@@ -90,8 +90,6 @@ namespace App.Application.Features.Events
                 eventEntityExists.Name,
                 eventEntityExists.Date,
                 eventEntityExists.Price,
-                eventEntityExists.City,
-                eventEntityExists.District,
                 eventEntityExists.Description
             };
 
@@ -102,7 +100,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateEventRequest request)
         {
-            var isDuplicateEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.City == request.City && x.District == request.District && x.Id != id);
+            var isDuplicateEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.Id != id);
 
             if (isDuplicateEvent)
             {

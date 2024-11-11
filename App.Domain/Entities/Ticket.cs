@@ -1,7 +1,7 @@
 ﻿using App.Domain.Entities.Common;
 
 namespace App.Domain.Entities
-{
+{ 
     public class Ticket : BaseEntity<int>, IAuditEntity
     {
         public int EventId { get; set; }

@@ -14,14 +14,6 @@ namespace App.Application.Features.Events.Update
                 .NotNull()
                 .GreaterThan(DateTime.Now).WithMessage("Etkinlik tarihi bugünden sonra olmalıdır.");
 
-            RuleFor(x => x.City)
-                .NotEmpty().WithMessage("Şehir zorunludur.")
-                .MaximumLength(50).WithMessage("Adres en fazla 50 karakter olabilir.");
-
-            RuleFor(x => x.District)
-                .NotEmpty().WithMessage("İlçe zorunludur.")
-                .MaximumLength(50).WithMessage("Adres en fazla 50 karakter olabilir.");
-
             RuleFor(x => x.Price)
                 .GreaterThan(0).WithMessage("Fiyat sıfırdan büyük olmalıdır.")
                 .LessThanOrEqualTo(10000).WithMessage("Fiyat 10000'den fazla olamaz.");
