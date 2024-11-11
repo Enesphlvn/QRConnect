@@ -7,6 +7,10 @@ using App.Persistence.Tickets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using App.Persistence.EventTypes;
+using App.Persistence.OperationClaims;
+using App.Persistence.UserOperationClaims;
+using App.Persistence.Venues;
 
 namespace App.Persistence.Extensions
 {
@@ -28,6 +32,10 @@ namespace App.Persistence.Extensions
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
+            services.AddScoped<IEventTypeRepository, EventTypeRepository>();
+            services.AddScoped<IOperationClaimRepository, OperationClaimRepository>();
+            services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
+            services.AddScoped<IVenueRepository, VenueRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
