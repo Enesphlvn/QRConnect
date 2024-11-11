@@ -14,5 +14,6 @@ namespace App.Application.Features.Customers
         Task<ServiceResult> UpdateAsync(int id, UpdateCustomerRequest request);
         Task<ServiceResult> UpdateEmailAsync(int id, UpdateEmailCustomerRequest request);
         Task<ServiceResult> DeleteAsync(int id);
+        Task<ServiceResult<byte[]>> QrCodeToUserAsync(int userId);
     }
 }

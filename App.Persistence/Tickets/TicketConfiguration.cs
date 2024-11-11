@@ -10,8 +10,6 @@ namespace App.Persistence.Tickets
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.PurchaseDate).IsRequired();
-
-            builder.Property(x => x.QrCode).HasColumnType("nvarchar(MAX)");
         }
     }
 }

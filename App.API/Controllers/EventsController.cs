@@ -2,6 +2,7 @@
 using App.Application.Features.Events;
 using App.Application.Features.Events.Create;
 using App.Application.Features.Events.Update;
+using App.Application.Features.Tickets;
 using App.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,6 +26,19 @@ namespace App.API.Controllers
         public async Task<IActionResult> GetEvent(int id)
         {
             return CreateActionResult(await eventService.GetByIdAsync(id));
+        }
+
+        [HttpGet("qrcode/{eventId:int}")]
+        public async Task<IActionResult> GetQRCode(int eventId)
+        {
+            var result = await eventService.QrCodeToEventAsync(eventId);
+
+            if (result.IsSuccess)
+            {
+                return File(result.Data!, "image/png");
+            }
+
+            return CreateActionResult(result);
         }
 
         [HttpPost]

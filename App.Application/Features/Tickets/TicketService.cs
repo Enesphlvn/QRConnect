@@ -38,7 +38,7 @@ namespace App.Application.Features.Tickets
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
-
+         
         public async Task<ServiceResult<List<TicketDto>>> GetAllListAsync()
         {
             var tickets = await ticketRepository.GetAllAsync();

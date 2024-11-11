@@ -5,10 +5,11 @@ using App.Application.Features.Events.Update;
 using App.Domain.Entities;
 using AutoMapper;
 using System.Net;
+using System.Text.Json;
 
 namespace App.Application.Features.Events
 {
-    public class EventService(IEventRepository eventRepository, IUnitOfWork unitOfWork, IMapper mapper) : IEventService
+    public class EventService(IEventRepository eventRepository, IUnitOfWork unitOfWork, IMapper mapper, IQRCodeService qRCodeService) : IEventService
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateEventRequest request)
         {
@@ -72,6 +73,31 @@ namespace App.Application.Features.Events
             var eventAsDto = mapper.Map<List<EventDto>>(events);
 
             return ServiceResult<List<EventDto>>.Success(eventAsDto);
+        }
+
+        public async Task<ServiceResult<byte[]>> QrCodeToEventAsync(int eventId)
+        {
+            var eventEntityExists = await eventRepository.GetByIdAsync(eventId);
+
+            if (eventEntityExists is null)
+            {
+                return ServiceResult<byte[]>.Fail("Etkinlik bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var plainObject = new
+            {
+                eventEntityExists.Id,
+                eventEntityExists.Name,
+                eventEntityExists.Date,
+                eventEntityExists.Price,
+                eventEntityExists.City,
+                eventEntityExists.District,
+                eventEntityExists.Description
+            };
+
+            string plainText = JsonSerializer.Serialize(plainObject);
+
+            return ServiceResult<byte[]>.Success(qRCodeService.GenerateQRCode(plainText));
         }
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateEventRequest request)

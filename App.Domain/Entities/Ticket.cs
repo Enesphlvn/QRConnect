@@ -6,7 +6,6 @@ namespace App.Domain.Entities
     {
         public int EventId { get; set; }
         public int CustomerId { get; set; }
-        public string QrCode { get; set; } = default!;
         public DateTime PurchaseDate { get; set; }
         public Event Event { get; set; } = default!;
         public Customer Customer { get; set; } = default!;
