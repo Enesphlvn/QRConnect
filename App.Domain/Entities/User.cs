@@ -8,6 +8,7 @@ namespace App.Domain.Entities
         public string LastName { get; set; } = default!;
         public string Email { get; set; } = default!;
         public string Password { get; set; } = default!;
+        public List<UserOperationClaim> UserOperationClaims { get; set; } = [];
         public List<Ticket>? Tickets { get; set; }
         public DateTime Created { get; set; }
         public DateTime? Updated { get; set; }
