@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace App.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdateEventEntity : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -57,7 +57,7 @@ namespace App.Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EventId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    QrCode = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    QrCode = table.Column<string>(type: "nvarchar(MAX)", nullable: false),
                     PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Updated = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -83,12 +83,6 @@ namespace App.Persistence.Migrations
                 name: "IX_Tickets_EventId",
                 table: "Tickets",
                 column: "EventId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tickets_QrCode",
-                table: "Tickets",
-                column: "QrCode",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tickets_UserId",

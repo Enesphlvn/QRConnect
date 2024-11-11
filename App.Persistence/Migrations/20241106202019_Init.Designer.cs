@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace App.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241105135414_UpdateEventEntity")]
-    partial class UpdateEventEntity
+    [Migration("20241106202019_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -126,7 +126,7 @@ namespace App.Persistence.Migrations
 
                     b.Property<string>("QrCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(MAX)");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime2");
@@ -137,9 +137,6 @@ namespace App.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("EventId");
-
-                    b.HasIndex("QrCode")
-                        .IsUnique();
 
                     b.HasIndex("UserId");
 

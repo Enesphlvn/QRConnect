@@ -22,6 +22,12 @@ namespace App.Application.Features.Events
                 .ForMember(dest => dest.City, opt => opt.MapFrom(src => src.City.ToLowerInvariant()))
                 .ForMember(dest => dest.District, opt => opt.MapFrom(src => src.District.ToLowerInvariant()));
 
+            CreateMap<CreateEventRequest, Event>()
+                .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
+                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
+
+            CreateMap<UpdateEventRequest, Event>()
+                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
         }
     }
 }

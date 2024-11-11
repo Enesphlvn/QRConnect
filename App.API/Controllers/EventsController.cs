@@ -33,14 +33,14 @@ namespace App.API.Controllers
             return CreateActionResult(await eventService.CreateAsync(request));
         }
 
-        [ServiceFilter(typeof(NotFoundFilter<Customer, int>))]
+        [ServiceFilter(typeof(NotFoundFilter<Event, int>))]
         [HttpPut("{id:int}")]
         public async Task<IActionResult> UpdateEvent(int id, UpdateEventRequest request)
         {
             return CreateActionResult(await eventService.UpdateAsync(id, request));
         }
 
-        [ServiceFilter(typeof(NotFoundFilter<Customer, int>))]
+        [ServiceFilter(typeof(NotFoundFilter<Event, int>))]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteEvent(int id)
         {

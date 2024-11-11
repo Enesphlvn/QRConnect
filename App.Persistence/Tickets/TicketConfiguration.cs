@@ -9,8 +9,9 @@ namespace App.Persistence.Tickets
         public void Configure(EntityTypeBuilder<Ticket> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.HasIndex(x => x.QrCode).IsUnique();
             builder.Property(x => x.PurchaseDate).IsRequired();
+
+            builder.Property(x => x.QrCode).HasColumnType("nvarchar(MAX)");
         }
     }
 }

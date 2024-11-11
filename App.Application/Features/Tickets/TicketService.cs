@@ -4,30 +4,24 @@ using App.Application.Features.Tickets.Dto;
 using App.Application.Features.Tickets.Update;
 using App.Domain.Entities;
 using AutoMapper;
-using QRCoder;
-using System.Drawing.Imaging;
 using System.Net;
+using System.Text.Json;
 
 namespace App.Application.Features.Tickets
 {
-    public class TicketService(ICustomerRepository customerRepository, IEventRepository eventRepository, ITicketRepository ticketRepository, IUnitOfWork unitOfWork, IMapper mapper) : ITicketService
+    public class TicketService(ICustomerRepository customerRepository, IEventRepository eventRepository, ITicketRepository ticketRepository, IUnitOfWork unitOfWork, IMapper mapper, IQRCodeService qRCodeService) : ITicketService
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateTicketRequest request)
         {
             var eventEntityExists = await eventRepository.GetByIdAsync(request.EventId);
             var customerEntityExists = await customerRepository.GetByIdAsync(request.CustomerId);
 
-            if (eventEntityExists == null || customerEntityExists == null)
+            if (eventEntityExists is null || customerEntityExists is null)
             {
                 return ServiceResult<int>.Fail("Etkinlik veya müşteri bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var qrData = $"{eventEntityExists.Name}-{customerEntityExists.Email}-{request.CustomerId}";
-
-            var qrCodeBase64 = GenerateQRCode(qrData);
-
             var newTicket = mapper.Map<Ticket>(request);
-            newTicket.QrCode = qrCodeBase64;
 
             await ticketRepository.AddAsync(newTicket);
             await unitOfWork.SaveChangesAsync();
@@ -60,7 +54,7 @@ namespace App.Application.Features.Tickets
 
             if (ticket is null)
             {
-                return ServiceResult<TicketDto>.Fail("Ticket bulunamadı", HttpStatusCode.NoContent);
+                return ServiceResult<TicketDto>.Fail("Ticket bulunamadı", HttpStatusCode.NotFound);
             }
 
             var ticketAsDto = mapper.Map<TicketDto>(ticket);
@@ -82,6 +76,31 @@ namespace App.Application.Features.Tickets
             return ServiceResult<List<TicketDto>>.Success(ticketAsDto);
         }
 
+        public async Task<ServiceResult<byte[]>> QrCodeToUserAndEventAsync(int customerId, int eventId)
+        {
+            var eventEntityExists = await eventRepository.GetByIdAsync(eventId);
+            var customerEntityExists = await customerRepository.GetByIdAsync(customerId);
+
+            if (eventEntityExists is null || customerEntityExists is null)
+            {
+                return ServiceResult<byte[]>.Fail("Etkinlik veya müşteri bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var plainObject = new
+            {
+                eventEntityExists.Name,
+                eventEntityExists.Date,
+                eventEntityExists.Price,
+                eventEntityExists.City,
+                eventEntityExists.District,
+                customerEntityExists.Email
+            };
+
+            string plainText = JsonSerializer.Serialize(plainObject);
+
+            return ServiceResult<byte[]>.Success(qRCodeService.GenerateQRCode(plainText));
+        }
+
         public async Task<ServiceResult> UpdateAsync(int id, UpdateTicketRequest request)
         {
             var ticket = await ticketRepository.GetByIdAsync(id);
@@ -100,25 +119,6 @@ namespace App.Application.Features.Tickets
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
-        }
-
-        private string GenerateQRCode(string data)
-        {
-            var qrGenerator = new QRCodeGenerator();
-            var qrCodeData = qrGenerator.CreateQrCode(data, QRCodeGenerator.ECCLevel.Q);
-
-            var qrCode = new QRCode(qrCodeData);
-
-            // QR kodunu Bitmap formatında oluşturuyoruz
-            using (var qrBitmap = qrCode.GetGraphic(20))
-            {
-                using (var ms = new MemoryStream())
-                {
-                    // QR kodunu PNG formatında kaydediyoruz
-                    qrBitmap.Save(ms, ImageFormat.Png);
-                    return Convert.ToBase64String(ms.ToArray());
-                }
-            }
         }
     }
 }
