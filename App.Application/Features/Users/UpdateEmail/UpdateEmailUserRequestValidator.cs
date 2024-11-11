@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace App.Application.Features.Customers.UpdateEmail
+namespace App.Application.Features.Users.UpdateEmail
 {
-    public class UpdateEmailCustomerRequestValidator : AbstractValidator<UpdateEmailCustomerRequest>
+    public class UpdateEmailUserRequestValidator : AbstractValidator<UpdateEmailUserRequest>
     {
-        public UpdateEmailCustomerRequestValidator()
+        public UpdateEmailUserRequestValidator()
         {
             RuleFor(x => x.Email)
                 .NotEmpty().WithMessage("Email zorunludur.")

@@ -9,14 +9,14 @@ using System.Text.Json;
 
 namespace App.Application.Features.Tickets
 {
-    public class TicketService(ICustomerRepository customerRepository, IEventRepository eventRepository, ITicketRepository ticketRepository, IUnitOfWork unitOfWork, IMapper mapper, IQRCodeService qRCodeService) : ITicketService
+    public class TicketService(IUserRepository userRepository, IEventRepository eventRepository, ITicketRepository ticketRepository, IUnitOfWork unitOfWork, IMapper mapper, IQRCodeService qRCodeService) : ITicketService
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateTicketRequest request)
         {
             var eventEntityExists = await eventRepository.GetByIdAsync(request.EventId);
-            var customerEntityExists = await customerRepository.GetByIdAsync(request.CustomerId);
+            var userEntityExists = await userRepository.GetByIdAsync(request.UserId);
 
-            if (eventEntityExists is null || customerEntityExists is null)
+            if (eventEntityExists is null || userEntityExists is null)
             {
                 return ServiceResult<int>.Fail("Etkinlik veya müşteri bulunamadı", HttpStatusCode.NotFound);
             }
@@ -38,7 +38,7 @@ namespace App.Application.Features.Tickets
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
-         
+
         public async Task<ServiceResult<List<TicketDto>>> GetAllListAsync()
         {
             var tickets = await ticketRepository.GetAllAsync();
@@ -76,12 +76,12 @@ namespace App.Application.Features.Tickets
             return ServiceResult<List<TicketDto>>.Success(ticketAsDto);
         }
 
-        public async Task<ServiceResult<byte[]>> QrCodeToUserAndEventAsync(int customerId, int eventId)
+        public async Task<ServiceResult<byte[]>> QrCodeToUserAndEventAsync(int userId, int eventId)
         {
             var eventEntityExists = await eventRepository.GetByIdAsync(eventId);
-            var customerEntityExists = await customerRepository.GetByIdAsync(customerId);
+            var userEntityExists = await userRepository.GetByIdAsync(userId);
 
-            if (eventEntityExists is null || customerEntityExists is null)
+            if (eventEntityExists is null || userEntityExists is null)
             {
                 return ServiceResult<byte[]>.Fail("Etkinlik veya müşteri bulunamadı", HttpStatusCode.NotFound);
             }
@@ -93,7 +93,7 @@ namespace App.Application.Features.Tickets
                 eventEntityExists.Price,
                 eventEntityExists.City,
                 eventEntityExists.District,
-                customerEntityExists.Email
+                userEntityExists.Email
             };
 
             string plainText = JsonSerializer.Serialize(plainObject);
@@ -106,9 +106,9 @@ namespace App.Application.Features.Tickets
             var ticket = await ticketRepository.GetByIdAsync(id);
 
             var eventEntityExists = await eventRepository.GetByIdAsync(request.EventId);
-            var customerEntityExists = await customerRepository.GetByIdAsync(request.CustomerId);
+            var userEntityExists = await userRepository.GetByIdAsync(request.UserId);
 
-            if (eventEntityExists == null || customerEntityExists == null)
+            if (eventEntityExists == null || userEntityExists == null)
             {
                 return ServiceResult.Fail("Etkinlik veya müşteri bulunamadı", HttpStatusCode.NotFound);
             }

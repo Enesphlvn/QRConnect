@@ -1,5 +1,5 @@
 ﻿using App.Application.Contracts.Persistence;
-using App.Application.Features.Customers;
+using App.Application.Features.Users;
 using App.Application.Features.Events;
 using App.Application.Features.QRCodes;
 using App.Application.Features.Tickets;
@@ -18,7 +18,7 @@ namespace App.Application.Extensions
         {
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
-            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<IQRCodeService, QRCodeService>();

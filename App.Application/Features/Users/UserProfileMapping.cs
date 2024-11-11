@@ -1,37 +1,35 @@
-﻿using App.Application.Features.Customers.Create;
-using App.Application.Features.Customers.Dto;
-using App.Application.Features.Customers.Update;
-using App.Application.Features.Customers.UpdateEmail;
-using App.Application.Features.Events.Create;
-using App.Application.Features.Events.Update;
+﻿using App.Application.Features.Users.Create;
+using App.Application.Features.Users.Dto;
+using App.Application.Features.Users.Update;
+using App.Application.Features.Users.UpdateEmail;
 using App.Domain.Entities;
 using AutoMapper;
 
-namespace App.Application.Features.Customers
+namespace App.Application.Features.Users
 {
-    public class CustomerProfileMapping : Profile
+    public class UserProfileMapping : Profile
     {
-        public CustomerProfileMapping()
+        public UserProfileMapping()
         {
-            CreateMap<CustomerDto, Customer>().ReverseMap();
+            CreateMap<UserDto, User>().ReverseMap();
 
-            CreateMap<CreateCustomerRequest, Customer>()
+            CreateMap<CreateUserRequest, User>()
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.ToLowerInvariant()))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLowerInvariant()))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLowerInvariant()));
 
-            CreateMap<UpdateCustomerRequest, Customer>()
+            CreateMap<UpdateUserRequest, User>()
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.ToLowerInvariant()))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLowerInvariant()));
 
-            CreateMap<UpdateEmailCustomerRequest, Customer>()
+            CreateMap<UpdateEmailUserRequest, User>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLowerInvariant()));
 
-            CreateMap<CreateCustomerRequest, Customer>()
+            CreateMap<CreateUserRequest, User>()
                 .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
 
-            CreateMap<UpdateCustomerRequest, Customer>()
+            CreateMap<UpdateUserRequest, User>()
                 .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
         }
     }

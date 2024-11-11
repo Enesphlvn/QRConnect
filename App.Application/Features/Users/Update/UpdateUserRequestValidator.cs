@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace App.Application.Features.Customers.Update
+namespace App.Application.Features.Users.Update
 {
-    public class UpdateCustomerRequestValidator : AbstractValidator<UpdateCustomerRequest>
+    public class UpdateUserRequestValidator : AbstractValidator<UpdateUserRequest>
     {
-        public UpdateCustomerRequestValidator()
+        public UpdateUserRequestValidator()
         {
             RuleFor(x => x.FirstName)
                 .NotEmpty().WithMessage("İsim zorunludur.")

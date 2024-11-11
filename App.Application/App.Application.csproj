@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Customers\UpdatePassword\" />
+    <Folder Include="Features\Users\UpdatePassword\" />
   </ItemGroup>
 
 </Project>

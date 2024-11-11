@@ -2,7 +2,7 @@
 
 namespace App.Domain.Entities
 {
-    public class Customer : BaseEntity<int>, IAuditEntity
+    public class User : BaseEntity<int>, IAuditEntity
     {
         public string FirstName { get; set; } = default!;
         public string LastName { get; set; } = default!;

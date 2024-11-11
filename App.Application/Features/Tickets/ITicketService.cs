@@ -12,6 +12,6 @@ namespace App.Application.Features.Tickets
         Task<ServiceResult<int>> CreateAsync(CreateTicketRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateTicketRequest request);
         Task<ServiceResult> DeleteAsync(int id);
-        Task<ServiceResult<byte[]>> QrCodeToUserAndEventAsync(int customerId, int eventId);
+        Task<ServiceResult<byte[]>> QrCodeToUserAndEventAsync(int userId, int eventId);
     }
 }

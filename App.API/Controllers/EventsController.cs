@@ -2,7 +2,6 @@
 using App.Application.Features.Events;
 using App.Application.Features.Events.Create;
 using App.Application.Features.Events.Update;
-using App.Application.Features.Tickets;
 using App.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 

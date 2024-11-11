@@ -1,6 +1,6 @@
 ﻿using App.Application.Contracts.Persistence;
 using App.Domain.Options;
-using App.Persistence.Customers;
+using App.Persistence.Users;
 using App.Persistence.Events;
 using App.Persistence.Interceptors;
 using App.Persistence.Tickets;
@@ -26,7 +26,7 @@ namespace App.Persistence.Extensions
                 options.AddInterceptors(new AuditDbContextInterceptor());
             });
 
-            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEventRepository, EventRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
             services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));

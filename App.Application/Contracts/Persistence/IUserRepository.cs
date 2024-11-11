@@ -2,7 +2,7 @@
 
 namespace App.Application.Contracts.Persistence
 {
-    public interface ICustomerRepository : IGenericRepository<Customer, int>
+    public interface IUserRepository : IGenericRepository<User, int>
     {
     }
 }

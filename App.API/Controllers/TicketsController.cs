@@ -27,10 +27,10 @@ namespace App.API.Controllers
             return CreateActionResult(await ticketService.GetByIdAsync(id));
         }
 
-        [HttpGet("qrcode/{eventId:int}/{customerId:int}")]
-        public async Task<IActionResult> GetQRCode(int eventId, int customerId)
+        [HttpGet("qrcode/{eventId:int}/{userId:int}")]
+        public async Task<IActionResult> GetQRCode(int eventId, int userId)
         {
-            var result = await ticketService.QrCodeToUserAndEventAsync(customerId, eventId);
+            var result = await ticketService.QrCodeToUserAndEventAsync(userId, eventId);
 
             if (result.IsSuccess)
             {
