@@ -20,9 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\EventTypes\Create\" />
-    <Folder Include="Features\EventTypes\Dto\" />
-    <Folder Include="Features\EventTypes\Update\" />
     <Folder Include="Features\UserOperationClaims\Create\" />
     <Folder Include="Features\UserOperationClaims\Dto\" />
     <Folder Include="Features\UserOperationClaims\Update\" />

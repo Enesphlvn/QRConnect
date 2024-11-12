@@ -1,23 +1,23 @@
-﻿using App.Application.Features.Cities.Create;
-using App.Application.Features.Cities.Dto;
-using App.Application.Features.Cities.Update;
+﻿using App.Application.Features.EventTypes.Create;
+using App.Application.Features.EventTypes.Dto;
+using App.Application.Features.EventTypes.Update;
 using App.Domain.Entities;
 using AutoMapper;
 
-namespace App.Application.Features.Cities
+namespace App.Application.Features.EventTypes
 {
-    public class CityProfileMapping : Profile
+    public class EventTypeProfileMapping : Profile
     {
-        public CityProfileMapping()
+        public EventTypeProfileMapping()
         {
-            CreateMap<CityDto, City>().ReverseMap();
+            CreateMap<EventTypeDto, EventType>().ReverseMap();
 
-            CreateMap<CreateCityRequest, City>()
+            CreateMap<CreateEventTypeRequest, EventType>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLowerInvariant()))
                 .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.IsStatus, opt => opt.MapFrom(_ => true));
 
-            CreateMap<UpdateCityRequest, City>()
+            CreateMap<UpdateEventTypeRequest, EventType>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLowerInvariant()))
                 .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
         }
