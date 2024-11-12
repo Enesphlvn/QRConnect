@@ -1,23 +1,23 @@
-﻿using App.Application.Features.Cities.Create;
-using App.Application.Features.Cities.Dto;
-using App.Application.Features.Cities.Update;
+﻿using App.Application.Features.Districts.Create;
+using App.Application.Features.Districts.Dto;
+using App.Application.Features.Districts.Update;
 using App.Domain.Entities;
 using AutoMapper;
 
-namespace App.Application.Features.Cities
+namespace App.Application.Features.Districts
 {
     public class DistrictProfileMapping : Profile
     {
         public DistrictProfileMapping()
         {
-            CreateMap<CityDto, City>().ReverseMap();
+            CreateMap<DistrictDto, District>().ReverseMap();
 
-            CreateMap<CreateCityRequest, City>()
+            CreateMap<CreateDistrictRequest, District>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLowerInvariant()))
                 .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.IsStatus, opt => opt.MapFrom(_ => true));
 
-            CreateMap<UpdateCityRequest, City>()
+            CreateMap<UpdateDistrictRequest, District>()
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLowerInvariant()))
                 .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
         }
