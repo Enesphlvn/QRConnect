@@ -20,9 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Cities\Create\" />
-    <Folder Include="Features\Cities\Dto\" />
-    <Folder Include="Features\Cities\Update\" />
     <Folder Include="Features\Districts\Create\" />
     <Folder Include="Features\Districts\Dto\" />
     <Folder Include="Features\Districts\Update\" />
