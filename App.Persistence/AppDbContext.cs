@@ -13,6 +13,8 @@ namespace App.Persistence
         public DbSet<Venue> Venues { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<District> Districts { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -1,4 +1,4 @@
-﻿namespace App.Application.Contracts.Persistence
+﻿namespace App.Application.Features.QRCodes
 {
     public interface IQRCodeService
     {

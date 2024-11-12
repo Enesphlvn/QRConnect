@@ -1,5 +1,4 @@
-﻿using App.Application.Contracts.Persistence;
-using QRCoder;
+﻿using QRCoder;
 
 namespace App.Application.Features.QRCodes
 {

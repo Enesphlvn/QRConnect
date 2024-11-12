@@ -2,6 +2,7 @@
 using App.Application.Features.Events.Create;
 using App.Application.Features.Events.Dto;
 using App.Application.Features.Events.Update;
+using App.Application.Features.QRCodes;
 using App.Domain.Entities;
 using AutoMapper;
 using System.Net;

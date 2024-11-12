@@ -2,9 +2,9 @@
 
 namespace App.Domain.Entities
 {
-    public class OperationClaim : BaseEntity<int>
+    public class City : BaseEntity<int>
     {
         public string Name { get; set; } = default!;
-        public List<UserOperationClaim> UserOperationClaims { get; set; } = [];
+        public List<District> Districts { get; set; } = [];
     }
 }

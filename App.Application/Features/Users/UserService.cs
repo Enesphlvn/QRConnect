@@ -1,4 +1,5 @@
 ﻿using App.Application.Contracts.Persistence;
+using App.Application.Features.QRCodes;
 using App.Application.Features.Users.Create;
 using App.Application.Features.Users.Dto;
 using App.Application.Features.Users.Update;

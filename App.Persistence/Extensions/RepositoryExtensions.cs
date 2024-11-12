@@ -11,6 +11,8 @@ using App.Persistence.EventTypes;
 using App.Persistence.OperationClaims;
 using App.Persistence.UserOperationClaims;
 using App.Persistence.Venues;
+using App.Persistence.Cities;
+using App.Persistence.Districts;
 
 namespace App.Persistence.Extensions
 {
@@ -37,6 +39,8 @@ namespace App.Persistence.Extensions
             services.AddScoped<IUserOperationClaimRepository, UserOperationClaimRepository>();
             services.AddScoped<IVenueRepository, VenueRepository>();
             services.AddScoped<ITicketRepository, TicketRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IDistrictRepository, DistrictRepository>();
             services.AddScoped(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

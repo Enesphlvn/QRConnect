@@ -1,4 +1,5 @@
 ﻿using App.Application.Contracts.Persistence;
+using App.Application.Features.QRCodes;
 using App.Application.Features.Tickets.Create;
 using App.Application.Features.Tickets.Dto;
 using App.Application.Features.Tickets.Update;

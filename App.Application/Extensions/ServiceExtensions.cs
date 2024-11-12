@@ -1,5 +1,4 @@
-﻿using App.Application.Contracts.Persistence;
-using App.Application.Features.Users;
+﻿using App.Application.Features.Users;
 using App.Application.Features.Events;
 using App.Application.Features.QRCodes;
 using App.Application.Features.Tickets;
