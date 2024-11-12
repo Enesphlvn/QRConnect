@@ -23,9 +23,6 @@
     <Folder Include="Features\UserOperationClaims\Create\" />
     <Folder Include="Features\UserOperationClaims\Dto\" />
     <Folder Include="Features\UserOperationClaims\Update\" />
-    <Folder Include="Features\OperationClaims\Create\" />
-    <Folder Include="Features\OperationClaims\Dto\" />
-    <Folder Include="Features\OperationClaims\Update\" />
     <Folder Include="Features\Users\UpdatePassword\" />
     <Folder Include="Features\Venues\Create\" />
     <Folder Include="Features\Venues\Dto\" />

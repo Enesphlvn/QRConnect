@@ -69,9 +69,9 @@ namespace App.Application.Features.Cities
 
             var cities = await cityRepository.GetAllPagedAsync(pageNumber, pageSize);
 
-            var cityAsDto = mapper.Map<List<CityDto>>(cities);
+            var citiesAsDto = mapper.Map<List<CityDto>>(cities);
 
-            return ServiceResult<List<CityDto>>.Success(cityAsDto);
+            return ServiceResult<List<CityDto>>.Success(citiesAsDto);
         }
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCityRequest request)

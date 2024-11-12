@@ -11,6 +11,7 @@ using System.Reflection;
 using App.Application.Features.Cities;
 using App.Application.Features.Districts;
 using App.Application.Features.EventTypes;
+using App.Application.Features.OperationClaims;
 
 namespace App.Application.Extensions
 {
@@ -27,6 +28,7 @@ namespace App.Application.Extensions
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IDistrictService, DistrictService>();
             services.AddScoped<IEventTypeService, EventTypeService>();
+            services.AddScoped<IOperationClaimService, OperationClaimService>();
 
             services.AddFluentValidationAutoValidation();
 
