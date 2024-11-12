@@ -9,7 +9,7 @@ namespace App.Domain.Entities
         public City City { get; set; } = default!;
         public int DistrictId { get; set; } = default!;
         public District District { get; set; } = default!;
-        public int Capacity { get; set; }
+        public int? Capacity { get; set; }
         public List<Event> Events { get; set; } = [];
     }
 }
