@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using App.Application.Features.Cities;
+using App.Application.Features.Districts;
 
 namespace App.Application.Extensions
 {
@@ -23,6 +24,7 @@ namespace App.Application.Extensions
             services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<IQRCodeService, QRCodeService>();
             services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IDistrictService, DistrictService>();
 
             services.AddFluentValidationAutoValidation();
 
