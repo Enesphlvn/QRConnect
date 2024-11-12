@@ -19,8 +19,14 @@ namespace App.Application.Features.Events.Update
                 .LessThanOrEqualTo(10000).WithMessage("Fiyat 10000'den fazla olamaz.");
 
             RuleFor(x => x.Description)
-                .MaximumLength(200).WithMessage("Açıklama en fazla 200 karakter olabilir.")
+                .MaximumLength(500).WithMessage("Açıklama en fazla 500 karakter olabilir.")
                 .When(x => !string.IsNullOrEmpty(x.Description));
+
+            RuleFor(x => x.EventTypeId)
+                .GreaterThan(0).WithMessage("EventTypeId 0'dan büyük olmalıdır.");
+
+            RuleFor(x => x.VenueId)
+                .GreaterThan(0).WithMessage("VenueId 0'dan büyük olmalıdır.");
         }
     }
 }

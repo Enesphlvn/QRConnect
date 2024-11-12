@@ -16,7 +16,6 @@ namespace App.Persistence
         public DbSet<City> Cities { get; set; }
         public DbSet<District> Districts { get; set; }
 
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());

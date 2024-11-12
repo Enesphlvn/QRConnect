@@ -16,21 +16,20 @@ namespace App.Application.Features.Users
             CreateMap<CreateUserRequest, User>()
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.ToLowerInvariant()))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLowerInvariant()))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLowerInvariant()));
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLowerInvariant()))
+                .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
+                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now))
+                .ForMember(dest => dest.IsStatus, opt => opt.MapFrom(_ => true));
 
             CreateMap<UpdateUserRequest, User>()
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.ToLowerInvariant()))
-                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLowerInvariant()));
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLowerInvariant()))
+                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
 
             CreateMap<UpdateEmailUserRequest, User>()
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLowerInvariant()));
 
-            CreateMap<CreateUserRequest, User>()
-                .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
-                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
 
-            CreateMap<UpdateUserRequest, User>()
-                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
         }
     }
 }

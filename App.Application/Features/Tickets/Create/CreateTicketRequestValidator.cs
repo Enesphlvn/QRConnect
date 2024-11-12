@@ -6,10 +6,10 @@ namespace App.Application.Features.Tickets.Create
     {
         public CreateTicketRequestValidator()
         {
-            RuleFor(request => request.EventId)
+            RuleFor(x => x.EventId)
                 .GreaterThan(0).WithMessage("EventId 0'dan büyük olmalıdır.");
 
-            RuleFor(request => request.UserId)
+            RuleFor(x => x.UserId)
                 .GreaterThan(0).WithMessage("UserId 0'dan büyük olmalıdır.");
         }
     }

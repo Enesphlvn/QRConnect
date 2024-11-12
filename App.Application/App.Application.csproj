@@ -20,7 +20,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Cities\Create\" />
+    <Folder Include="Features\Cities\Dto\" />
+    <Folder Include="Features\Cities\Update\" />
+    <Folder Include="Features\Districts\Create\" />
+    <Folder Include="Features\Districts\Dto\" />
+    <Folder Include="Features\Districts\Update\" />
+    <Folder Include="Features\EventTypes\Create\" />
+    <Folder Include="Features\EventTypes\Dto\" />
+    <Folder Include="Features\EventTypes\Update\" />
+    <Folder Include="Features\UserOperationClaims\Create\" />
+    <Folder Include="Features\UserOperationClaims\Dto\" />
+    <Folder Include="Features\UserOperationClaims\Update\" />
+    <Folder Include="Features\OperationClaims\Create\" />
+    <Folder Include="Features\OperationClaims\Dto\" />
+    <Folder Include="Features\OperationClaims\Update\" />
     <Folder Include="Features\Users\UpdatePassword\" />
+    <Folder Include="Features\Venues\Create\" />
+    <Folder Include="Features\Venues\Dto\" />
+    <Folder Include="Features\Venues\Update\" />
   </ItemGroup>
 
 </Project>
