@@ -13,6 +13,12 @@ namespace App.Persistence.Users
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Email).IsRequired().HasMaxLength(255);
             builder.Property(x => x.Password).IsRequired().HasMaxLength(100);
+
+            builder.HasMany(x => x.UserOperationClaims).WithOne(uoc => uoc.User).HasForeignKey(uoc => uoc.UserId)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasMany(x => x.Tickets).WithOne(t => t.User).HasForeignKey(t => t.UserId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

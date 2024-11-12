@@ -10,6 +10,12 @@ namespace App.Persistence.Venues
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
+
+            builder.HasOne(x => x.City).WithMany(c => c.Venues).HasForeignKey(x => x.CityId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(x => x.District).WithMany(d => d.Venues).HasForeignKey(x => x.DistrictId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -10,6 +10,9 @@ namespace App.Persistence.EventTypes
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
+
+            builder.HasMany(x => x.Events).WithOne(e => e.EventType).HasForeignKey(e => e.EventTypeId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -10,6 +10,9 @@ namespace App.Persistence.Cities
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(100);
+
+            builder.HasMany(x => x.Districts).WithOne(d => d.City).HasForeignKey(d => d.CityId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

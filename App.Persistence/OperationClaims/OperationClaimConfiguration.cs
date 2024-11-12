@@ -10,6 +10,10 @@ namespace App.Persistence.OperationClaims
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired().HasMaxLength(50);
+
+            builder.HasMany(x => x.UserOperationClaims).WithOne(uoc => uoc.OperationClaim)
+                .HasForeignKey(uoc => uoc.OperationClaimId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

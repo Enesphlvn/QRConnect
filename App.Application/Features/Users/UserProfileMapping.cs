@@ -18,7 +18,6 @@ namespace App.Application.Features.Users
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLowerInvariant()))
                 .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLowerInvariant()))
                 .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
-                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now))
                 .ForMember(dest => dest.IsStatus, opt => opt.MapFrom(_ => true));
 
             CreateMap<UpdateUserRequest, User>()

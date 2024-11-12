@@ -13,6 +13,9 @@ namespace App.Persistence.Events
             builder.Property(x => x.Date).IsRequired();
             builder.Property(x => x.Price).IsRequired().HasColumnType("decimal(18,2)");
             builder.Property(x => x.Description).HasMaxLength(500);
+
+            builder.HasOne(x => x.Venue).WithMany(v => v.Events).HasForeignKey(x => x.VenueId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

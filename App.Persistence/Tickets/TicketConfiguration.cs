@@ -10,6 +10,9 @@ namespace App.Persistence.Tickets
         {
             builder.HasKey(x => x.Id);
             builder.Property(x => x.PurchaseDate).IsRequired();
+
+            builder.HasOne(x => x.Event).WithMany(e => e.Tickets).HasForeignKey(x => x.EventId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

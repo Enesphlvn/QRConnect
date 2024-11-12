@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using App.Application.Features.Cities;
 
 namespace App.Application.Extensions
 {
@@ -21,6 +22,7 @@ namespace App.Application.Extensions
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<IQRCodeService, QRCodeService>();
+            services.AddScoped<ICityService, CityService>();
 
             services.AddFluentValidationAutoValidation();
 
