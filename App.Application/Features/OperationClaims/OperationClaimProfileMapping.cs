@@ -14,13 +14,10 @@ namespace App.Application.Features.OperationClaims
             CreateMap<OperationClaimDto, OperationClaim>().ReverseMap();
 
             CreateMap<CreateOperationClaimRequest, OperationClaim>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
-                .ForMember(dest => dest.IsStatus, opt => opt.MapFrom(_ => true));
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
 
             CreateMap<UpdateOperationClaimRequest, OperationClaim>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
         }
     }
 }

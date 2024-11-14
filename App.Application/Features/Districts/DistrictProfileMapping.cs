@@ -14,13 +14,10 @@ namespace App.Application.Features.Districts
             CreateMap<DistrictDto, District>().ReverseMap();
 
             CreateMap<CreateDistrictRequest, District>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
-                .ForMember(dest => dest.IsStatus, opt => opt.MapFrom(_ => true));
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
 
             CreateMap<UpdateDistrictRequest, District>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
         }
     }
 }

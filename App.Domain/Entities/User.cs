@@ -11,7 +11,7 @@ namespace App.Domain.Entities
         public Byte[] PasswordSalt { get; set; } = default!;
         public List<UserOperationClaim> UserOperationClaims { get; set; } = [];
         public List<Ticket>? Tickets { get; set; }
-        public DateTime Created { get; set; }
-        public DateTime? Updated { get; set; }
+        public DateTimeOffset Created { get; set; }
+        public DateTimeOffset? Updated { get; set; }
     }
 }

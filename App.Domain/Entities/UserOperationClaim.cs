@@ -8,7 +8,7 @@ namespace App.Domain.Entities
         public User User { get; set; } = default!;
         public int OperationClaimId { get; set; }
         public OperationClaim OperationClaim { get; set; } = default!;
-        public DateTime Created { get; set; }
-        public DateTime? Updated { get; set; }
+        public DateTimeOffset Created { get; set; }
+        public DateTimeOffset? Updated { get; set; }
     }
 }

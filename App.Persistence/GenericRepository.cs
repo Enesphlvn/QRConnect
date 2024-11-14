@@ -12,6 +12,13 @@ namespace App.Persistence
 
         public async ValueTask AddAsync(T entity)
         {
+            if (entity is IAuditEntity auditEntity)
+            {
+                auditEntity.Created = DateTimeOffset.UtcNow;
+            }
+
+            entity.IsStatus = true;
+
             await _dbSet.AddAsync(entity);
         }
 
@@ -47,6 +54,11 @@ namespace App.Persistence
 
         public void Update(T entity)
         {
+            if (entity is IAuditEntity auditEntity)
+            {
+                auditEntity.Updated = DateTimeOffset.UtcNow;
+            }
+
             _dbSet.Update(entity);
         }
 
@@ -65,7 +77,7 @@ namespace App.Persistence
 
             if (entity is IAuditEntity auditEntity)
             {
-                auditEntity.Updated = DateTime.Now;
+                auditEntity.Updated = DateTimeOffset.Now;
             }
 
             _dbSet.Update(entity);

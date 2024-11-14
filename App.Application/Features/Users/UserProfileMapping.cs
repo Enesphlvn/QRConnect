@@ -18,21 +18,16 @@ namespace App.Application.Features.Users
             CreateMap<CreateUserRequest, User>()
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.ToLower(new CultureInfo("tr-TR"))))
                 .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Created, opt => opt.MapFrom(_ => DateTime.Now))
-                .ForMember(dest => dest.IsStatus, opt => opt.MapFrom(_ => true));
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLower(new CultureInfo("tr-TR"))));
 
             CreateMap<UpdateUserRequest, User>()
                 .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
+                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLower(new CultureInfo("tr-TR"))));
 
             CreateMap<UpdateEmailUserRequest, User>()
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLower(new CultureInfo("tr-TR"))));
 
-            CreateMap<UpdatePasswordUserRequest, User>()
-                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
+            CreateMap<UpdatePasswordUserRequest, User>();
         }
     }
 }

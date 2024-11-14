@@ -8,7 +8,7 @@ namespace App.Domain.Entities
         public int CityId { get; set; }
         public City City { get; set; } = default!;
         public List<Venue> Venues { get; set; } = [];
-        public DateTime Created { get; set; }
-        public DateTime? Updated { get; set; }
+        public DateTimeOffset Created { get; set; }
+        public DateTimeOffset? Updated { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace App.Domain.Entities
         public District District { get; set; } = default!;
         public int? Capacity { get; set; }
         public List<Event> Events { get; set; } = [];
-        public DateTime Created { get; set; }
-        public DateTime? Updated { get; set; }
+        public DateTimeOffset Created { get; set; }
+        public DateTimeOffset? Updated { get; set; }
     }
 }
