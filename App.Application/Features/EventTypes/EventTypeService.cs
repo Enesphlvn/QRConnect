@@ -82,10 +82,16 @@ namespace App.Application.Features.EventTypes
                 return ServiceResult.Fail("Aynı isimde başka bir etkinlik türü mevcut.", HttpStatusCode.BadRequest);
             }
 
-            var eventType = mapper.Map<EventType>(request);
-            eventType.Id = id;
+            var existingEventType = await eventTypeRepository.GetByIdAsync(id);
 
-            eventTypeRepository.Update(eventType);
+            if (existingEventType is null)
+            {
+                return ServiceResult.Fail("Etkinlik türü bulunamadı.", HttpStatusCode.NotFound);
+            }
+
+            mapper.Map(request, existingEventType);
+
+            eventTypeRepository.Update(existingEventType);
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

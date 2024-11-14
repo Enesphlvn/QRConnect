@@ -83,10 +83,15 @@ namespace App.Application.Features.OperationClaims
                 return ServiceResult.Fail("Aynı isimde başka bir rol mevcut.", HttpStatusCode.BadRequest);
             }
 
-            var operationClaim = mapper.Map<OperationClaim>(request);
-            operationClaim.Id = id;
+            var existingOperationClaim = await operationClaimRepository.GetByIdAsync(id);
+            if (existingOperationClaim is null)
+            {
+                return ServiceResult.Fail("Rol bulunamadı.", HttpStatusCode.NotFound);
+            }
 
-            operationClaimRepository.Update(operationClaim);
+            mapper.Map(request, existingOperationClaim);
+
+            operationClaimRepository.Update(existingOperationClaim);
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

@@ -4,6 +4,7 @@ using App.Application.Features.Cities.Dto;
 using App.Application.Features.Cities.Update;
 using App.Domain.Entities;
 using AutoMapper;
+using System.Globalization;
 using System.Net;
 
 namespace App.Application.Features.Cities
@@ -83,10 +84,16 @@ namespace App.Application.Features.Cities
                 return ServiceResult.Fail("Aynı isimde başka bir şehir mevcut.", HttpStatusCode.BadRequest);
             }
 
-            var city = mapper.Map<City>(request);
-            city.Id = id;
+            var existingCity = await cityRepository.GetByIdAsync(id);
 
-            cityRepository.Update(city);
+            if (existingCity is null)
+            {
+                return ServiceResult.Fail("Şehir bulunamadı.", HttpStatusCode.NotFound);
+            }
+
+            mapper.Map(request, existingCity);
+
+            cityRepository.Update(existingCity);
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

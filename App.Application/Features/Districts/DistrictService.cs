@@ -83,10 +83,16 @@ namespace App.Application.Features.Districts
                 return ServiceResult.Fail("Aynı isimde başka bir ilçe mevcut.", HttpStatusCode.BadRequest);
             }
 
-            var district = mapper.Map<District>(request);
-            district.Id = id;
+            var existingDistrict = await districtRepository.GetByIdAsync(id);
 
-            districtRepository.Update(district);
+            if (existingDistrict is null)
+            {
+                return ServiceResult.Fail("ilçe bulunamadı.", HttpStatusCode.NotFound);
+            }
+
+            mapper.Map(request, existingDistrict);
+
+            districtRepository.Update(existingDistrict);
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

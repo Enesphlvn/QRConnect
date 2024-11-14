@@ -59,10 +59,7 @@ namespace App.Persistence
         {
             var entity = await _dbSet.FindAsync(id);
 
-            if (entity is null)
-            {
-                return false;
-            }
+            if (entity is null) return false;
 
             entity.IsStatus = false;
 

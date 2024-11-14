@@ -108,10 +108,16 @@ namespace App.Application.Features.Events
                 return ServiceResult.Fail("Aynı tarih ve adreste başka bir etkinlik mevcut.", HttpStatusCode.BadRequest);
             }
 
-            var @event = mapper.Map<Event>(request);
-            @event.Id = id;
+            var existingEvent = await eventRepository.GetByIdAsync(id);
 
-            eventRepository.Update(@event);
+            if (existingEvent is null)
+            {
+                return ServiceResult.Fail("Etkinlik bulunamadı.", HttpStatusCode.NotFound);
+            }
+
+            mapper.Map(request, existingEvent);
+
+            eventRepository.Update(existingEvent);
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
