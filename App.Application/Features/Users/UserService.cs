@@ -137,6 +137,13 @@ namespace App.Application.Features.Users
                 return ServiceResult.Fail("Eski şifre hatalı", HttpStatusCode.BadRequest);
             };
 
+            if (request.OldPassword == request.NewPassword)
+            {
+                return ServiceResult.Fail("Yeni şifre eskisinden farklı olmalı", HttpStatusCode.BadRequest);
+            }
+
+            mapper.Map(request, user);
+
             passwordHashingService.GeneratePasswordhash(request.NewPassword, out byte[] passwordHash, out byte[] passwordSalt);
 
             user.PasswordHash = passwordHash;

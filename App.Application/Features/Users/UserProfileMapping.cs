@@ -2,6 +2,7 @@
 using App.Application.Features.Users.Dto;
 using App.Application.Features.Users.Update;
 using App.Application.Features.Users.UpdateEmail;
+using App.Application.Features.Users.UpdatePassword;
 using App.Domain.Entities;
 using AutoMapper;
 
@@ -26,9 +27,11 @@ namespace App.Application.Features.Users
                 .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
 
             CreateMap<UpdateEmailUserRequest, User>()
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLowerInvariant()));
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLowerInvariant()))
+                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
 
-
+            CreateMap<UpdatePasswordUserRequest, User>()
+                .ForMember(dest => dest.Updated, opt => opt.MapFrom(_ => DateTime.Now));
         }
     }
 }

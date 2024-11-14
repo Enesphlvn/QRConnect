@@ -3,6 +3,7 @@ using App.Application.Features.Users;
 using App.Application.Features.Users.Create;
 using App.Application.Features.Users.Update;
 using App.Application.Features.Users.UpdateEmail;
+using App.Application.Features.Users.UpdatePassword;
 using App.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,6 +60,13 @@ namespace App.API.Controllers
         public async Task<IActionResult> UpdateEmail(int id, UpdateEmailUserRequest request)
         {
             return CreateActionResult(await userService.UpdateEmailAsync(id, request));
+        }
+
+        [ServiceFilter(typeof(NotFoundFilter<User, int>))]
+        [HttpPatch("password/{id:int}")]
+        public async Task<IActionResult> UpdatePassword(int id, UpdatePasswordUserRequest request)
+        {
+            return CreateActionResult(await userService.UpdatePasswordAsync(id, request));
         }
 
         [ServiceFilter(typeof(NotFoundFilter<User, int>))]
