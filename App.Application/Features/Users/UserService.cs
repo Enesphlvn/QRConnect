@@ -5,6 +5,7 @@ using App.Application.Features.Users.Create;
 using App.Application.Features.Users.Dto;
 using App.Application.Features.Users.Update;
 using App.Application.Features.Users.UpdateEmail;
+using App.Application.Features.Users.UpdatePassword;
 using App.Domain.Entities;
 using AutoMapper;
 using System.Net;
@@ -122,6 +123,26 @@ namespace App.Application.Features.Users
             mapper.Map(request, user);
 
             userRepository.Update(user!);
+            await unitOfWork.SaveChangesAsync();
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
+        public async Task<ServiceResult> UpdatePasswordAsync(int id, UpdatePasswordUserRequest request)
+        {
+            var user = await userRepository.GetByIdAsync(id);
+
+            if (!passwordHashingService.VerifyPasswordHash(request.OldPassword, user!.PasswordHash, user.PasswordSalt))
+            {
+                return ServiceResult.Fail("Eski şifre hatalı", HttpStatusCode.BadRequest);
+            };
+
+            passwordHashingService.GeneratePasswordhash(request.NewPassword, out byte[] passwordHash, out byte[] passwordSalt);
+
+            user.PasswordHash = passwordHash;
+            user.PasswordSalt = passwordSalt;
+
+            userRepository.Update(user);
             await unitOfWork.SaveChangesAsync();
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

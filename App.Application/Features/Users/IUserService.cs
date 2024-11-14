@@ -2,6 +2,7 @@
 using App.Application.Features.Users.Dto;
 using App.Application.Features.Users.Update;
 using App.Application.Features.Users.UpdateEmail;
+using App.Application.Features.Users.UpdatePassword;
 
 namespace App.Application.Features.Users
 {
@@ -13,6 +14,7 @@ namespace App.Application.Features.Users
         Task<ServiceResult<int>> CreateAsync(CreateUserRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateUserRequest request);
         Task<ServiceResult> UpdateEmailAsync(int id, UpdateEmailUserRequest request);
+        Task<ServiceResult> UpdatePasswordAsync(int id, UpdatePasswordUserRequest request);
         Task<ServiceResult> DeleteAsync(int id);
         Task<ServiceResult<byte[]>> QrCodeToUserAsync(int userId);
     }
