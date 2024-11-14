@@ -41,6 +41,13 @@ namespace App.API.Controllers
         }
 
         [ServiceFilter(typeof(NotFoundFilter<City, int>))]
+        [HttpPatch("passive/{id:int}")]
+        public async Task<IActionResult> Passive(int id)
+        {
+            return CreateActionResult(await cityService.PassiveAsync(id));
+        }
+
+        [ServiceFilter(typeof(NotFoundFilter<City, int>))]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeleteCity(int id)
         {

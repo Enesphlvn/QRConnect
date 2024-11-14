@@ -12,5 +12,6 @@ namespace App.Application.Features.EventTypes
         Task<ServiceResult<int>> CreateAsync(CreateEventTypeRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateEventTypeRequest request);
         Task<ServiceResult> DeleteAsync(int id);
+        Task<ServiceResult> PassiveAsync(int id);
     }
 }

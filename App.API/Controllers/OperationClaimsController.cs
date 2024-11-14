@@ -1,6 +1,4 @@
 ﻿using App.API.Filters;
-using App.Application.Features.Cities.Create;
-using App.Application.Features.Cities.Update;
 using App.Application.Features.OperationClaims;
 using App.Application.Features.OperationClaims.Create;
 using App.Application.Features.OperationClaims.Update;
@@ -40,6 +38,13 @@ namespace App.API.Controllers
         public async Task<IActionResult> UpdateOperationClaim(int id, UpdateOperationClaimRequest request)
         {
             return CreateActionResult(await operationClaimService.UpdateAsync(id, request));
+        }
+
+        [ServiceFilter(typeof(NotFoundFilter<OperationClaim, int>))]
+        [HttpPatch("passive/{id:int}")]
+        public async Task<IActionResult> Passive(int id)
+        {
+            return CreateActionResult(await operationClaimService.PassiveAsync(id));
         }
 
         [ServiceFilter(typeof(NotFoundFilter<OperationClaim, int>))]

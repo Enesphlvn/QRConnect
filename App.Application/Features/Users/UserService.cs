@@ -85,7 +85,7 @@ namespace App.Application.Features.Users
 
         public async Task<ServiceResult> PassiveAsync(int id)
         {
-            var user = await userRepository.GetByIdAsync(id);
+            await userRepository.GetByIdAsync(id);
 
             await userRepository.PassiveAsync(id);
 

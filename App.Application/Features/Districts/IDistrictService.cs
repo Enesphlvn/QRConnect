@@ -12,5 +12,6 @@ namespace App.Application.Features.Districts
         Task<ServiceResult<int>> CreateAsync(CreateDistrictRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateDistrictRequest request);
         Task<ServiceResult> DeleteAsync(int id);
+        Task<ServiceResult> PassiveAsync(int id);
     }
 }

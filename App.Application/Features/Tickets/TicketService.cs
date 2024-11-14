@@ -77,6 +77,15 @@ namespace App.Application.Features.Tickets
             return ServiceResult<List<TicketDto>>.Success(ticketAsDto);
         }
 
+        public async Task<ServiceResult> PassiveAsync(int id)
+        {
+            await ticketRepository.GetByIdAsync(id);
+
+            await ticketRepository.PassiveAsync(id);
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
         public async Task<ServiceResult<byte[]>> QrCodeToUserAndEventAsync(int userId, int eventId)
         {
             var eventEntityExists = await eventRepository.GetByIdAsync(eventId);

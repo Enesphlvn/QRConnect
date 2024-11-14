@@ -73,6 +73,15 @@ namespace App.Application.Features.EventTypes
             return ServiceResult<List<EventTypeDto>>.Success(eventTypeAsDto);
         }
 
+        public async Task<ServiceResult> PassiveAsync(int id)
+        {
+            await eventTypeRepository.GetByIdAsync(id);
+
+            await eventTypeRepository.PassiveAsync(id);
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
         public async Task<ServiceResult> UpdateAsync(int id, UpdateEventTypeRequest request)
         {
             var isDuplicateEventType = await eventTypeRepository.AnyAsync(x => x.Name == request.Name && x.Id != id);

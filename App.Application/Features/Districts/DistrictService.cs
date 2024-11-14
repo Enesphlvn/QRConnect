@@ -74,6 +74,15 @@ namespace App.Application.Features.Districts
             return ServiceResult<List<DistrictDto>>.Success(districtAsDto);
         }
 
+        public async Task<ServiceResult> PassiveAsync(int id)
+        {
+            await districtRepository.GetByIdAsync(id);
+
+            await districtRepository.PassiveAsync(id);
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
         public async Task<ServiceResult> UpdateAsync(int id, UpdateDistrictRequest request)
         {
             var isDuplicateDistrict = await districtRepository.AnyAsync(x => x.Name == request.Name && x.Id != id);

@@ -13,5 +13,6 @@ namespace App.Application.Features.Events
         Task<ServiceResult> UpdateAsync(int id, UpdateEventRequest request);
         Task<ServiceResult> DeleteAsync(int id);
         Task<ServiceResult<byte[]>> QrCodeToEventAsync(int eventId);
+        Task<ServiceResult> PassiveAsync(int id);
     }
 }

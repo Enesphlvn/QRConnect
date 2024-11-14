@@ -74,6 +74,15 @@ namespace App.Application.Features.OperationClaims
             return ServiceResult<List<OperationClaimDto>>.Success(operationClaimsAsDto);
         }
 
+        public async Task<ServiceResult> PassiveAsync(int id)
+        {
+            await operationClaimRepository.GetByIdAsync(id);
+
+            await operationClaimRepository.PassiveAsync(id);
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
         public async Task<ServiceResult> UpdateAsync(int id, UpdateOperationClaimRequest request)
         {
             var isDuplicateOperationClaim = await operationClaimRepository.AnyAsync(x => x.Name == request.Name && x.Id != id);

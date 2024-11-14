@@ -76,6 +76,15 @@ namespace App.Application.Features.Events
             return ServiceResult<List<EventDto>>.Success(eventAsDto);
         }
 
+        public async Task<ServiceResult> PassiveAsync(int id)
+        {
+            await eventRepository.GetByIdAsync(id);
+
+            await eventRepository.PassiveAsync(id);
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
         public async Task<ServiceResult<byte[]>> QrCodeToEventAsync(int eventId)
         {
             var eventEntityExists = await eventRepository.GetByIdAsync(eventId);

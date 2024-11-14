@@ -4,7 +4,6 @@ using App.Application.Features.Cities.Dto;
 using App.Application.Features.Cities.Update;
 using App.Domain.Entities;
 using AutoMapper;
-using System.Globalization;
 using System.Net;
 
 namespace App.Application.Features.Cities
@@ -73,6 +72,15 @@ namespace App.Application.Features.Cities
             var citiesAsDto = mapper.Map<List<CityDto>>(cities);
 
             return ServiceResult<List<CityDto>>.Success(citiesAsDto);
+        }
+
+        public async Task<ServiceResult> PassiveAsync(int id)
+        {
+            await cityRepository.GetByIdAsync(id);
+
+            await cityRepository.PassiveAsync(id);
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCityRequest request)

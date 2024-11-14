@@ -13,5 +13,6 @@ namespace App.Application.Features.Tickets
         Task<ServiceResult> UpdateAsync(int id, UpdateTicketRequest request);
         Task<ServiceResult> DeleteAsync(int id);
         Task<ServiceResult<byte[]>> QrCodeToUserAndEventAsync(int userId, int eventId);
+        Task<ServiceResult> PassiveAsync(int id);
     }
 }

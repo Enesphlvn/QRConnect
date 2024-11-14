@@ -12,5 +12,6 @@ namespace App.Application.Features.OperationClaims
         Task<ServiceResult<int>> CreateAsync(CreateOperationClaimRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateOperationClaimRequest request);
         Task<ServiceResult> DeleteAsync(int id);
+        Task<ServiceResult> PassiveAsync(int id);
     }
 }

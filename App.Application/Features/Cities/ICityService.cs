@@ -12,5 +12,6 @@ namespace App.Application.Features.Cities
         Task<ServiceResult<int>> CreateAsync(CreateCityRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateCityRequest request);
         Task<ServiceResult> DeleteAsync(int id);
+        Task<ServiceResult> PassiveAsync(int id);
     }
 }
