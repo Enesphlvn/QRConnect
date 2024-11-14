@@ -12,7 +12,8 @@ namespace App.Persistence.Users
             builder.Property(x => x.FirstName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.LastName).IsRequired().HasMaxLength(50);
             builder.Property(x => x.Email).IsRequired().HasMaxLength(255);
-            builder.Property(x => x.Password).IsRequired().HasMaxLength(100);
+            builder.Property(x => x.PasswordHash).IsRequired();
+            builder.Property(x => x.PasswordSalt).IsRequired();
 
             builder.HasMany(x => x.UserOperationClaims).WithOne(uoc => uoc.User).HasForeignKey(uoc => uoc.UserId)
                    .OnDelete(DeleteBehavior.Restrict);

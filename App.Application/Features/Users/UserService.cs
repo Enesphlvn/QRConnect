@@ -1,4 +1,5 @@
 ﻿using App.Application.Contracts.Persistence;
+using App.Application.Features.Passwords;
 using App.Application.Features.QRCodes;
 using App.Application.Features.Users.Create;
 using App.Application.Features.Users.Dto;
@@ -11,7 +12,7 @@ using System.Text.Json;
 
 namespace App.Application.Features.Users
 {
-    public class UserService(IUserRepository userRepository, IUnitOfWork unitOfWork, IMapper mapper, IQRCodeService qRCodeService) : IUserService
+    public class UserService(IUserRepository userRepository, IUnitOfWork unitOfWork, IMapper mapper, IQRCodeService qRCodeService, IPasswordHashingService passwordHashingService) : IUserService
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateUserRequest request)
         {
@@ -22,7 +23,11 @@ namespace App.Application.Features.Users
                 return ServiceResult<int>.Fail("Müşteri email veritabanında bulunmaktadır", HttpStatusCode.NotFound);
             }
 
+            passwordHashingService.GeneratePasswordhash(request.Password, out byte[] passwordhash, out byte[] passwordSalt);
+
             var newUser = mapper.Map<User>(request);
+            newUser.PasswordHash = passwordhash;
+            newUser.PasswordSalt = passwordSalt;
 
             await userRepository.AddAsync(newUser);
             await unitOfWork.SaveChangesAsync();
@@ -91,8 +96,7 @@ namespace App.Application.Features.Users
                 userEntityExists.Id,
                 userEntityExists.FirstName,
                 userEntityExists.LastName,
-                userEntityExists.Email,
-                userEntityExists.Password
+                userEntityExists.Email
             };
             string plainText = JsonSerializer.Serialize(plainObject);
 

@@ -6,15 +6,15 @@ namespace App.Persistence
 {
     public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public DbSet<Event> Events { get; set; }
-        public DbSet<EventType> EventTypes { get; set; }
-        public DbSet<OperationClaim> OperationClaims { get; set; }
-        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
-        public DbSet<Venue> Venues { get; set; }
-        public DbSet<Ticket> Tickets { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<District> Districts { get; set; }
+        public DbSet<Event> Events { get; set; } = default!;
+        public DbSet<EventType> EventTypes { get; set; } = default!;
+        public DbSet<OperationClaim> OperationClaims { get; set; } = default!;
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; } = default!;
+        public DbSet<Venue> Venues { get; set; } = default!;
+        public DbSet<Ticket> Tickets { get; set; } = default!;
+        public DbSet<User> Users { get; set; } = default!;
+        public DbSet<City> Cities { get; set; } = default!;
+        public DbSet<District> Districts { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
