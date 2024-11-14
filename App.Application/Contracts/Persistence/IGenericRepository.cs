@@ -13,5 +13,6 @@ namespace App.Application.Contracts.Persistence
         ValueTask AddAsync(T entity);
         void Update(T entity);
         void Delete(T entity);
+        Task<bool> PassiveAsync(TId id);
     }
 }

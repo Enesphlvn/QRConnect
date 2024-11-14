@@ -17,5 +17,6 @@ namespace App.Application.Features.Users
         Task<ServiceResult> UpdatePasswordAsync(int id, UpdatePasswordUserRequest request);
         Task<ServiceResult> DeleteAsync(int id);
         Task<ServiceResult<byte[]>> QrCodeToUserAsync(int userId);
+        Task<ServiceResult> PassiveAsync(int id);
     }
 }

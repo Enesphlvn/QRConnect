@@ -54,5 +54,27 @@ namespace App.Persistence
         {
             return _dbSet.Where(predicate).AsNoTracking();
         }
+
+        public async Task<bool> PassiveAsync(TId id)
+        {
+            var entity = await _dbSet.FindAsync(id);
+
+            if (entity is null)
+            {
+                return false;
+            }
+
+            entity.IsStatus = false;
+
+            if (entity is IAuditEntity auditEntity)
+            {
+                auditEntity.Updated = DateTime.Now;
+            }
+
+            _dbSet.Update(entity);
+            await Context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

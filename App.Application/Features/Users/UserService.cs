@@ -83,6 +83,15 @@ namespace App.Application.Features.Users
             return ServiceResult<List<UserDto>>.Success(usersAsDto);
         }
 
+        public async Task<ServiceResult> PassiveAsync(int id)
+        {
+            var user = await userRepository.GetByIdAsync(id);
+
+            await userRepository.PassiveAsync(id);
+
+            return ServiceResult.Success(HttpStatusCode.NoContent);
+        }
+
         public async Task<ServiceResult<byte[]>> QrCodeToUserAsync(int userId)
         {
             var userEntityExists = await userRepository.GetByIdAsync(userId);
