@@ -23,9 +23,6 @@
     <Folder Include="Features\UserOperationClaims\Create\" />
     <Folder Include="Features\UserOperationClaims\Dto\" />
     <Folder Include="Features\UserOperationClaims\Update\" />
-    <Folder Include="Features\Venues\Create\" />
-    <Folder Include="Features\Venues\Dto\" />
-    <Folder Include="Features\Venues\Update\" />
   </ItemGroup>
 
 </Project>
