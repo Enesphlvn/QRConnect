@@ -12,7 +12,7 @@ namespace App.Application.Features.OperationClaims
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateOperationClaimRequest request)
         {
-            var isSameOperationClaim = await operationClaimRepository.AnyAsync(x => x.Name == request.Name);
+            var isSameOperationClaim = await operationClaimRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower());
 
             if (isSameOperationClaim)
             {
@@ -76,8 +76,6 @@ namespace App.Application.Features.OperationClaims
 
         public async Task<ServiceResult> PassiveAsync(int id)
         {
-            await operationClaimRepository.GetByIdAsync(id);
-
             await operationClaimRepository.PassiveAsync(id);
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
@@ -85,7 +83,7 @@ namespace App.Application.Features.OperationClaims
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateOperationClaimRequest request)
         {
-            var isDuplicateOperationClaim = await operationClaimRepository.AnyAsync(x => x.Name == request.Name && x.Id != id);
+            var isDuplicateOperationClaim = await operationClaimRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower() && x.Id != id);
 
             if (isDuplicateOperationClaim)
             {

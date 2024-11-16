@@ -21,7 +21,7 @@ namespace App.Application.Features.Users.Create
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Şifre boş bırakılamaz.")
                 .MinimumLength(8).WithMessage("Şifre en az 8 karakter uzunluğunda olmalı.")
-                .Matches("[A-Z]").WithMessage("Şifre en az bir büyük harf içermeli.")
+                .Matches(@"[A-ZĞÜÖŞÇİ]").WithMessage("Şifre en az bir büyük harf içermeli.")
                 .Matches("[a-z]").WithMessage("Şifre en az bir küçük harf içermeli.")
                 .Matches("[0-9]").WithMessage("Şifre en az bir rakam içermeli.")
                 .Matches(@"[\W]").WithMessage("Şifre en az bir özel karakter içermeli.");

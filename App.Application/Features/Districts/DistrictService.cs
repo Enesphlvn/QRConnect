@@ -12,7 +12,7 @@ namespace App.Application.Features.Districts
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateDistrictRequest request)
         {
-            var isSameDistrict = await districtRepository.AnyAsync(x => x.Name == request.Name);
+            var isSameDistrict = await districtRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower());
 
             if (isSameDistrict)
             {
@@ -76,8 +76,6 @@ namespace App.Application.Features.Districts
 
         public async Task<ServiceResult> PassiveAsync(int id)
         {
-            await districtRepository.GetByIdAsync(id);
-
             await districtRepository.PassiveAsync(id);
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
@@ -85,7 +83,7 @@ namespace App.Application.Features.Districts
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateDistrictRequest request)
         {
-            var isDuplicateDistrict = await districtRepository.AnyAsync(x => x.Name == request.Name && x.Id != id);
+            var isDuplicateDistrict = await districtRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower() && x.Id != id);
 
             if (isDuplicateDistrict)
             {

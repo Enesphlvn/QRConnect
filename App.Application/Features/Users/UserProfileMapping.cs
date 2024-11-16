@@ -5,7 +5,6 @@ using App.Application.Features.Users.UpdateEmail;
 using App.Application.Features.Users.UpdatePassword;
 using App.Domain.Entities;
 using AutoMapper;
-using System.Globalization;
 
 namespace App.Application.Features.Users
 {
@@ -15,17 +14,11 @@ namespace App.Application.Features.Users
         {
             CreateMap<UserDto, User>().ReverseMap();
 
-            CreateMap<CreateUserRequest, User>()
-                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<CreateUserRequest, User>();
 
-            CreateMap<UpdateUserRequest, User>()
-                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.FirstName.ToLower(new CultureInfo("tr-TR"))))
-                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.LastName.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<UpdateUserRequest, User>();
 
-            CreateMap<UpdateEmailUserRequest, User>()
-                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<UpdateEmailUserRequest, User>();
 
             CreateMap<UpdatePasswordUserRequest, User>();
         }

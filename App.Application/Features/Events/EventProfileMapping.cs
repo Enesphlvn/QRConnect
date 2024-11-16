@@ -3,7 +3,6 @@ using App.Application.Features.Events.Dto;
 using App.Application.Features.Events.Update;
 using App.Domain.Entities;
 using AutoMapper;
-using System.Globalization;
 
 namespace App.Application.Features.Events
 {
@@ -13,11 +12,9 @@ namespace App.Application.Features.Events
         {
             CreateMap<EventDto, Event>().ReverseMap();
 
-            CreateMap<CreateEventRequest, Event>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<CreateEventRequest, Event>();
 
-            CreateMap<UpdateEventRequest, Event>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<UpdateEventRequest, Event>();
         }
     }
 }

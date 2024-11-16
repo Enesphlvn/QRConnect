@@ -12,7 +12,7 @@ namespace App.Application.Features.EventTypes
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateEventTypeRequest request)
         {
-            var isSameEventType = await eventTypeRepository.AnyAsync(x => x.Name == request.Name);
+            var isSameEventType = await eventTypeRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower());
 
             if (isSameEventType)
             {
@@ -75,8 +75,6 @@ namespace App.Application.Features.EventTypes
 
         public async Task<ServiceResult> PassiveAsync(int id)
         {
-            await eventTypeRepository.GetByIdAsync(id);
-
             await eventTypeRepository.PassiveAsync(id);
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
@@ -84,7 +82,7 @@ namespace App.Application.Features.EventTypes
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateEventTypeRequest request)
         {
-            var isDuplicateEventType = await eventTypeRepository.AnyAsync(x => x.Name == request.Name && x.Id != id);
+            var isDuplicateEventType = await eventTypeRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower() && x.Id != id);
 
             if (isDuplicateEventType)
             {

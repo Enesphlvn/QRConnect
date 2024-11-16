@@ -78,8 +78,6 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult> PassiveAsync(int id)
         {
-            await eventRepository.GetByIdAsync(id);
-
             await eventRepository.PassiveAsync(id);
 
             return ServiceResult.Success(HttpStatusCode.NoContent);

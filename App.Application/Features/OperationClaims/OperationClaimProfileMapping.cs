@@ -3,7 +3,6 @@ using App.Application.Features.OperationClaims.Dto;
 using App.Application.Features.OperationClaims.Update;
 using App.Domain.Entities;
 using AutoMapper;
-using System.Globalization;
 
 namespace App.Application.Features.OperationClaims
 {
@@ -13,11 +12,9 @@ namespace App.Application.Features.OperationClaims
         {
             CreateMap<OperationClaimDto, OperationClaim>().ReverseMap();
 
-            CreateMap<CreateOperationClaimRequest, OperationClaim>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<CreateOperationClaimRequest, OperationClaim>();
 
-            CreateMap<UpdateOperationClaimRequest, OperationClaim>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<UpdateOperationClaimRequest, OperationClaim>();
         }
     }
 }

@@ -3,7 +3,6 @@ using App.Application.Features.Districts.Dto;
 using App.Application.Features.Districts.Update;
 using App.Domain.Entities;
 using AutoMapper;
-using System.Globalization;
 
 namespace App.Application.Features.Districts
 {
@@ -13,11 +12,9 @@ namespace App.Application.Features.Districts
         {
             CreateMap<DistrictDto, District>().ReverseMap();
 
-            CreateMap<CreateDistrictRequest, District>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<CreateDistrictRequest, District>();
 
-            CreateMap<UpdateDistrictRequest, District>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name.ToLower(new CultureInfo("tr-TR"))));
+            CreateMap<UpdateDistrictRequest, District>();
         }
     }
 }

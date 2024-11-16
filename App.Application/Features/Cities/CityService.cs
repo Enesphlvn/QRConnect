@@ -12,7 +12,7 @@ namespace App.Application.Features.Cities
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateCityRequest request)
         {
-            var isSameCity = await cityRepository.AnyAsync(x => x.Name == request.Name);
+            var isSameCity = await cityRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower());
 
             if (isSameCity)
             {
@@ -76,8 +76,6 @@ namespace App.Application.Features.Cities
 
         public async Task<ServiceResult> PassiveAsync(int id)
         {
-            await cityRepository.GetByIdAsync(id);
-
             await cityRepository.PassiveAsync(id);
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
@@ -85,7 +83,7 @@ namespace App.Application.Features.Cities
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateCityRequest request)
         {
-            var isDuplicateCity = await cityRepository.AnyAsync(x => x.Name == request.Name && x.Id != id);
+            var isDuplicateCity = await cityRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower() && x.Id != id);
 
             if (isDuplicateCity)
             {

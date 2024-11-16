@@ -8,6 +8,7 @@ using App.Application.Features.Users.UpdateEmail;
 using App.Application.Features.Users.UpdatePassword;
 using App.Domain.Entities;
 using AutoMapper;
+using System.Globalization;
 using System.Net;
 using System.Text.Json;
 
@@ -17,7 +18,7 @@ namespace App.Application.Features.Users
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateUserRequest request)
         {
-            var anyUserEmail = await userRepository.AnyAsync(x => x.Email == request.Email);
+            var anyUserEmail = await userRepository.AnyAsync(x => x.Email.ToLower() == request.Email.ToLower());
 
             if (anyUserEmail)
             {
@@ -85,8 +86,6 @@ namespace App.Application.Features.Users
 
         public async Task<ServiceResult> PassiveAsync(int id)
         {
-            await userRepository.GetByIdAsync(id);
-
             await userRepository.PassiveAsync(id);
 
             return ServiceResult.Success(HttpStatusCode.NoContent);
