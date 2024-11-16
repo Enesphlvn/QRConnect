@@ -19,7 +19,7 @@ namespace App.Application.Features.Tickets
 
             if (eventEntityExists is null || userEntityExists is null)
             {
-                return ServiceResult<int>.Fail("Etkinlik veya müşteri bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<int>.Fail("Etkinlik veya kullanıcı bulunamadı", HttpStatusCode.NotFound);
             }
 
             var newTicket = mapper.Map<Ticket>(request);
@@ -27,7 +27,7 @@ namespace App.Application.Features.Tickets
             await ticketRepository.AddAsync(newTicket);
             await unitOfWork.SaveChangesAsync();
 
-            return ServiceResult<int>.Success(newTicket.Id, HttpStatusCode.NoContent);
+            return ServiceResult<int>.SuccessAsCreated(newTicket.Id, $"api/tickets/{newTicket.Id}");
         }
 
         public async Task<ServiceResult> DeleteAsync(int id)

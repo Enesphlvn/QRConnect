@@ -19,10 +19,4 @@
     <ProjectReference Include="..\App.Domain\App.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\UserOperationClaims\Create\" />
-    <Folder Include="Features\UserOperationClaims\Dto\" />
-    <Folder Include="Features\UserOperationClaims\Update\" />
-  </ItemGroup>
-
 </Project>

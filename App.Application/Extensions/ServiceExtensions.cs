@@ -14,6 +14,7 @@ using App.Application.Features.EventTypes;
 using App.Application.Features.OperationClaims;
 using App.Application.Features.Passwords;
 using App.Application.Features.Venues;
+using App.Application.Features.UserOperationClaims;
 
 namespace App.Application.Extensions
 {
@@ -33,6 +34,7 @@ namespace App.Application.Extensions
             services.AddScoped<IEventTypeService, EventTypeService>();
             services.AddScoped<IOperationClaimService, OperationClaimService>();
             services.AddScoped<IPasswordHashingService, PasswordHashingService>();
+            services.AddScoped<IUserOperationClaimService, UserOperationClaimService>();
 
             services.AddFluentValidationAutoValidation();
 
