@@ -13,6 +13,7 @@ using App.Application.Features.Districts;
 using App.Application.Features.EventTypes;
 using App.Application.Features.OperationClaims;
 using App.Application.Features.Passwords;
+using App.Application.Features.Venues;
 
 namespace App.Application.Extensions
 {
@@ -23,10 +24,11 @@ namespace App.Application.Extensions
             services.Configure<ApiBehaviorOptions>(options => options.SuppressModelStateInvalidFilter = true);
 
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IEventService, EventService>();
-            services.AddScoped<ITicketService, TicketService>();
-            services.AddScoped<IQRCodeService, QRCodeService>();
             services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IVenueService, VenueService>();
+            services.AddScoped<IQRCodeService, QRCodeService>();
+            services.AddScoped<ITicketService, TicketService>();
             services.AddScoped<IDistrictService, DistrictService>();
             services.AddScoped<IEventTypeService, EventTypeService>();
             services.AddScoped<IOperationClaimService, OperationClaimService>();
@@ -35,7 +37,6 @@ namespace App.Application.Extensions
             services.AddFluentValidationAutoValidation();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;
