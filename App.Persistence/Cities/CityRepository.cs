@@ -6,24 +6,24 @@ namespace App.Persistence.Cities
 {
     public class CityRepository(AppDbContext context) : GenericRepository<City, int>(context), ICityRepository
     {
-        public Task<City> GetCityWithDistrictsAsync(int id)
+        public async Task<City> GetCityWithDistrictsAsync(int id)
         {
-            return context.Cities.Include(x => x.Districts).FirstOrDefaultAsync(x => x.Id == id)!;
+            return (await context.Cities.Include(x => x.Districts).FirstOrDefaultAsync(x => x.Id == id))!;
         }
 
-        public Task<List<City>> GetCityWithDistrictsAsync()
+        public async Task<List<City>> GetCityWithDistrictsAsync()
         {
-            return context.Cities.Include(x => x.Districts).ToListAsync();
+            return await context.Cities.Include(x => x.Districts).ToListAsync();
         }
 
-        public Task<City?> GetCityWithVenuesAsync(int id)
+        public async Task<City?> GetCityWithVenuesAsync(int id)
         {
-            return context.Cities.Include(x => x.Venues).FirstOrDefaultAsync(x => x.Id == id);
+            return await context.Cities.Include(x => x.Venues).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<List<City>> GetCityWithVenuesAsync()
+        public async Task<List<City>> GetCityWithVenuesAsync()
         {
-            return context.Cities.Include(x => x.Venues).ToListAsync();
+            return await context.Cities.Include(x => x.Venues).ToListAsync();
         }
     }
 }

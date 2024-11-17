@@ -10,6 +10,8 @@ namespace App.Application.Features.Users
     {
         Task<ServiceResult<List<UserDto>>> GetAllListAsync();
         Task<ServiceResult<List<UserDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
+        Task<ServiceResult<UserWithTicketsDto>> GetUserWithTicketsAsync(int userId);
+        Task<ServiceResult<UserDto>> GetUserByEmailAsync(string email);
         Task<ServiceResult<UserDto>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateUserRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateUserRequest request);

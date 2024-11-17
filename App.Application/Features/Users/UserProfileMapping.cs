@@ -14,6 +14,8 @@ namespace App.Application.Features.Users
         {
             CreateMap<UserDto, User>().ReverseMap();
 
+            CreateMap<UserWithTicketsDto, User>().ReverseMap();
+
             CreateMap<CreateUserRequest, User>();
 
             CreateMap<UpdateUserRequest, User>();

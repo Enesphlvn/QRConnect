@@ -29,6 +29,18 @@ namespace App.API.Controllers
             return CreateActionResult(await userService.GetByIdAsync(id));
         }
 
+        [HttpGet("{email}/email")]
+        public async Task<IActionResult> GetUserByEmail(string email)
+        {
+            return CreateActionResult(await userService.GetUserByEmailAsync(email));
+        }
+
+        [HttpGet("{id:int}/tickets")]
+        public async Task<IActionResult> GetUserWithTickets(int id)
+        {
+            return CreateActionResult(await userService.GetUserWithTicketsAsync(id));
+        }
+
         [HttpGet("qrcode/{userId:int}")]
         public async Task<IActionResult> GetQRCode(int userId)
         {

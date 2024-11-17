@@ -84,6 +84,34 @@ namespace App.Application.Features.Users
             return ServiceResult<List<UserDto>>.Success(usersAsDto);
         }
 
+        public async Task<ServiceResult<UserDto>> GetUserByEmailAsync(string email)
+        {
+            var user = await userRepository.GetUserByEmailAsync(email);
+
+            if (user is null)
+            {
+                return ServiceResult<UserDto>.Fail("User bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var userAsDto = mapper.Map<UserDto>(user);
+
+            return ServiceResult<UserDto>.Success(userAsDto);
+        }
+
+        public async Task<ServiceResult<UserWithTicketsDto>> GetUserWithTicketsAsync(int userId)
+        {
+            var user = await userRepository.GetUserWithTicketsAsync(userId);
+
+            if (user is null)
+            {
+                return ServiceResult<UserWithTicketsDto>.Fail("User bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var userAsDto = mapper.Map<UserWithTicketsDto>(user);
+
+            return ServiceResult<UserWithTicketsDto>.Success(userAsDto);
+        }
+
         public async Task<ServiceResult> PassiveAsync(int id)
         {
             await userRepository.PassiveAsync(id);
