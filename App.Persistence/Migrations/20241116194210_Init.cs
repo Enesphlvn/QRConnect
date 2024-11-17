@@ -18,8 +18,8 @@ namespace App.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -34,8 +34,8 @@ namespace App.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -50,8 +50,8 @@ namespace App.Persistence.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -70,8 +70,8 @@ namespace App.Persistence.Migrations
                     Email = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -87,8 +87,8 @@ namespace App.Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -110,8 +110,8 @@ namespace App.Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
                     OperationClaimId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -140,9 +140,9 @@ namespace App.Persistence.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: false),
                     DistrictId = table.Column<int>(type: "int", nullable: false),
-                    Capacity = table.Column<int>(type: "int", nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Capacity = table.Column<int>(type: "int", nullable: false),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -174,8 +174,8 @@ namespace App.Persistence.Migrations
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
                     EventTypeId = table.Column<int>(type: "int", nullable: false),
                     VenueId = table.Column<int>(type: "int", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -203,9 +203,9 @@ namespace App.Persistence.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EventId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    PurchaseDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Updated = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    PurchaseDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Created = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Updated = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     IsStatus = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>

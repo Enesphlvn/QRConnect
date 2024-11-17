@@ -4,6 +4,7 @@ using App.Application.Features.Cities.Dto;
 using App.Application.Features.Cities.Update;
 using App.Domain.Entities;
 using AutoMapper;
+using System.Collections.Generic;
 using System.Net;
 
 namespace App.Application.Features.Cities
@@ -58,6 +59,29 @@ namespace App.Application.Features.Cities
             var cityAsDto = mapper.Map<CityDto>(city);
 
             return ServiceResult<CityDto>.Success(cityAsDto);
+        }
+
+        public async Task<ServiceResult<CityWithDistrictsDto>> GetCityWithDistrictsAsync(int cityId)
+        {
+            var city = await cityRepository.GetCityWithDistrictsAsync(cityId);
+
+            if (city is null)
+            {
+                return ServiceResult<CityWithDistrictsDto>.Fail("Şehir bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var cityAsDto = mapper.Map<CityWithDistrictsDto>(city);
+
+            return ServiceResult<CityWithDistrictsDto>.Success(cityAsDto);
+        }
+
+        public async Task<ServiceResult<List<CityWithDistrictsDto>>> GetCityWithDistrictsAsync()
+        {
+            var city = await cityRepository.GetCityWithDistrictsAsync();
+
+            var cityAsDto = mapper.Map<List<CityWithDistrictsDto>>(city);
+
+            return ServiceResult<List<CityWithDistrictsDto>>.Success(cityAsDto);
         }
 
         public async Task<ServiceResult<List<CityDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)

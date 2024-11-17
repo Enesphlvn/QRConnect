@@ -12,6 +12,8 @@ namespace App.Application.Features.Cities
         {
             CreateMap<CityDto, City>().ReverseMap();
 
+            CreateMap<CityWithDistrictsDto, City>().ReverseMap();
+
             CreateMap<CreateCityRequest, City>();
 
             CreateMap<UpdateCityRequest, City>();
