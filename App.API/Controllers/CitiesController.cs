@@ -39,6 +39,18 @@ namespace App.API.Controllers
             return CreateActionResult(await cityService.GetCityWithDistrictsAsync());
         }
 
+        [HttpGet("{id:int}/venues")]
+        public async Task<IActionResult> GetCityWithVenues(int id)
+        {
+            return CreateActionResult(await cityService.GetCityWithVenuesAsync(id));
+        }
+
+        [HttpGet("venues")]
+        public async Task<IActionResult> GetCityWithVenues()
+        {
+            return CreateActionResult(await cityService.GetCityWithVenuesAsync());
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateCity(CreateCityRequest request)
         {

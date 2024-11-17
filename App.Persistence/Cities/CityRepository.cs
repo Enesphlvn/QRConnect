@@ -15,5 +15,15 @@ namespace App.Persistence.Cities
         {
             return context.Cities.Include(x => x.Districts).ToListAsync();
         }
+
+        public Task<City?> GetCityWithVenuesAsync(int id)
+        {
+            return context.Cities.Include(x => x.Venues).FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public Task<List<City>> GetCityWithVenuesAsync()
+        {
+            return context.Cities.Include(x => x.Venues).ToListAsync();
+        }
     }
 }

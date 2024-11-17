@@ -10,6 +10,8 @@ namespace App.Application.Features.Cities
         Task<ServiceResult<List<CityDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
         Task<ServiceResult<CityWithDistrictsDto>> GetCityWithDistrictsAsync(int cityId);
         Task<ServiceResult<List<CityWithDistrictsDto>>> GetCityWithDistrictsAsync();
+        Task<ServiceResult<CityWithVenuesDto>> GetCityWithVenuesAsync(int cityId);
+        Task<ServiceResult<List<CityWithVenuesDto>>> GetCityWithVenuesAsync();
         Task<ServiceResult<CityDto>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateCityRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateCityRequest request);
