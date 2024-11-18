@@ -60,6 +60,34 @@ namespace App.Application.Features.Districts
             return ServiceResult<DistrictDto>.Success(districtAsDto);
         }
 
+        public async Task<ServiceResult<DistrictWithVenuesDto>> GetDistrictWithVenuesAsync(int id)
+        {
+            var district = await districtRepository.GetDistrictVenuesAsync(id);
+
+            if (district is null)
+            {
+                return ServiceResult<DistrictWithVenuesDto>.Fail("District bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var districtAsDto = mapper.Map<DistrictWithVenuesDto>(district);
+
+            return ServiceResult<DistrictWithVenuesDto>.Success(districtAsDto);
+        }
+
+        public async Task<ServiceResult<List<DistrictWithVenuesDto>>> GetDistrictWithVenuesAsync()
+        {
+            var district = await districtRepository.GetDistrictVenuesAsync();
+
+            if (district is null)
+            {
+                return ServiceResult<List<DistrictWithVenuesDto>>.Fail("District bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var districtAsDto = mapper.Map<List<DistrictWithVenuesDto>>(district);
+
+            return ServiceResult<List<DistrictWithVenuesDto>>.Success(districtAsDto);
+        }
+
         public async Task<ServiceResult<List<DistrictDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)

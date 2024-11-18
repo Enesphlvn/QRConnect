@@ -12,6 +12,8 @@ namespace App.Application.Features.Districts
         {
             CreateMap<DistrictDto, District>().ReverseMap();
 
+            CreateMap<DistrictWithVenuesDto, District>().ReverseMap();
+
             CreateMap<CreateDistrictRequest, District>();
 
             CreateMap<UpdateDistrictRequest, District>();

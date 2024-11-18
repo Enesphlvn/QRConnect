@@ -27,6 +27,18 @@ namespace App.API.Controllers
             return CreateActionResult(await districtService.GetByIdAsync(id));
         }
 
+        [HttpGet("{id:int}/venues")]
+        public async Task<IActionResult> GetDistrictWithVenues(int id)
+        {
+            return CreateActionResult(await districtService.GetDistrictWithVenuesAsync(id));
+        }
+
+        [HttpGet("venues")]
+        public async Task<IActionResult> GetDistrictWithVenues()
+        {
+            return CreateActionResult(await districtService.GetDistrictWithVenuesAsync());
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateDistrict(CreateDistrictRequest request)
         {

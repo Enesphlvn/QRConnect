@@ -4,5 +4,7 @@ namespace App.Application.Contracts.Persistence
 {
     public interface IDistrictRepository : IGenericRepository<District, int>
     {
+        Task<District?> GetDistrictVenuesAsync(int id);
+        Task<List<District>> GetDistrictVenuesAsync();
     }
 }
