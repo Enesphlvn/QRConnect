@@ -59,6 +59,34 @@ namespace App.Application.Features.EventTypes
             return ServiceResult<EventTypeDto>.Success(eventTypeAsDto);
         }
 
+        public async Task<ServiceResult<EventTypeWithEventsDto>> GetEventTypeWithEventsAsync(int id)
+        {
+            var eventType = await eventTypeRepository.GetEventTypeWithEventsAsync(id);
+
+            if (eventType is null)
+            {
+                return ServiceResult<EventTypeWithEventsDto>.Fail("EventType bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var eventTypeAsDto = mapper.Map<EventTypeWithEventsDto>(eventType);
+
+            return ServiceResult<EventTypeWithEventsDto>.Success(eventTypeAsDto);
+        }
+
+        public async Task<ServiceResult<List<EventTypeWithEventsDto>>> GetEventTypeWithEventsAsync()
+        {
+            var eventType = await eventTypeRepository.GetEventTypeWithEventsAsync();
+
+            if (eventType is null)
+            {
+                return ServiceResult<List<EventTypeWithEventsDto>>.Fail("EventType bulunamadı");
+            }
+
+            var eventTypeAsDto = mapper.Map<List<EventTypeWithEventsDto>>(eventType);
+
+            return ServiceResult<List<EventTypeWithEventsDto>>.Success(eventTypeAsDto);
+        }
+
         public async Task<ServiceResult<List<EventTypeDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)

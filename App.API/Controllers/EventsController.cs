@@ -27,6 +27,12 @@ namespace App.API.Controllers
             return CreateActionResult(await eventService.GetByIdAsync(id));
         }
 
+        [HttpGet("byeventtype/{eventTypeId:int}")]
+        public async Task<IActionResult> GetEventsByEventType(int eventTypeId)
+        {
+            return CreateActionResult(await eventService.GetEventsByEventTypeAsync(eventTypeId));
+        }
+
         [HttpGet("qrcode/{eventId:int}")]
         public async Task<IActionResult> GetQRCode(int eventId)
         {

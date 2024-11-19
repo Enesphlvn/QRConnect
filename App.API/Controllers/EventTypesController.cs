@@ -27,6 +27,18 @@ namespace App.API.Controllers
             return CreateActionResult(await eventTypeService.GetByIdAsync(id));
         }
 
+        [HttpGet("{id:int}/events")]
+        public async Task<IActionResult> GetEventTypeWithEvents(int id)
+        {
+            return CreateActionResult(await eventTypeService.GetEventTypeWithEventsAsync(id));
+        }
+
+        [HttpGet("events")]
+        public async Task<IActionResult> GetEventTypeWithEvents()
+        {
+            return CreateActionResult(await eventTypeService.GetEventTypeWithEventsAsync());
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateEventType(CreateEventTypeRequest request)
         {

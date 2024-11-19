@@ -12,6 +12,8 @@ namespace App.Application.Features.EventTypes
         {
             CreateMap<EventTypeDto, EventType>().ReverseMap();
 
+            CreateMap<EventTypeWithEventsDto, EventType>().ReverseMap();
+
             CreateMap<CreateEventTypeRequest, EventType>();
 
             CreateMap<UpdateEventTypeRequest, EventType>();
