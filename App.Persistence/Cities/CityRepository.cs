@@ -8,22 +8,27 @@ namespace App.Persistence.Cities
     {
         public async Task<City> GetCityWithDistrictsAsync(int id)
         {
-            return (await context.Cities.Include(x => x.Districts).FirstOrDefaultAsync(x => x.Id == id))!;
+            return (await Context.Cities.Include(x => x.Districts).FirstOrDefaultAsync(x => x.Id == id))!;
         }
 
         public async Task<List<City>> GetCityWithDistrictsAsync()
         {
-            return await context.Cities.Include(x => x.Districts).ToListAsync();
+            return await Context.Cities.Include(x => x.Districts).ToListAsync();
         }
 
         public async Task<City?> GetCityWithVenuesAsync(int id)
         {
-            return await context.Cities.Include(x => x.Venues).FirstOrDefaultAsync(x => x.Id == id);
+            return await Context.Cities.Include(x => x.Venues).FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<City>> GetCityWithVenuesAsync()
         {
-            return await context.Cities.Include(x => x.Venues).ToListAsync();
+            return await Context.Cities.Include(x => x.Venues).ToListAsync();
+        }
+
+        public async Task<City?> GetCityWithDistrictsAndVenuesAsync(int id)
+        {
+            return await Context.Cities.Include(x => x.Districts).ThenInclude(d => d.Venues).FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

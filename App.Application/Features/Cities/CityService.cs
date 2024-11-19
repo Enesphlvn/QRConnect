@@ -61,6 +61,20 @@ namespace App.Application.Features.Cities
             return ServiceResult<CityDto>.Success(cityAsDto);
         }
 
+        public async Task<ServiceResult<CityWithDistrictsAndVenuesDto>> GetCityWithDistrictsAndVenuesAsync(int id)
+        {
+            var city = await cityRepository.GetCityWithDistrictsAndVenuesAsync(id);
+
+            if (city is null)
+            {
+                return ServiceResult<CityWithDistrictsAndVenuesDto>.Fail("Şehir bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var cityAsDto = mapper.Map<CityWithDistrictsAndVenuesDto>(city);
+
+            return ServiceResult<CityWithDistrictsAndVenuesDto>.Success(cityAsDto);
+        }
+
         public async Task<ServiceResult<CityWithDistrictsDto>> GetCityWithDistrictsAsync(int cityId)
         {
             var city = await cityRepository.GetCityWithDistrictsAsync(cityId);

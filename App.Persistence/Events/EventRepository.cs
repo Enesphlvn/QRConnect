@@ -8,12 +8,12 @@ namespace App.Persistence.Events
     {
         public async Task<List<Event>> GetEventsByEventType(int eventTypeId)
         {
-            return await Context.Events.Where(x => x.EventTypeId == eventTypeId).ToListAsync();
+            return await Context.Events.Include(x => x.EventType).Where(x => x.EventTypeId == eventTypeId).ToListAsync();
         }
 
         public async Task<List<Event>> GetEventsByVenue(int venueId)
         {
-            return await Context.Events.Where(x => x.VenueId == venueId).ToListAsync();
+            return await Context.Events.Include(x => x.Venue).Where(x => x.VenueId == venueId).ToListAsync();
         }
 
         public async Task<List<Event>> GetEventsWithHighestSales(int numberOffEvents)

@@ -11,6 +11,7 @@ namespace App.Application.Features.Cities
         Task<ServiceResult<CityWithDistrictsDto>> GetCityWithDistrictsAsync(int cityId);
         Task<ServiceResult<List<CityWithDistrictsDto>>> GetCityWithDistrictsAsync();
         Task<ServiceResult<CityWithVenuesDto>> GetCityWithVenuesAsync(int cityId);
+        Task<ServiceResult<CityWithDistrictsAndVenuesDto>> GetCityWithDistrictsAndVenuesAsync(int id);
         Task<ServiceResult<List<CityWithVenuesDto>>> GetCityWithVenuesAsync();
         Task<ServiceResult<CityDto>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateCityRequest request);

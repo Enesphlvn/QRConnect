@@ -9,6 +9,8 @@ namespace App.Application.Features.Events
         Task<ServiceResult<List<EventDto>>> GetAllListAsync();
         Task<ServiceResult<List<EventDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
         Task<ServiceResult<List<EventsByEventTypeDto>>> GetEventsByEventTypeAsync(int eventTypeId);
+        Task<ServiceResult<List<EventsByVenueDto>>> GetEventsByVenueAsync(int venueId);
+        Task<ServiceResult<List<EventsWithHighestSalesDto>>> GetEventsWithHighestSalesAsync(int numberOffEvents);
         Task<ServiceResult<EventDto>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateEventRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateEventRequest request);

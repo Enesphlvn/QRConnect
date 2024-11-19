@@ -33,6 +33,18 @@ namespace App.API.Controllers
             return CreateActionResult(await eventService.GetEventsByEventTypeAsync(eventTypeId));
         }
 
+        [HttpGet("byvenue/{venueId:int}")]
+        public async Task<IActionResult> GetEventsByVenue(int venueId)
+        {
+            return CreateActionResult(await eventService.GetEventsByVenueAsync(venueId));
+        }
+
+        [HttpGet("highestsales{numberOffEvents:int}")]
+        public async Task<IActionResult> GetEventsWithHighestSales(int numberOffEvents)
+        {
+            return CreateActionResult(await eventService.GetEventsWithHighestSalesAsync(numberOffEvents));
+        }
+
         [HttpGet("qrcode/{eventId:int}")]
         public async Task<IActionResult> GetQRCode(int eventId)
         {

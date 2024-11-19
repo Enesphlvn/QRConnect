@@ -8,12 +8,12 @@ namespace App.Persistence.Users
     {
         public async Task<User?> GetUserWithTicketsAsync(int userId)
         {
-            return await context.Users.Include(x => x.Tickets).FirstOrDefaultAsync(x => x.Id == userId);
+            return await Context.Users.Include(x => x.Tickets).FirstOrDefaultAsync(x => x.Id == userId);
         }
 
         public async Task<User> GetUserByEmailAsync(string email)
         {
-            return (await context.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower()))!;
+            return (await Context.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower()))!;
         }
     }
 }

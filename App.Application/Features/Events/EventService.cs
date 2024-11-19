@@ -76,6 +76,29 @@ namespace App.Application.Features.Events
             return ServiceResult<List<EventsByEventTypeDto>>.Success(eventsByEventTypeAsDto);
         }
 
+        public async Task<ServiceResult<List<EventsByVenueDto>>> GetEventsByVenueAsync(int venueId)
+        {
+            var eventsByVenue = await eventRepository.GetEventsByVenue(venueId);
+
+            if (eventsByVenue.Count == 0)
+            {
+                return ServiceResult<List<EventsByVenueDto>>.Fail("Venue ile eşleşen etkinlik bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var eventsByVenueAsDto = mapper.Map<List<EventsByVenueDto>>(eventsByVenue);
+
+            return ServiceResult<List<EventsByVenueDto>>.Success(eventsByVenueAsDto);
+        }
+
+        public async Task<ServiceResult<List<EventsWithHighestSalesDto>>> GetEventsWithHighestSalesAsync(int numberOffEvents)
+        {
+            var eventsWithHighestSales = await eventRepository.GetEventsWithHighestSales(numberOffEvents);
+
+            var eventsWithHighestSalesAsDto = mapper.Map<List<EventsWithHighestSalesDto>>(eventsWithHighestSales);
+
+            return ServiceResult<List<EventsWithHighestSalesDto>>.Success(eventsWithHighestSalesAsDto);
+        }
+
         public async Task<ServiceResult<List<EventDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
