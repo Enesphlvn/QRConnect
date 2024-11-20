@@ -14,14 +14,14 @@ namespace App.Persistence.Interceptors
 
         private static void AddBehavior(DbContext context, IAuditEntity auditEntity)
         {
-            auditEntity.Created = DateTime.Now;
+            auditEntity.Created = DateTimeOffset.Now;
             context.Entry(auditEntity).Property(x => x.Updated).IsModified = false;
         }
 
         private static void ModifiedBehavior(DbContext context, IAuditEntity auditEntity)
         {
             context.Entry(auditEntity).Property(x => x.Created).IsModified = false;
-            auditEntity.Updated = DateTime.Now;
+            auditEntity.Updated = DateTimeOffset.Now;
         }
 
         public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)

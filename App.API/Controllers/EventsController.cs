@@ -45,6 +45,12 @@ namespace App.API.Controllers
             return CreateActionResult(await eventService.GetEventsWithHighestSalesAsync(numberOffEvents));
         }
 
+        [HttpGet("{startDate}/{endDate}")]
+        public async Task<IActionResult> GetEventsByDateRange(DateTimeOffset startDate, DateTimeOffset endDate)
+        {
+            return CreateActionResult(await eventService.GetEventsByDateRangeAsync(startDate, endDate));
+        }
+
         [HttpGet("qrcode/{eventId:int}")]
         public async Task<IActionResult> GetQRCode(int eventId)
         {

@@ -62,6 +62,20 @@ namespace App.Application.Features.Events
             return ServiceResult<EventDto>.Success(eventAsDto);
         }
 
+        public async Task<ServiceResult<List<EventDto>>> GetEventsByDateRangeAsync(DateTimeOffset startDate, DateTimeOffset endDate)
+        {
+            var events = await eventRepository.GetEventsByDateRange(startDate, endDate);
+
+            if (events is null)
+            {
+                return ServiceResult<List<EventDto>>.Fail("Bu tarih aralığında etkinlik bulunamadı.", HttpStatusCode.NoContent);
+            }
+
+            var eventsAsDto = mapper.Map<List<EventDto>>(events);
+
+            return ServiceResult<List<EventDto>>.Success(eventsAsDto);
+        }
+
         public async Task<ServiceResult<List<EventsByEventTypeDto>>> GetEventsByEventTypeAsync(int eventTypeId)
         {
             var eventsByEventType = await eventRepository.GetEventsByEventType(eventTypeId);

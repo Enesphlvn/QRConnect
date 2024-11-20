@@ -12,7 +12,7 @@ namespace App.Application.Features.Events.Create
 
             RuleFor(x => x.Date)
                 .NotNull()
-                .GreaterThan(DateTime.Now).WithMessage("Etkinlik tarihi bugünden sonra olmalıdır.");
+                .GreaterThan(DateTimeOffset.Now).WithMessage("Etkinlik tarihi bugünden sonra olmalıdır.");
 
             RuleFor(x => x.Price)
                 .GreaterThan(0).WithMessage("Fiyat sıfırdan büyük olmalıdır.")

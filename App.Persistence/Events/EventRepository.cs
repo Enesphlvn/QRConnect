@@ -21,5 +21,10 @@ namespace App.Persistence.Events
             return await Context.Events.Include(x => x.Tickets).OrderByDescending(x => (x.Tickets!).Count())
                 .Take(numberOffEvents).ToListAsync();
         }
+
+        public async Task<List<Event>> GetEventsByDateRange(DateTimeOffset startDate, DateTimeOffset endDate)
+        {
+            return await Context.Events.Where(x => x.Date >= startDate && x.Date <= endDate).ToListAsync();
+        }
     }
 }

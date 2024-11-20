@@ -5,7 +5,7 @@ namespace App.Domain.Entities
     public class Event : BaseEntity<int>, IAuditEntity
     {
         public string Name { get; set; } = default!;
-        public DateTime Date { get; set; }
+        public DateTimeOffset Date { get; set; }
         public decimal Price { get; set; }
         public string? Description { get; set; }
         public int EventTypeId { get; set; }
