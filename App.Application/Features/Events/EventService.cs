@@ -66,9 +66,9 @@ namespace App.Application.Features.Events
         {
             var events = await eventRepository.GetEventsByDateRange(startDate, endDate);
 
-            if (events is null)
+            if (events.Count == 0)
             {
-                return ServiceResult<List<EventDto>>.Fail("Bu tarih aralığında etkinlik bulunamadı.", HttpStatusCode.NoContent);
+                return ServiceResult<List<EventDto>>.Fail("Bu tarih aralığında etkinlik bulunamadı.");
             }
 
             var eventsAsDto = mapper.Map<List<EventDto>>(events);
@@ -82,12 +82,40 @@ namespace App.Application.Features.Events
 
             if (eventsByEventType.Count == 0)
             {
-                return ServiceResult<List<EventsByEventTypeDto>>.Fail("EventType ile eşleşen etkinlik bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<List<EventsByEventTypeDto>>.Fail("EventType ile eşleşen etkinlik bulunamadı");
             }
 
             var eventsByEventTypeAsDto = mapper.Map<List<EventsByEventTypeDto>>(eventsByEventType);
 
             return ServiceResult<List<EventsByEventTypeDto>>.Success(eventsByEventTypeAsDto);
+        }
+
+        public async Task<ServiceResult<List<EventDto>>> GetEventsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
+        {
+            var events = await eventRepository.GetEventsByPriceRange(minPrice, maxPrice);
+
+            if (events.Count == 0)
+            {
+                return ServiceResult<List<EventDto>>.Fail("Bu fiyat aralığında etkinlik bulunamadı.");
+            }
+
+            var eventsAsDto = mapper.Map<List<EventDto>>(events);
+
+            return ServiceResult<List<EventDto>>.Success(eventsAsDto);
+        }
+
+        public async Task<ServiceResult<List<EventsByUserTicketsDto>>> GetEventsByUserTicketsAsync(int userId)
+        {
+            var eventsByUserTicket = await eventRepository.GetEventsByUserTickets(userId);
+
+            if (eventsByUserTicket.Count == 0)
+            {
+                return ServiceResult<List<EventsByUserTicketsDto>>.Fail("Kullanıcı veya bu kullanıcıya ait bilet bulunamadı.");
+            }
+
+            var eventsByUserTicketAsDto = mapper.Map<List<EventsByUserTicketsDto>>(eventsByUserTicket);
+
+            return ServiceResult<List<EventsByUserTicketsDto>>.Success(eventsByUserTicketAsDto);
         }
 
         public async Task<ServiceResult<List<EventsByVenueDto>>> GetEventsByVenueAsync(int venueId)

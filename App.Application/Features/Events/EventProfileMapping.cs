@@ -14,6 +14,7 @@ namespace App.Application.Features.Events
             CreateMap<Event, EventsByEventTypeDto>().ReverseMap();
             CreateMap<Event, EventsByVenueDto>().ReverseMap();
             CreateMap<Event, EventsWithHighestSalesDto>().ReverseMap();
+            CreateMap<Event, EventsByUserTicketsDto>().ReverseMap();
             CreateMap<CreateEventRequest, Event>();
             CreateMap<UpdateEventRequest, Event>();
         }

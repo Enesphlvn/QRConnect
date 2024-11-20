@@ -26,5 +26,15 @@ namespace App.Persistence.Events
         {
             return await Context.Events.Where(x => x.Date >= startDate && x.Date <= endDate).ToListAsync();
         }
+
+        public async Task<List<Event>> GetEventsByPriceRange(decimal minPrice, decimal maxPrice)
+        {
+            return await Context.Events.Where(x => x.Price >= minPrice && x.Price <= maxPrice).ToListAsync();
+        }
+
+        public async Task<List<Event>> GetEventsByUserTickets(int userId)
+        {
+            return await Context.Events.Include(x => x.Tickets).Where(x => x.Tickets!.Any(x => x.UserId == userId)).ToListAsync();
+        }
     }
 }

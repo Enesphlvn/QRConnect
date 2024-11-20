@@ -8,5 +8,7 @@ namespace App.Application.Contracts.Persistence
         Task<List<Event>> GetEventsByVenue(int venueId);
         Task<List<Event>> GetEventsWithHighestSales(int numberOffEvents);
         Task<List<Event>> GetEventsByDateRange(DateTimeOffset startDate, DateTimeOffset endDate);
+        Task<List<Event>> GetEventsByPriceRange(decimal minPrice, decimal maxPrice);
+        Task<List<Event>> GetEventsByUserTickets(int userId);
     }
 }

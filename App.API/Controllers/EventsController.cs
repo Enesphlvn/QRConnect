@@ -45,10 +45,22 @@ namespace App.API.Controllers
             return CreateActionResult(await eventService.GetEventsWithHighestSalesAsync(numberOffEvents));
         }
 
-        [HttpGet("{startDate}/{endDate}")]
+        [HttpGet("daterange/{startDate}/{endDate}")]
         public async Task<IActionResult> GetEventsByDateRange(DateTimeOffset startDate, DateTimeOffset endDate)
         {
             return CreateActionResult(await eventService.GetEventsByDateRangeAsync(startDate, endDate));
+        }
+
+        [HttpGet("pricerange/{minPrice:decimal}/{maxPrice:decimal}")]
+        public async Task<IActionResult> GetEventsByPriceRange(decimal minPrice, decimal maxPrice)
+        {
+            return CreateActionResult(await eventService.GetEventsByPriceRangeAsync(minPrice, maxPrice));
+        }
+
+        [HttpGet("byusertickets/{userId:int}")]
+        public async Task<IActionResult> GetEventsByUserTickets(int userId)
+        {
+            return CreateActionResult(await eventService.GetEventsByUserTicketsAsync(userId));
         }
 
         [HttpGet("qrcode/{eventId:int}")]
