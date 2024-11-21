@@ -15,6 +15,12 @@ namespace App.API.Controllers
             return CreateActionResult(await eventService.GetAllListAsync());
         }
 
+        [HttpGet("detail")]
+        public async Task<IActionResult> GetEventsWithDetail()
+        {
+            return CreateActionResult(await eventService.GetEventsWithDetailAsync());
+        }
+
         [HttpGet("{pageNumber:int}/{pageSize:int}")]
         public async Task<IActionResult> GetPagedEvents(int pageNumber, int pageSize)
         {

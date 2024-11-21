@@ -5,6 +5,7 @@ namespace App.Application.Contracts.Persistence
     public interface IEventRepository : IGenericRepository<Event, int>
     {
         Task<Event?> GetEventWithDetailAsync(int eventId);
+        Task<List<Event>> GetEventsWithDetailAsync();
         Task<List<Event>> GetEventsByEventTypeAsync(int eventTypeId);
         Task<List<Event>> GetEventsByVenueAsync(int venueId);
         Task<List<Event>> GetEventsWithHighestSalesAsync(int numberOffEvents);

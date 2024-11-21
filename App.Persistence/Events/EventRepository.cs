@@ -12,6 +12,12 @@ namespace App.Persistence.Events
                 .Include(x => x.Venue).ThenInclude(x => x.District).FirstOrDefaultAsync();
         }
 
+        public async Task<List<Event>> GetEventsWithDetailAsync()
+        {
+            return await Context.Events.Include(x => x.EventType).Include(x => x.Venue).ThenInclude(x => x.City)
+                .Include(x => x.Venue).ThenInclude(x => x.District).ToListAsync();
+        }
+
         public async Task<List<Event>> GetEventsByEventTypeAsync(int eventTypeId)
         {
             return await Context.Events.Include(x => x.EventType).Where(x => x.EventTypeId == eventTypeId).ToListAsync();

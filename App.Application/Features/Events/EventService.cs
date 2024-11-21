@@ -141,6 +141,15 @@ namespace App.Application.Features.Events
             return ServiceResult<List<EventsWithHighestSalesDto>>.Success(eventsWithHighestSalesAsDto);
         }
 
+        public async Task<ServiceResult<List<EventWithDetailDto>>> GetEventsWithDetailAsync()
+        {
+            var events = await eventRepository.GetEventsWithDetailAsync();
+
+            var eventsAsDto = mapper.Map<List<EventWithDetailDto>>(events);
+
+            return ServiceResult<List<EventWithDetailDto>>.Success(eventsAsDto);
+        }
+
         public async Task<ServiceResult<List<EventDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
