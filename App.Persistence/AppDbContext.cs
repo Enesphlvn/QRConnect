@@ -21,6 +21,16 @@ namespace App.Persistence
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<City>().HasQueryFilter(e => e.IsStatus);
+            modelBuilder.Entity<District>().HasQueryFilter(u => u.IsStatus);
+            modelBuilder.Entity<Event>().HasQueryFilter(e => e.IsStatus);
+            modelBuilder.Entity<EventType>().HasQueryFilter(e => e.IsStatus);
+            modelBuilder.Entity<OperationClaim>().HasQueryFilter(u => u.IsStatus);
+            modelBuilder.Entity<Ticket>().HasQueryFilter(e => e.IsStatus);
+            modelBuilder.Entity<User>().HasQueryFilter(u => u.IsStatus);
+            modelBuilder.Entity<UserOperationClaim>().HasQueryFilter(u => u.IsStatus);
+            modelBuilder.Entity<Venue>().HasQueryFilter(e => e.IsStatus);
         }
     }
 }
