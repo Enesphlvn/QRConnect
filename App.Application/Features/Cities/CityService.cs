@@ -4,7 +4,6 @@ using App.Application.Features.Cities.Dto;
 using App.Application.Features.Cities.Update;
 using App.Domain.Entities;
 using AutoMapper;
-using System.Collections.Generic;
 using System.Net;
 
 namespace App.Application.Features.Cities

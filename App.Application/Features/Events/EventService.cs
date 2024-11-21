@@ -14,7 +14,7 @@ namespace App.Application.Features.Events
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateEventRequest request)
         {
-            var isSameEvent = await eventRepository.AnyAsync(x => x.Date == request.Date);
+            var isSameEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.VenueId == request.VenueId);
 
             if (isSameEvent)
             {
@@ -64,7 +64,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult<List<EventDto>>> GetEventsByDateRangeAsync(DateTimeOffset startDate, DateTimeOffset endDate)
         {
-            var events = await eventRepository.GetEventsByDateRange(startDate, endDate);
+            var events = await eventRepository.GetEventsByDateRangeAsync(startDate, endDate);
 
             if (events.Count == 0)
             {
@@ -78,7 +78,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult<List<EventsByEventTypeDto>>> GetEventsByEventTypeAsync(int eventTypeId)
         {
-            var eventsByEventType = await eventRepository.GetEventsByEventType(eventTypeId);
+            var eventsByEventType = await eventRepository.GetEventsByEventTypeAsync(eventTypeId);
 
             if (eventsByEventType.Count == 0)
             {
@@ -92,7 +92,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult<List<EventDto>>> GetEventsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
         {
-            var events = await eventRepository.GetEventsByPriceRange(minPrice, maxPrice);
+            var events = await eventRepository.GetEventsByPriceRangeAsync(minPrice, maxPrice);
 
             if (events.Count == 0)
             {
@@ -106,7 +106,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult<List<EventsByUserTicketsDto>>> GetEventsByUserTicketsAsync(int userId)
         {
-            var eventsByUserTicket = await eventRepository.GetEventsByUserTickets(userId);
+            var eventsByUserTicket = await eventRepository.GetEventsByUserTicketsAsync(userId);
 
             if (eventsByUserTicket.Count == 0)
             {
@@ -120,7 +120,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult<List<EventsByVenueDto>>> GetEventsByVenueAsync(int venueId)
         {
-            var eventsByVenue = await eventRepository.GetEventsByVenue(venueId);
+            var eventsByVenue = await eventRepository.GetEventsByVenueAsync(venueId);
 
             if (eventsByVenue.Count == 0)
             {
@@ -134,7 +134,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult<List<EventsWithHighestSalesDto>>> GetEventsWithHighestSalesAsync(int numberOffEvents)
         {
-            var eventsWithHighestSales = await eventRepository.GetEventsWithHighestSales(numberOffEvents);
+            var eventsWithHighestSales = await eventRepository.GetEventsWithHighestSalesAsync(numberOffEvents);
 
             var eventsWithHighestSalesAsDto = mapper.Map<List<EventsWithHighestSalesDto>>(eventsWithHighestSales);
 
@@ -164,7 +164,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult<byte[]>> QrCodeToEventAsync(int eventId)
         {
-            var eventEntityExists = await eventRepository.GetByIdAsync(eventId);
+            var eventEntityExists = await eventRepository.GetEventWithDetailAsync(eventId);
 
             if (eventEntityExists is null)
             {
@@ -177,7 +177,11 @@ namespace App.Application.Features.Events
                 eventEntityExists.Name,
                 eventEntityExists.Date,
                 eventEntityExists.Price,
-                eventEntityExists.Description
+                eventEntityExists.Description,
+                EventTypeName = eventEntityExists.EventType.Name,
+                VenueCityName = eventEntityExists.Venue.City.Name,
+                VenueDistrictName = eventEntityExists.Venue.District.Name,
+                VenueName = eventEntityExists.Venue.Name,
             };
 
             string plainText = JsonSerializer.Serialize(plainObject);
@@ -187,7 +191,7 @@ namespace App.Application.Features.Events
 
         public async Task<ServiceResult> UpdateAsync(int id, UpdateEventRequest request)
         {
-            var isDuplicateEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.Id != id);
+            var isDuplicateEvent = await eventRepository.AnyAsync(x => x.Date == request.Date && x.VenueId == request.VenueId && x.Id != id);
 
             if (isDuplicateEvent)
             {

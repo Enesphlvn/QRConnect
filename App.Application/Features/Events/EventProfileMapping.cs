@@ -11,6 +11,7 @@ namespace App.Application.Features.Events
         public EventProfileMapping()
         {
             CreateMap<EventDto, Event>().ReverseMap();
+            CreateMap<EventWithDetailDto, Event>().ReverseMap();
             CreateMap<Event, EventsByEventTypeDto>().ReverseMap();
             CreateMap<Event, EventsByVenueDto>().ReverseMap();
             CreateMap<Event, EventsWithHighestSalesDto>().ReverseMap();

@@ -12,6 +12,8 @@ namespace App.Application.Features.Venues
         {
             CreateMap<VenueDto, Venue>().ReverseMap();
 
+            CreateMap<VenueWithDetailDto, Venue>().ReverseMap();
+
             CreateMap<CreateVenueRequest, Venue>();
 
             CreateMap<UpdateVenueRequest, Venue>();

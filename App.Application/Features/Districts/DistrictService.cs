@@ -16,7 +16,7 @@ namespace App.Application.Features.Districts
 
             if (isSameDistrict)
             {
-                return ServiceResult<int>.Fail("Aynı isimde başka bir ilçe mevcut.", HttpStatusCode.BadRequest);
+                return ServiceResult<int>.Fail("Aynı isimde başka bir ilçe mevcut.");
             }
 
             var newDistrict = mapper.Map<District>(request);
