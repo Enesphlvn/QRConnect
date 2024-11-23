@@ -2,4 +2,4 @@
 
 namespace App.Application.Features.Cities.Dto;
 
-public record CityWithDistrictsDto(int Id, string Name, List<DistrictDto> Districts);
+public record CityWithDistrictsResponse(int Id, string Name, List<DistrictResponse> Districts);

@@ -37,41 +37,41 @@ namespace App.Application.Features.OperationClaims
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
-        public async Task<ServiceResult<List<OperationClaimDto>>> GetAllListAsync()
+        public async Task<ServiceResult<List<OperationClaimResponse>>> GetAllListAsync()
         {
             var operationClaims = await operationClaimRepository.GetAllAsync();
 
-            var operationClaimsAsDto = mapper.Map<List<OperationClaimDto>>(operationClaims);
+            var operationClaimsAsDto = mapper.Map<List<OperationClaimResponse>>(operationClaims);
 
-            return ServiceResult<List<OperationClaimDto>>.Success(operationClaimsAsDto);
+            return ServiceResult<List<OperationClaimResponse>>.Success(operationClaimsAsDto);
         }
 
-        public async Task<ServiceResult<OperationClaimDto>> GetByIdAsync(int id)
+        public async Task<ServiceResult<OperationClaimResponse>> GetByIdAsync(int id)
         {
             var operationClaim = await operationClaimRepository.GetByIdAsync(id);
 
             if (operationClaim is null)
             {
-                return ServiceResult<OperationClaimDto>.Fail("Rol bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<OperationClaimResponse>.Fail("Rol bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var operationClaimAsDto = mapper.Map<OperationClaimDto>(operationClaim);
+            var operationClaimAsDto = mapper.Map<OperationClaimResponse>(operationClaim);
 
-            return ServiceResult<OperationClaimDto>.Success(operationClaimAsDto);
+            return ServiceResult<OperationClaimResponse>.Success(operationClaimAsDto);
         }
 
-        public async Task<ServiceResult<List<OperationClaimDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        public async Task<ServiceResult<List<OperationClaimResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
             {
-                return ServiceResult<List<OperationClaimDto>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
+                return ServiceResult<List<OperationClaimResponse>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
             }
 
             var operationClaims = await operationClaimRepository.GetAllPagedAsync(pageNumber, pageSize);
 
-            var operationClaimsAsDto = mapper.Map<List<OperationClaimDto>>(operationClaims);
+            var operationClaimsAsDto = mapper.Map<List<OperationClaimResponse>>(operationClaims);
 
-            return ServiceResult<List<OperationClaimDto>>.Success(operationClaimsAsDto);
+            return ServiceResult<List<OperationClaimResponse>>.Success(operationClaimsAsDto);
         }
 
         public async Task<ServiceResult> PassiveAsync(int id)

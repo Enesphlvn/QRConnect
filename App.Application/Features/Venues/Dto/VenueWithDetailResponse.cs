@@ -3,4 +3,4 @@ using App.Application.Features.Districts.Dto;
 
 namespace App.Application.Features.Venues.Dto;
 
-public record VenueWithDetailDto(int Id, string Name, CityDto City, DistrictDto District, int Capacity);
+public record VenueWithDetailResponse(int Id, string Name, CityResponse City, DistrictResponse District, int Capacity);

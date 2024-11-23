@@ -10,9 +10,9 @@ namespace App.Application.Features.EventTypes
     {
         public EventTypeProfileMapping()
         {
-            CreateMap<EventTypeDto, EventType>().ReverseMap();
+            CreateMap<EventTypeResponse, EventType>().ReverseMap();
 
-            CreateMap<EventTypeWithEventsDto, EventType>().ReverseMap();
+            CreateMap<EventTypeWithEventsResponse, EventType>().ReverseMap();
 
             CreateMap<CreateEventTypeRequest, EventType>();
 

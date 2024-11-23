@@ -10,12 +10,12 @@ namespace App.Application.Features.Events
     {
         public EventProfileMapping()
         {
-            CreateMap<EventDto, Event>().ReverseMap();
-            CreateMap<EventWithDetailDto, Event>().ReverseMap();
-            CreateMap<Event, EventsByEventTypeDto>().ReverseMap();
-            CreateMap<Event, EventsByVenueDto>().ReverseMap();
-            CreateMap<Event, EventsWithHighestSalesDto>().ReverseMap();
-            CreateMap<Event, EventsByUserTicketsDto>().ReverseMap();
+            CreateMap<EventResponse, Event>().ReverseMap();
+            CreateMap<EventWithDetailResponse, Event>().ReverseMap();
+            CreateMap<Event, EventsByEventTypeResponse>().ReverseMap();
+            CreateMap<Event, EventsByVenueResponse>().ReverseMap();
+            CreateMap<Event, EventsWithHighestSalesResponse>().ReverseMap();
+            CreateMap<Event, EventsByUserTicketsResponse>().ReverseMap();
             CreateMap<CreateEventRequest, Event>();
             CreateMap<UpdateEventRequest, Event>();
         }

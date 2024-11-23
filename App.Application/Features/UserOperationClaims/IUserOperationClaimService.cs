@@ -6,9 +6,9 @@ namespace App.Application.Features.UserOperationClaims
 {
     public interface IUserOperationClaimService
     {
-        Task<ServiceResult<List<UserOperationClaimDto>>> GetAllListAsync();
-        Task<ServiceResult<List<UserOperationClaimDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
-        Task<ServiceResult<UserOperationClaimDto>> GetByIdAsync(int id);
+        Task<ServiceResult<List<UserOperationClaimResponse>>> GetAllListAsync();
+        Task<ServiceResult<List<UserOperationClaimResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
+        Task<ServiceResult<UserOperationClaimResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateUserOperationClaimRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateUserOperationClaimRequest request);
         Task<ServiceResult> DeleteAsync(int id);

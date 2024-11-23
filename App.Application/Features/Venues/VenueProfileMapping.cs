@@ -10,9 +10,9 @@ namespace App.Application.Features.Venues
     {
         public VenueProfileMapping()
         {
-            CreateMap<VenueDto, Venue>().ReverseMap();
+            CreateMap<VenueResponse, Venue>().ReverseMap();
 
-            CreateMap<VenueWithDetailDto, Venue>().ReverseMap();
+            CreateMap<VenueWithDetailResponse, Venue>().ReverseMap();
 
             CreateMap<CreateVenueRequest, Venue>();
 

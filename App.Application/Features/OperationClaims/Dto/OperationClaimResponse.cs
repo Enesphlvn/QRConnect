@@ -1,3 +1,3 @@
 ﻿namespace App.Application.Features.OperationClaims.Dto;
 
-public record OperationClaimDto(int Id, string Name);
+public record OperationClaimResponse(int Id, string Name);

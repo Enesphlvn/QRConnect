@@ -10,10 +10,10 @@ namespace App.Application.Features.Cities
     {
         public CityProfileMapping()
         {
-            CreateMap<CityDto, City>().ReverseMap();
-            CreateMap<CityWithDistrictsDto, City>().ReverseMap();
-            CreateMap<CityWithVenuesDto, City>().ReverseMap();
-            CreateMap<City, CityWithDistrictsAndVenuesDto>().ReverseMap();
+            CreateMap<CityResponse, City>().ReverseMap();
+            CreateMap<CityWithDistrictsResponse, City>().ReverseMap();
+            CreateMap<CityWithVenuesResponse, City>().ReverseMap();
+            CreateMap<City, CityWithDistrictsAndVenuesResponse>().ReverseMap();
             CreateMap<CreateCityRequest, City>();
             CreateMap<UpdateCityRequest, City>();
         }

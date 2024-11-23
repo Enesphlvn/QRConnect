@@ -40,41 +40,41 @@ namespace App.Application.Features.Tickets
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
-        public async Task<ServiceResult<List<TicketDto>>> GetAllListAsync()
+        public async Task<ServiceResult<List<TicketResponse>>> GetAllListAsync()
         {
             var tickets = await ticketRepository.GetAllAsync();
 
-            var ticketsAsDto = mapper.Map<List<TicketDto>>(tickets);
+            var ticketsAsDto = mapper.Map<List<TicketResponse>>(tickets);
 
-            return ServiceResult<List<TicketDto>>.Success(ticketsAsDto);
+            return ServiceResult<List<TicketResponse>>.Success(ticketsAsDto);
         }
 
-        public async Task<ServiceResult<TicketDto>> GetByIdAsync(int id)
+        public async Task<ServiceResult<TicketResponse>> GetByIdAsync(int id)
         {
             var ticket = await ticketRepository.GetByIdAsync(id);
 
             if (ticket is null)
             {
-                return ServiceResult<TicketDto>.Fail("Ticket bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<TicketResponse>.Fail("Ticket bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var ticketAsDto = mapper.Map<TicketDto>(ticket);
+            var ticketAsDto = mapper.Map<TicketResponse>(ticket);
 
-            return ServiceResult<TicketDto>.Success(ticketAsDto);
+            return ServiceResult<TicketResponse>.Success(ticketAsDto);
         }
 
-        public async Task<ServiceResult<List<TicketDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        public async Task<ServiceResult<List<TicketResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
             {
-                return ServiceResult<List<TicketDto>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
+                return ServiceResult<List<TicketResponse>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
             }
 
             var tickets = await ticketRepository.GetAllPagedAsync(pageNumber, pageSize);
 
-            var ticketAsDto = mapper.Map<List<TicketDto>>(tickets);
+            var ticketAsDto = mapper.Map<List<TicketResponse>>(tickets);
 
-            return ServiceResult<List<TicketDto>>.Success(ticketAsDto);
+            return ServiceResult<List<TicketResponse>>.Success(ticketAsDto);
         }
 
         public async Task<ServiceResult> PassiveAsync(int id)

@@ -6,9 +6,9 @@ namespace App.Application.Features.Tickets
 {
     public interface ITicketService
     {
-        Task<ServiceResult<List<TicketDto>>> GetAllListAsync();
-        Task<ServiceResult<List<TicketDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
-        Task<ServiceResult<TicketDto>> GetByIdAsync(int id);
+        Task<ServiceResult<List<TicketResponse>>> GetAllListAsync();
+        Task<ServiceResult<List<TicketResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
+        Task<ServiceResult<TicketResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateTicketRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateTicketRequest request);
         Task<ServiceResult> DeleteAsync(int id);

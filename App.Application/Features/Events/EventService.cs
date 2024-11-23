@@ -39,129 +39,129 @@ namespace App.Application.Features.Events
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
-        public async Task<ServiceResult<List<EventDto>>> GetAllListAsync()
+        public async Task<ServiceResult<List<EventResponse>>> GetAllListAsync()
         {
             var events = await eventRepository.GetAllAsync();
 
-            var eventsAsDto = mapper.Map<List<EventDto>>(events);
+            var eventsAsDto = mapper.Map<List<EventResponse>>(events);
 
-            return ServiceResult<List<EventDto>>.Success(eventsAsDto);
+            return ServiceResult<List<EventResponse>>.Success(eventsAsDto);
         }
 
-        public async Task<ServiceResult<EventDto>> GetByIdAsync(int id)
+        public async Task<ServiceResult<EventResponse>> GetByIdAsync(int id)
         {
             var @event = await eventRepository.GetByIdAsync(id);
 
             if (@event is null)
             {
-                return ServiceResult<EventDto>.Fail("Event bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<EventResponse>.Fail("Event bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var eventAsDto = mapper.Map<EventDto>(@event);
+            var eventAsDto = mapper.Map<EventResponse>(@event);
 
-            return ServiceResult<EventDto>.Success(eventAsDto);
+            return ServiceResult<EventResponse>.Success(eventAsDto);
         }
 
-        public async Task<ServiceResult<List<EventDto>>> GetEventsByDateRangeAsync(DateTimeOffset startDate, DateTimeOffset endDate)
+        public async Task<ServiceResult<List<EventResponse>>> GetEventsByDateRangeAsync(DateTimeOffset startDate, DateTimeOffset endDate)
         {
             var events = await eventRepository.GetEventsByDateRangeAsync(startDate, endDate);
 
             if (events.Count == 0)
             {
-                return ServiceResult<List<EventDto>>.Fail("Bu tarih aralığında etkinlik bulunamadı.");
+                return ServiceResult<List<EventResponse>>.Fail("Bu tarih aralığında etkinlik bulunamadı.");
             }
 
-            var eventsAsDto = mapper.Map<List<EventDto>>(events);
+            var eventsAsDto = mapper.Map<List<EventResponse>>(events);
 
-            return ServiceResult<List<EventDto>>.Success(eventsAsDto);
+            return ServiceResult<List<EventResponse>>.Success(eventsAsDto);
         }
 
-        public async Task<ServiceResult<List<EventsByEventTypeDto>>> GetEventsByEventTypeAsync(int eventTypeId)
+        public async Task<ServiceResult<List<EventsByEventTypeResponse>>> GetEventsByEventTypeAsync(int eventTypeId)
         {
             var eventsByEventType = await eventRepository.GetEventsByEventTypeAsync(eventTypeId);
 
             if (eventsByEventType.Count == 0)
             {
-                return ServiceResult<List<EventsByEventTypeDto>>.Fail("EventType ile eşleşen etkinlik bulunamadı");
+                return ServiceResult<List<EventsByEventTypeResponse>>.Fail("EventType ile eşleşen etkinlik bulunamadı");
             }
 
-            var eventsByEventTypeAsDto = mapper.Map<List<EventsByEventTypeDto>>(eventsByEventType);
+            var eventsByEventTypeAsDto = mapper.Map<List<EventsByEventTypeResponse>>(eventsByEventType);
 
-            return ServiceResult<List<EventsByEventTypeDto>>.Success(eventsByEventTypeAsDto);
+            return ServiceResult<List<EventsByEventTypeResponse>>.Success(eventsByEventTypeAsDto);
         }
 
-        public async Task<ServiceResult<List<EventDto>>> GetEventsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
+        public async Task<ServiceResult<List<EventResponse>>> GetEventsByPriceRangeAsync(decimal minPrice, decimal maxPrice)
         {
             var events = await eventRepository.GetEventsByPriceRangeAsync(minPrice, maxPrice);
 
             if (events.Count == 0)
             {
-                return ServiceResult<List<EventDto>>.Fail("Bu fiyat aralığında etkinlik bulunamadı.");
+                return ServiceResult<List<EventResponse>>.Fail("Bu fiyat aralığında etkinlik bulunamadı.");
             }
 
-            var eventsAsDto = mapper.Map<List<EventDto>>(events);
+            var eventsAsDto = mapper.Map<List<EventResponse>>(events);
 
-            return ServiceResult<List<EventDto>>.Success(eventsAsDto);
+            return ServiceResult<List<EventResponse>>.Success(eventsAsDto);
         }
 
-        public async Task<ServiceResult<List<EventsByUserTicketsDto>>> GetEventsByUserTicketsAsync(int userId)
+        public async Task<ServiceResult<List<EventsByUserTicketsResponse>>> GetEventsByUserTicketsAsync(int userId)
         {
             var eventsByUserTicket = await eventRepository.GetEventsByUserTicketsAsync(userId);
 
             if (eventsByUserTicket.Count == 0)
             {
-                return ServiceResult<List<EventsByUserTicketsDto>>.Fail("Kullanıcı veya bu kullanıcıya ait bilet bulunamadı.");
+                return ServiceResult<List<EventsByUserTicketsResponse>>.Fail("Kullanıcı veya bu kullanıcıya ait bilet bulunamadı.");
             }
 
-            var eventsByUserTicketAsDto = mapper.Map<List<EventsByUserTicketsDto>>(eventsByUserTicket);
+            var eventsByUserTicketAsDto = mapper.Map<List<EventsByUserTicketsResponse>>(eventsByUserTicket);
 
-            return ServiceResult<List<EventsByUserTicketsDto>>.Success(eventsByUserTicketAsDto);
+            return ServiceResult<List<EventsByUserTicketsResponse>>.Success(eventsByUserTicketAsDto);
         }
 
-        public async Task<ServiceResult<List<EventsByVenueDto>>> GetEventsByVenueAsync(int venueId)
+        public async Task<ServiceResult<List<EventsByVenueResponse>>> GetEventsByVenueAsync(int venueId)
         {
             var eventsByVenue = await eventRepository.GetEventsByVenueAsync(venueId);
 
             if (eventsByVenue.Count == 0)
             {
-                return ServiceResult<List<EventsByVenueDto>>.Fail("Venue ile eşleşen etkinlik bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<List<EventsByVenueResponse>>.Fail("Venue ile eşleşen etkinlik bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var eventsByVenueAsDto = mapper.Map<List<EventsByVenueDto>>(eventsByVenue);
+            var eventsByVenueAsDto = mapper.Map<List<EventsByVenueResponse>>(eventsByVenue);
 
-            return ServiceResult<List<EventsByVenueDto>>.Success(eventsByVenueAsDto);
+            return ServiceResult<List<EventsByVenueResponse>>.Success(eventsByVenueAsDto);
         }
 
-        public async Task<ServiceResult<List<EventsWithHighestSalesDto>>> GetEventsWithHighestSalesAsync(int numberOffEvents)
+        public async Task<ServiceResult<List<EventsWithHighestSalesResponse>>> GetEventsWithHighestSalesAsync(int numberOffEvents)
         {
             var eventsWithHighestSales = await eventRepository.GetEventsWithHighestSalesAsync(numberOffEvents);
 
-            var eventsWithHighestSalesAsDto = mapper.Map<List<EventsWithHighestSalesDto>>(eventsWithHighestSales);
+            var eventsWithHighestSalesAsDto = mapper.Map<List<EventsWithHighestSalesResponse>>(eventsWithHighestSales);
 
-            return ServiceResult<List<EventsWithHighestSalesDto>>.Success(eventsWithHighestSalesAsDto);
+            return ServiceResult<List<EventsWithHighestSalesResponse>>.Success(eventsWithHighestSalesAsDto);
         }
 
-        public async Task<ServiceResult<List<EventWithDetailDto>>> GetEventsWithDetailAsync()
+        public async Task<ServiceResult<List<EventWithDetailResponse>>> GetEventsWithDetailAsync()
         {
             var events = await eventRepository.GetEventsWithDetailAsync();
 
-            var eventsAsDto = mapper.Map<List<EventWithDetailDto>>(events);
+            var eventsAsDto = mapper.Map<List<EventWithDetailResponse>>(events);
 
-            return ServiceResult<List<EventWithDetailDto>>.Success(eventsAsDto);
+            return ServiceResult<List<EventWithDetailResponse>>.Success(eventsAsDto);
         }
 
-        public async Task<ServiceResult<List<EventDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        public async Task<ServiceResult<List<EventResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
             {
-                return ServiceResult<List<EventDto>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
+                return ServiceResult<List<EventResponse>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
             }
 
             var events = await eventRepository.GetAllPagedAsync(pageNumber, pageSize);
 
-            var eventAsDto = mapper.Map<List<EventDto>>(events);
+            var eventAsDto = mapper.Map<List<EventResponse>>(events);
 
-            return ServiceResult<List<EventDto>>.Success(eventAsDto);
+            return ServiceResult<List<EventResponse>>.Success(eventAsDto);
         }
 
         public async Task<ServiceResult> PassiveAsync(int id)

@@ -37,101 +37,101 @@ namespace App.Application.Features.Cities
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
-        public async Task<ServiceResult<List<CityDto>>> GetAllListAsync()
+        public async Task<ServiceResult<List<CityResponse>>> GetAllListAsync()
         {
             var cities = await cityRepository.GetAllAsync();
 
-            var citiesAsDto = mapper.Map<List<CityDto>>(cities);
+            var citiesAsDto = mapper.Map<List<CityResponse>>(cities);
 
-            return ServiceResult<List<CityDto>>.Success(citiesAsDto);
+            return ServiceResult<List<CityResponse>>.Success(citiesAsDto);
         }
 
-        public async Task<ServiceResult<CityDto>> GetByIdAsync(int id)
+        public async Task<ServiceResult<CityResponse>> GetByIdAsync(int id)
         {
             var city = await cityRepository.GetByIdAsync(id);
 
             if (city is null)
             {
-                return ServiceResult<CityDto>.Fail("City bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<CityResponse>.Fail("City bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var cityAsDto = mapper.Map<CityDto>(city);
+            var cityAsDto = mapper.Map<CityResponse>(city);
 
-            return ServiceResult<CityDto>.Success(cityAsDto);
+            return ServiceResult<CityResponse>.Success(cityAsDto);
         }
 
-        public async Task<ServiceResult<CityWithDistrictsAndVenuesDto>> GetCityWithDistrictsAndVenuesAsync(int id)
+        public async Task<ServiceResult<CityWithDistrictsAndVenuesResponse>> GetCityWithDistrictsAndVenuesAsync(int id)
         {
             var city = await cityRepository.GetCityWithDistrictsAndVenuesAsync(id);
 
             if (city is null)
             {
-                return ServiceResult<CityWithDistrictsAndVenuesDto>.Fail("Şehir bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<CityWithDistrictsAndVenuesResponse>.Fail("Şehir bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var cityAsDto = mapper.Map<CityWithDistrictsAndVenuesDto>(city);
+            var cityAsDto = mapper.Map<CityWithDistrictsAndVenuesResponse>(city);
 
-            return ServiceResult<CityWithDistrictsAndVenuesDto>.Success(cityAsDto);
+            return ServiceResult<CityWithDistrictsAndVenuesResponse>.Success(cityAsDto);
         }
 
-        public async Task<ServiceResult<CityWithDistrictsDto>> GetCityWithDistrictsAsync(int cityId)
+        public async Task<ServiceResult<CityWithDistrictsResponse>> GetCityWithDistrictsAsync(int cityId)
         {
             var city = await cityRepository.GetCityWithDistrictsAsync(cityId);
 
             if (city is null)
             {
-                return ServiceResult<CityWithDistrictsDto>.Fail("Şehir bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<CityWithDistrictsResponse>.Fail("Şehir bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var cityAsDto = mapper.Map<CityWithDistrictsDto>(city);
+            var cityAsDto = mapper.Map<CityWithDistrictsResponse>(city);
 
-            return ServiceResult<CityWithDistrictsDto>.Success(cityAsDto);
+            return ServiceResult<CityWithDistrictsResponse>.Success(cityAsDto);
         }
 
-        public async Task<ServiceResult<List<CityWithDistrictsDto>>> GetCityWithDistrictsAsync()
+        public async Task<ServiceResult<List<CityWithDistrictsResponse>>> GetCityWithDistrictsAsync()
         {
             var city = await cityRepository.GetCityWithDistrictsAsync();
 
-            var cityAsDto = mapper.Map<List<CityWithDistrictsDto>>(city);
+            var cityAsDto = mapper.Map<List<CityWithDistrictsResponse>>(city);
 
-            return ServiceResult<List<CityWithDistrictsDto>>.Success(cityAsDto);
+            return ServiceResult<List<CityWithDistrictsResponse>>.Success(cityAsDto);
         }
 
-        public async Task<ServiceResult<CityWithVenuesDto>> GetCityWithVenuesAsync(int cityId)
+        public async Task<ServiceResult<CityWithVenuesResponse>> GetCityWithVenuesAsync(int cityId)
         {
             var city = await cityRepository.GetCityWithVenuesAsync(cityId);
 
             if (city is null)
             {
-                return ServiceResult<CityWithVenuesDto>.Fail("Şehir bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<CityWithVenuesResponse>.Fail("Şehir bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var cityAsDto = mapper.Map<CityWithVenuesDto>(city);
+            var cityAsDto = mapper.Map<CityWithVenuesResponse>(city);
 
-            return ServiceResult<CityWithVenuesDto>.Success(cityAsDto);
+            return ServiceResult<CityWithVenuesResponse>.Success(cityAsDto);
         }
 
-        public async Task<ServiceResult<List<CityWithVenuesDto>>> GetCityWithVenuesAsync()
+        public async Task<ServiceResult<List<CityWithVenuesResponse>>> GetCityWithVenuesAsync()
         {
             var city = await cityRepository.GetCityWithVenuesAsync();
 
-            var cityAsDto = mapper.Map<List<CityWithVenuesDto>>(city);
+            var cityAsDto = mapper.Map<List<CityWithVenuesResponse>>(city);
 
-            return ServiceResult<List<CityWithVenuesDto>>.Success(cityAsDto);
+            return ServiceResult<List<CityWithVenuesResponse>>.Success(cityAsDto);
         }
 
-        public async Task<ServiceResult<List<CityDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        public async Task<ServiceResult<List<CityResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
             {
-                return ServiceResult<List<CityDto>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
+                return ServiceResult<List<CityResponse>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
             }
 
             var cities = await cityRepository.GetAllPagedAsync(pageNumber, pageSize);
 
-            var citiesAsDto = mapper.Map<List<CityDto>>(cities);
+            var citiesAsDto = mapper.Map<List<CityResponse>>(cities);
 
-            return ServiceResult<List<CityDto>>.Success(citiesAsDto);
+            return ServiceResult<List<CityResponse>>.Success(citiesAsDto);
         }
 
         public async Task<ServiceResult> PassiveAsync(int id)

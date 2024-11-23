@@ -38,41 +38,41 @@ namespace App.Application.Features.Venues
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
-        public async Task<ServiceResult<List<VenueDto>>> GetAllListAsync()
+        public async Task<ServiceResult<List<VenueResponse>>> GetAllListAsync()
         {
             var venues = await venueRepository.GetAllAsync();
 
-            var venuesAsDto = mapper.Map<List<VenueDto>>(venues);
+            var venuesAsDto = mapper.Map<List<VenueResponse>>(venues);
 
-            return ServiceResult<List<VenueDto>>.Success(venuesAsDto);
+            return ServiceResult<List<VenueResponse>>.Success(venuesAsDto);
         }
 
-        public async Task<ServiceResult<VenueDto>> GetByIdAsync(int id)
+        public async Task<ServiceResult<VenueResponse>> GetByIdAsync(int id)
         {
             var venue = await venueRepository.GetByIdAsync(id);
 
             if (venue is null)
             {
-                return ServiceResult<VenueDto>.Fail("Venue bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<VenueResponse>.Fail("Venue bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var venueAsDto = mapper.Map<VenueDto>(venue);
+            var venueAsDto = mapper.Map<VenueResponse>(venue);
 
-            return ServiceResult<VenueDto>.Success(venueAsDto);
+            return ServiceResult<VenueResponse>.Success(venueAsDto);
         }
 
-        public async Task<ServiceResult<List<VenueDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        public async Task<ServiceResult<List<VenueResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
             {
-                return ServiceResult<List<VenueDto>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
+                return ServiceResult<List<VenueResponse>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
             }
 
             var venues = await venueRepository.GetAllPagedAsync(pageNumber, pageSize);
 
-            var venuesAsDto = mapper.Map<List<VenueDto>>(venues);
+            var venuesAsDto = mapper.Map<List<VenueResponse>>(venues);
 
-            return ServiceResult<List<VenueDto>>.Success(venuesAsDto);
+            return ServiceResult<List<VenueResponse>>.Success(venuesAsDto);
         }
 
         public async Task<ServiceResult> PassiveAsync(int id)

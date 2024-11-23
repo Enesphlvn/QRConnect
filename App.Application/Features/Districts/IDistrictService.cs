@@ -6,11 +6,11 @@ namespace App.Application.Features.Districts
 {
     public interface IDistrictService
     {
-        Task<ServiceResult<List<DistrictDto>>> GetAllListAsync();
-        Task<ServiceResult<List<DistrictDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
-        Task<ServiceResult<DistrictWithVenuesDto>> GetDistrictWithVenuesAsync(int id);
-        Task<ServiceResult<List<DistrictWithVenuesDto>>> GetDistrictWithVenuesAsync();
-        Task<ServiceResult<DistrictDto>> GetByIdAsync(int id);
+        Task<ServiceResult<List<DistrictResponse>>> GetAllListAsync();
+        Task<ServiceResult<List<DistrictResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
+        Task<ServiceResult<DistrictWithVenuesResponse>> GetDistrictWithVenuesAsync(int id);
+        Task<ServiceResult<List<DistrictWithVenuesResponse>>> GetDistrictWithVenuesAsync();
+        Task<ServiceResult<DistrictResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateDistrictRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateDistrictRequest request);
         Task<ServiceResult> DeleteAsync(int id);

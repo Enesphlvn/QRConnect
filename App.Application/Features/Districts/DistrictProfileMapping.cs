@@ -10,8 +10,8 @@ namespace App.Application.Features.Districts
     {
         public DistrictProfileMapping()
         {
-            CreateMap<DistrictDto, District>().ReverseMap();
-            CreateMap<DistrictWithVenuesDto, District>().ReverseMap();
+            CreateMap<DistrictResponse, District>().ReverseMap();
+            CreateMap<DistrictWithVenuesResponse, District>().ReverseMap();
             CreateMap<CreateDistrictRequest, District>();
             CreateMap<UpdateDistrictRequest, District>();
         }

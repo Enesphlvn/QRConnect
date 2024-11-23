@@ -2,4 +2,4 @@
 
 namespace App.Application.Features.Cities.Dto;
 
-public record CityWithVenuesDto(int Id, string Name, List<VenueDto> Venues);
+public record CityWithVenuesResponse(int Id, string Name, List<VenueResponse> Venues);

@@ -36,69 +36,69 @@ namespace App.Application.Features.EventTypes
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
-        public async Task<ServiceResult<List<EventTypeDto>>> GetAllListAsync()
+        public async Task<ServiceResult<List<EventTypeResponse>>> GetAllListAsync()
         {
             var eventTypes = await eventTypeRepository.GetAllAsync();
 
-            var eventTypesAsDto = mapper.Map<List<EventTypeDto>>(eventTypes);
+            var eventTypesAsDto = mapper.Map<List<EventTypeResponse>>(eventTypes);
 
-            return ServiceResult<List<EventTypeDto>>.Success(eventTypesAsDto);
+            return ServiceResult<List<EventTypeResponse>>.Success(eventTypesAsDto);
         }
 
-        public async Task<ServiceResult<EventTypeDto>> GetByIdAsync(int id)
+        public async Task<ServiceResult<EventTypeResponse>> GetByIdAsync(int id)
         {
             var eventType = await eventTypeRepository.GetByIdAsync(id);
 
             if (eventType is null)
             {
-                return ServiceResult<EventTypeDto>.Fail("EventType bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<EventTypeResponse>.Fail("EventType bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var eventTypeAsDto = mapper.Map<EventTypeDto>(eventType);
+            var eventTypeAsDto = mapper.Map<EventTypeResponse>(eventType);
 
-            return ServiceResult<EventTypeDto>.Success(eventTypeAsDto);
+            return ServiceResult<EventTypeResponse>.Success(eventTypeAsDto);
         }
 
-        public async Task<ServiceResult<EventTypeWithEventsDto>> GetEventTypeWithEventsAsync(int id)
+        public async Task<ServiceResult<EventTypeWithEventsResponse>> GetEventTypeWithEventsAsync(int id)
         {
             var eventType = await eventTypeRepository.GetEventTypeWithEventsAsync(id);
 
             if (eventType is null)
             {
-                return ServiceResult<EventTypeWithEventsDto>.Fail("EventType bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<EventTypeWithEventsResponse>.Fail("EventType bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var eventTypeAsDto = mapper.Map<EventTypeWithEventsDto>(eventType);
+            var eventTypeAsDto = mapper.Map<EventTypeWithEventsResponse>(eventType);
 
-            return ServiceResult<EventTypeWithEventsDto>.Success(eventTypeAsDto);
+            return ServiceResult<EventTypeWithEventsResponse>.Success(eventTypeAsDto);
         }
 
-        public async Task<ServiceResult<List<EventTypeWithEventsDto>>> GetEventTypeWithEventsAsync()
+        public async Task<ServiceResult<List<EventTypeWithEventsResponse>>> GetEventTypeWithEventsAsync()
         {
             var eventType = await eventTypeRepository.GetEventTypeWithEventsAsync();
 
             if (eventType is null)
             {
-                return ServiceResult<List<EventTypeWithEventsDto>>.Fail("EventType bulunamadı");
+                return ServiceResult<List<EventTypeWithEventsResponse>>.Fail("EventType bulunamadı");
             }
 
-            var eventTypeAsDto = mapper.Map<List<EventTypeWithEventsDto>>(eventType);
+            var eventTypeAsDto = mapper.Map<List<EventTypeWithEventsResponse>>(eventType);
 
-            return ServiceResult<List<EventTypeWithEventsDto>>.Success(eventTypeAsDto);
+            return ServiceResult<List<EventTypeWithEventsResponse>>.Success(eventTypeAsDto);
         }
 
-        public async Task<ServiceResult<List<EventTypeDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        public async Task<ServiceResult<List<EventTypeResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
             {
-                return ServiceResult<List<EventTypeDto>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
+                return ServiceResult<List<EventTypeResponse>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
             }
 
             var eventTypes = await eventTypeRepository.GetAllPagedAsync(pageNumber, pageSize);
 
-            var eventTypeAsDto = mapper.Map<List<EventTypeDto>>(eventTypes);
+            var eventTypeAsDto = mapper.Map<List<EventTypeResponse>>(eventTypes);
 
-            return ServiceResult<List<EventTypeDto>>.Success(eventTypeAsDto);
+            return ServiceResult<List<EventTypeResponse>>.Success(eventTypeAsDto);
         }
 
         public async Task<ServiceResult> PassiveAsync(int id)

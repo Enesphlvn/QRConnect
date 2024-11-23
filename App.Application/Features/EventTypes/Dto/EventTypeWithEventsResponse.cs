@@ -2,4 +2,4 @@
 
 namespace App.Application.Features.EventTypes.Dto;
 
-public record EventTypeWithEventsDto(int Id, string Name, List<EventDto> Events);
+public record EventTypeWithEventsResponse(int Id, string Name, List<EventResponse> Events);

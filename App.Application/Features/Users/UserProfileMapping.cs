@@ -12,9 +12,9 @@ namespace App.Application.Features.Users
     {
         public UserProfileMapping()
         {
-            CreateMap<UserDto, User>().ReverseMap();
+            CreateMap<UserResponse, User>().ReverseMap();
 
-            CreateMap<UserWithTicketsDto, User>().ReverseMap();
+            CreateMap<UserWithTicketsResponse, User>().ReverseMap();
 
             CreateMap<CreateUserRequest, User>();
 

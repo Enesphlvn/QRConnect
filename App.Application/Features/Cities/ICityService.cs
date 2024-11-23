@@ -6,14 +6,14 @@ namespace App.Application.Features.Cities
 {
     public interface ICityService
     {
-        Task<ServiceResult<List<CityDto>>> GetAllListAsync();
-        Task<ServiceResult<List<CityDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
-        Task<ServiceResult<CityWithDistrictsDto>> GetCityWithDistrictsAsync(int cityId);
-        Task<ServiceResult<List<CityWithDistrictsDto>>> GetCityWithDistrictsAsync();
-        Task<ServiceResult<CityWithVenuesDto>> GetCityWithVenuesAsync(int cityId);
-        Task<ServiceResult<CityWithDistrictsAndVenuesDto>> GetCityWithDistrictsAndVenuesAsync(int id);
-        Task<ServiceResult<List<CityWithVenuesDto>>> GetCityWithVenuesAsync();
-        Task<ServiceResult<CityDto>> GetByIdAsync(int id);
+        Task<ServiceResult<List<CityResponse>>> GetAllListAsync();
+        Task<ServiceResult<List<CityResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
+        Task<ServiceResult<CityWithDistrictsResponse>> GetCityWithDistrictsAsync(int cityId);
+        Task<ServiceResult<List<CityWithDistrictsResponse>>> GetCityWithDistrictsAsync();
+        Task<ServiceResult<CityWithVenuesResponse>> GetCityWithVenuesAsync(int cityId);
+        Task<ServiceResult<CityWithDistrictsAndVenuesResponse>> GetCityWithDistrictsAndVenuesAsync(int id);
+        Task<ServiceResult<List<CityWithVenuesResponse>>> GetCityWithVenuesAsync();
+        Task<ServiceResult<CityResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateCityRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateCityRequest request);
         Task<ServiceResult> DeleteAsync(int id);

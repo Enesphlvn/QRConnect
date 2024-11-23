@@ -47,69 +47,69 @@ namespace App.Application.Features.Users
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }
 
-        public async Task<ServiceResult<List<UserDto>>> GetAllListAsync()
+        public async Task<ServiceResult<List<UserResponse>>> GetAllListAsync()
         {
             var users = await userRepository.GetAllAsync();
 
-            var usersAsDto = mapper.Map<List<UserDto>>(users);
+            var usersAsDto = mapper.Map<List<UserResponse>>(users);
 
-            return ServiceResult<List<UserDto>>.Success(usersAsDto);
+            return ServiceResult<List<UserResponse>>.Success(usersAsDto);
         }
 
-        public async Task<ServiceResult<UserDto>> GetByIdAsync(int id)
+        public async Task<ServiceResult<UserResponse>> GetByIdAsync(int id)
         {
             var user = await userRepository.GetByIdAsync(id);
 
             if (user is null)
             {
-                return ServiceResult<UserDto>.Fail("Müşteri bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<UserResponse>.Fail("Müşteri bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var userAsDto = mapper.Map<UserDto>(user);
+            var userAsDto = mapper.Map<UserResponse>(user);
 
-            return ServiceResult<UserDto>.Success(userAsDto);
+            return ServiceResult<UserResponse>.Success(userAsDto);
         }
 
-        public async Task<ServiceResult<List<UserDto>>> GetPagedAllListAsync(int pageNumber, int pageSize)
+        public async Task<ServiceResult<List<UserResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)
             {
-                return ServiceResult<List<UserDto>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
+                return ServiceResult<List<UserResponse>>.Fail("Geçersiz sayı", HttpStatusCode.BadRequest);
             }
 
             var users = await userRepository.GetAllPagedAsync(pageNumber, pageSize);
 
-            var usersAsDto = mapper.Map<List<UserDto>>(users);
+            var usersAsDto = mapper.Map<List<UserResponse>>(users);
 
-            return ServiceResult<List<UserDto>>.Success(usersAsDto);
+            return ServiceResult<List<UserResponse>>.Success(usersAsDto);
         }
 
-        public async Task<ServiceResult<UserDto>> GetUserByEmailAsync(string email)
+        public async Task<ServiceResult<UserResponse>> GetUserByEmailAsync(string email)
         {
             var user = await userRepository.GetUserByEmailAsync(email);
 
             if (user is null)
             {
-                return ServiceResult<UserDto>.Fail("User bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<UserResponse>.Fail("User bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var userAsDto = mapper.Map<UserDto>(user);
+            var userAsDto = mapper.Map<UserResponse>(user);
 
-            return ServiceResult<UserDto>.Success(userAsDto);
+            return ServiceResult<UserResponse>.Success(userAsDto);
         }
 
-        public async Task<ServiceResult<UserWithTicketsDto>> GetUserWithTicketsAsync(int userId)
+        public async Task<ServiceResult<UserWithTicketsResponse>> GetUserWithTicketsAsync(int userId)
         {
             var user = await userRepository.GetUserWithTicketsAsync(userId);
 
             if (user is null)
             {
-                return ServiceResult<UserWithTicketsDto>.Fail("User bulunamadı", HttpStatusCode.NotFound);
+                return ServiceResult<UserWithTicketsResponse>.Fail("User bulunamadı", HttpStatusCode.NotFound);
             }
 
-            var userAsDto = mapper.Map<UserWithTicketsDto>(user);
+            var userAsDto = mapper.Map<UserWithTicketsResponse>(user);
 
-            return ServiceResult<UserWithTicketsDto>.Success(userAsDto);
+            return ServiceResult<UserWithTicketsResponse>.Success(userAsDto);
         }
 
         public async Task<ServiceResult> PassiveAsync(int id)

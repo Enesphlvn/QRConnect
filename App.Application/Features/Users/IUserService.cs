@@ -8,11 +8,11 @@ namespace App.Application.Features.Users
 {
     public interface IUserService
     {
-        Task<ServiceResult<List<UserDto>>> GetAllListAsync();
-        Task<ServiceResult<List<UserDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
-        Task<ServiceResult<UserWithTicketsDto>> GetUserWithTicketsAsync(int userId);
-        Task<ServiceResult<UserDto>> GetUserByEmailAsync(string email);
-        Task<ServiceResult<UserDto>> GetByIdAsync(int id);
+        Task<ServiceResult<List<UserResponse>>> GetAllListAsync();
+        Task<ServiceResult<List<UserResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
+        Task<ServiceResult<UserWithTicketsResponse>> GetUserWithTicketsAsync(int userId);
+        Task<ServiceResult<UserResponse>> GetUserByEmailAsync(string email);
+        Task<ServiceResult<UserResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateUserRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateUserRequest request);
         Task<ServiceResult> UpdateEmailAsync(int id, UpdateEmailUserRequest request);

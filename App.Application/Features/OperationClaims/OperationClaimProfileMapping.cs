@@ -10,7 +10,7 @@ namespace App.Application.Features.OperationClaims
     {
         public OperationClaimProfileMapping()
         {
-            CreateMap<OperationClaimDto, OperationClaim>().ReverseMap();
+            CreateMap<OperationClaimResponse, OperationClaim>().ReverseMap();
 
             CreateMap<CreateOperationClaimRequest, OperationClaim>();
 

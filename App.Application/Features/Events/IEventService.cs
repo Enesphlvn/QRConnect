@@ -6,16 +6,16 @@ namespace App.Application.Features.Events
 {
     public interface IEventService
     {
-        Task<ServiceResult<List<EventDto>>> GetAllListAsync();
-        Task<ServiceResult<List<EventDto>>> GetPagedAllListAsync(int pageNumber, int pageSize);
-        Task<ServiceResult<List<EventWithDetailDto>>> GetEventsWithDetailAsync();
-        Task<ServiceResult<List<EventsByEventTypeDto>>> GetEventsByEventTypeAsync(int eventTypeId);
-        Task<ServiceResult<List<EventsByVenueDto>>> GetEventsByVenueAsync(int venueId);
-        Task<ServiceResult<List<EventsWithHighestSalesDto>>> GetEventsWithHighestSalesAsync(int numberOffEvents);
-        Task<ServiceResult<List<EventDto>>> GetEventsByDateRangeAsync(DateTimeOffset startDate, DateTimeOffset endDate);
-        Task<ServiceResult<List<EventDto>>> GetEventsByPriceRangeAsync(decimal minPrice, decimal maxPrice);
-        Task<ServiceResult<List<EventsByUserTicketsDto>>> GetEventsByUserTicketsAsync(int userId);
-        Task<ServiceResult<EventDto>> GetByIdAsync(int id);
+        Task<ServiceResult<List<EventResponse>>> GetAllListAsync();
+        Task<ServiceResult<List<EventResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
+        Task<ServiceResult<List<EventWithDetailResponse>>> GetEventsWithDetailAsync();
+        Task<ServiceResult<List<EventsByEventTypeResponse>>> GetEventsByEventTypeAsync(int eventTypeId);
+        Task<ServiceResult<List<EventsByVenueResponse>>> GetEventsByVenueAsync(int venueId);
+        Task<ServiceResult<List<EventsWithHighestSalesResponse>>> GetEventsWithHighestSalesAsync(int numberOffEvents);
+        Task<ServiceResult<List<EventResponse>>> GetEventsByDateRangeAsync(DateTimeOffset startDate, DateTimeOffset endDate);
+        Task<ServiceResult<List<EventResponse>>> GetEventsByPriceRangeAsync(decimal minPrice, decimal maxPrice);
+        Task<ServiceResult<List<EventsByUserTicketsResponse>>> GetEventsByUserTicketsAsync(int userId);
+        Task<ServiceResult<EventResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateEventRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateEventRequest request);
         Task<ServiceResult> DeleteAsync(int id);
