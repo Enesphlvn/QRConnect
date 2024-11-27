@@ -6,5 +6,6 @@ namespace App.Application.Contracts.Persistence
     {
         Task<District?> GetDistrictVenuesAsync(int id);
         Task<List<District>> GetDistrictVenuesAsync();
+        Task<List<District>> GetDistrictsByCityAsync(int cityId);
     }
 }

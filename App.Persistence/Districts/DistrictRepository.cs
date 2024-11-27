@@ -15,5 +15,10 @@ namespace App.Persistence.Districts
         {
             return await Context.Districts.Include(x => x.Venues).ToListAsync();
         }
+
+        public async Task<List<District>> GetDistrictsByCityAsync(int cityId)
+        {
+            return await Context.Districts.Include(x => x.City).Where(x => x.CityId == cityId).ToListAsync();
+        }
     }
 }

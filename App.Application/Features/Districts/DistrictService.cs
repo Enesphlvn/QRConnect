@@ -60,6 +60,20 @@ namespace App.Application.Features.Districts
             return ServiceResult<DistrictResponse>.Success(districtAsDto);
         }
 
+        public async Task<ServiceResult<List<DistrictsByCityResponse>>> GetDistrictsByCityAsync(int cityId)
+        {
+            var districtsByCity = await districtRepository.GetDistrictsByCityAsync(cityId);
+
+            if (districtsByCity.Count == 0)
+            {
+                return ServiceResult<List<DistrictsByCityResponse>>.Fail("City ile eşleşen district bulunamadı");
+            }
+
+            var districtsByCityAsDto = mapper.Map<List<DistrictsByCityResponse>>(districtsByCity);
+
+            return ServiceResult<List<DistrictsByCityResponse>>.Success(districtsByCityAsDto);
+        }
+
         public async Task<ServiceResult<DistrictWithVenuesResponse>> GetDistrictWithVenuesAsync(int id)
         {
             var district = await districtRepository.GetDistrictVenuesAsync(id);
