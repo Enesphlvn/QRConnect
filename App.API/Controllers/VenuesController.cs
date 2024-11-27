@@ -27,6 +27,18 @@ namespace App.API.Controllers
             return CreateActionResult(await venueService.GetByIdAsync(id));
         }
 
+        [HttpGet("bycity/{cityId:int}")]
+        public async Task<IActionResult> GetVenueByCity(int cityId)
+        {
+            return CreateActionResult(await venueService.GetVenueByCityAsync(cityId));
+        }
+
+        [HttpGet("bydistrict/{districtId:int}")]
+        public async Task<IActionResult> GetVenueByDistrict(int districtId)
+        {
+            return CreateActionResult(await venueService.GetVenueByDistrictAsync(districtId));
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateVenue(CreateVenueRequest request)
         {

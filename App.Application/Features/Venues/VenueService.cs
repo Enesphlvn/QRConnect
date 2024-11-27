@@ -75,6 +75,34 @@ namespace App.Application.Features.Venues
             return ServiceResult<List<VenueResponse>>.Success(venuesAsDto);
         }
 
+        public async Task<ServiceResult<List<VenueByCityResponse>>> GetVenueByCityAsync(int cityId)
+        {
+            var venueByCity = await venueRepository.GetVenueByCityAsync(cityId);
+
+            if (venueByCity.Count == 0)
+            {
+                return ServiceResult<List<VenueByCityResponse>>.Fail("City ile eşleşen Venue bulunamadı.");
+            }
+
+            var venueByCityAsDto = mapper.Map<List<VenueByCityResponse>>(venueByCity);
+
+            return ServiceResult<List<VenueByCityResponse>>.Success(venueByCityAsDto);
+        }
+
+        public async Task<ServiceResult<List<VenueByDistrictResponse>>> GetVenueByDistrictAsync(int districtId)
+        {
+            var venueByDistrict = await venueRepository.GetVenueByDistrictAsync(districtId);
+
+            if (venueByDistrict.Count == 0)
+            {
+                return ServiceResult<List<VenueByDistrictResponse>>.Fail("District ile eşleşen Venue bulunamadı.");
+            }
+
+            var venueByDistrictAsDto = mapper.Map<List<VenueByDistrictResponse>>(venueByDistrict);
+
+            return ServiceResult<List<VenueByDistrictResponse>>.Success(venueByDistrictAsDto);
+        }
+
         public async Task<ServiceResult> PassiveAsync(int id)
         {
             await venueRepository.PassiveAsync(id);
