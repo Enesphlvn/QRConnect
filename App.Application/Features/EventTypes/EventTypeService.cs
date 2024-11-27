@@ -73,9 +73,9 @@ namespace App.Application.Features.EventTypes
             return ServiceResult<EventTypeWithEventsResponse>.Success(eventTypeAsDto);
         }
 
-        public async Task<ServiceResult<List<EventTypeWithEventsResponse>>> GetEventTypeWithEventsAsync()
+        public async Task<ServiceResult<List<EventTypeWithEventsResponse>>> GetEventTypesWithEventsAsync()
         {
-            var eventType = await eventTypeRepository.GetEventTypeWithEventsAsync();
+            var eventType = await eventTypeRepository.GetEventTypesWithEventsAsync();
 
             if (eventType is null)
             {

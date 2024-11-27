@@ -77,6 +77,34 @@ namespace App.Application.Features.Tickets
             return ServiceResult<List<TicketResponse>>.Success(ticketAsDto);
         }
 
+        public async Task<ServiceResult<List<TicketsByEventResponse>>> GetTicketsByEventAsync(int eventId)
+        {
+            var ticketsByEvent = await ticketRepository.GetTicketsByEventAsync(eventId);
+
+            if (ticketsByEvent.Count == 0)
+            {
+                return ServiceResult<List<TicketsByEventResponse>>.Fail("Event ile eşleşen ticket bulunamadı.");
+            }
+
+            var ticketsByEventAsDto = mapper.Map<List<TicketsByEventResponse>>(ticketsByEvent);
+
+            return ServiceResult<List<TicketsByEventResponse>>.Success(ticketsByEventAsDto);
+        }
+
+        public async Task<ServiceResult<List<TicketsByUserResponse>>> GetTicketsByUserAsync(int userId)
+        {
+            var ticketsByUser = await ticketRepository.GetTicketsByUserAsync(userId);
+
+            if (ticketsByUser.Count == 0)
+            {
+                return ServiceResult<List<TicketsByUserResponse>>.Fail("User ile eşleşen ticket bulunamadı.");
+            }
+
+            var ticketsByUserAsDto = mapper.Map<List<TicketsByUserResponse>>(ticketsByUser);
+
+            return ServiceResult<List<TicketsByUserResponse>>.Success(ticketsByUserAsDto);
+        }
+
         public async Task<ServiceResult> PassiveAsync(int id)
         {
             await ticketRepository.PassiveAsync(id);

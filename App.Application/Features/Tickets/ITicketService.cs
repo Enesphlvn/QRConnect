@@ -8,6 +8,8 @@ namespace App.Application.Features.Tickets
     {
         Task<ServiceResult<List<TicketResponse>>> GetAllListAsync();
         Task<ServiceResult<List<TicketResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
+        Task<ServiceResult<List<TicketsByEventResponse>>> GetTicketsByEventAsync(int eventId);
+        Task<ServiceResult<List<TicketsByUserResponse>>> GetTicketsByUserAsync(int userId);
         Task<ServiceResult<TicketResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateTicketRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateTicketRequest request);

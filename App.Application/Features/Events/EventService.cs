@@ -82,7 +82,7 @@ namespace App.Application.Features.Events
 
             if (eventsByEventType.Count == 0)
             {
-                return ServiceResult<List<EventsByEventTypeResponse>>.Fail("EventType ile eşleşen etkinlik bulunamadı");
+                return ServiceResult<List<EventsByEventTypeResponse>>.Fail("EventType ile eşleşen event bulunamadı");
             }
 
             var eventsByEventTypeAsDto = mapper.Map<List<EventsByEventTypeResponse>>(eventsByEventType);
@@ -110,7 +110,7 @@ namespace App.Application.Features.Events
 
             if (eventsByUserTicket.Count == 0)
             {
-                return ServiceResult<List<EventsByUserTicketsResponse>>.Fail("Kullanıcı veya bu kullanıcıya ait bilet bulunamadı.");
+                return ServiceResult<List<EventsByUserTicketsResponse>>.Fail("Kullanıcı veya kullanıcıya ait bilet bulunamadı.");
             }
 
             var eventsByUserTicketAsDto = mapper.Map<List<EventsByUserTicketsResponse>>(eventsByUserTicket);

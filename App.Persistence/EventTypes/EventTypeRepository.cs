@@ -11,7 +11,7 @@ namespace App.Persistence.EventTypes
             return await Context.EventTypes.Include(x => x.Events).FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<List<EventType>> GetEventTypeWithEventsAsync()
+        public async Task<List<EventType>> GetEventTypesWithEventsAsync()
         {
             return await Context.EventTypes.Include(x => x.Events).ToListAsync();
         }

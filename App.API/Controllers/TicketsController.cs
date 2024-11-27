@@ -27,6 +27,18 @@ namespace App.API.Controllers
             return CreateActionResult(await ticketService.GetByIdAsync(id));
         }
 
+        [HttpGet("byevent/{eventId:int}")]
+        public async Task<IActionResult> TicketsByEventAsync(int eventId)
+        {
+            return CreateActionResult(await ticketService.GetTicketsByEventAsync(eventId));
+        }
+
+        [HttpGet("byuser/{userId:int}")]
+        public async Task<IActionResult> TicketsByUserAsync(int userId)
+        {
+            return CreateActionResult(await ticketService.GetTicketsByUserAsync(userId));
+        }
+
         [HttpGet("qrcode/{eventId:int}/{userId:int}")]
         public async Task<IActionResult> GetQRCode(int eventId, int userId)
         {

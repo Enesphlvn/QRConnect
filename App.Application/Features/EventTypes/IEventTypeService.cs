@@ -9,7 +9,7 @@ namespace App.Application.Features.EventTypes
         Task<ServiceResult<List<EventTypeResponse>>> GetAllListAsync();
         Task<ServiceResult<List<EventTypeResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
         Task<ServiceResult<EventTypeWithEventsResponse>> GetEventTypeWithEventsAsync(int id);
-        Task<ServiceResult<List<EventTypeWithEventsResponse>>> GetEventTypeWithEventsAsync();
+        Task<ServiceResult<List<EventTypeWithEventsResponse>>> GetEventTypesWithEventsAsync();
         Task<ServiceResult<EventTypeResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateEventTypeRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateEventTypeRequest request);

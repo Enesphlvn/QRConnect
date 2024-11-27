@@ -34,9 +34,9 @@ namespace App.API.Controllers
         }
 
         [HttpGet("events")]
-        public async Task<IActionResult> GetEventTypeWithEvents()
+        public async Task<IActionResult> GetEventTypesWithEvents()
         {
-            return CreateActionResult(await eventTypeService.GetEventTypeWithEventsAsync());
+            return CreateActionResult(await eventTypeService.GetEventTypesWithEventsAsync());
         }
 
         [HttpPost]

@@ -11,7 +11,8 @@ namespace App.Application.Features.Tickets
         public TicketProfileMapping()
         {
             CreateMap<TicketResponse, Ticket>().ReverseMap();
-
+            CreateMap<Ticket, TicketsByEventResponse>();
+            CreateMap<Ticket, TicketsByUserResponse>();
             CreateMap<CreateTicketRequest, Ticket>()
                 .ForMember(dest => dest.PurchaseDate, opt => opt.MapFrom(_ => DateTimeOffset.Now));
 
