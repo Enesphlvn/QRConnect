@@ -11,6 +11,7 @@ namespace App.Application.Features.Users
         Task<ServiceResult<List<UserResponse>>> GetAllListAsync();
         Task<ServiceResult<List<UserResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
         Task<ServiceResult<UserWithTicketsResponse>> GetUserWithTicketsAsync(int userId);
+        Task<ServiceResult<List<UserWithTicketsResponse>>> GetUsersWithTicketsAsync();
         Task<ServiceResult<UserResponse>> GetUserByEmailAsync(string email);
         Task<ServiceResult<UserResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateUserRequest request);

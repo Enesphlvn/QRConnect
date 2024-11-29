@@ -98,6 +98,15 @@ namespace App.Application.Features.Users
             return ServiceResult<UserResponse>.Success(userAsDto);
         }
 
+        public async Task<ServiceResult<List<UserWithTicketsResponse>>> GetUsersWithTicketsAsync()
+        {
+            var users = await userRepository.GetUsersWithTicketsAsync();
+
+            var userAsDto = mapper.Map<List<UserWithTicketsResponse>>(users);
+
+            return ServiceResult<List<UserWithTicketsResponse>>.Success(userAsDto);
+        }
+
         public async Task<ServiceResult<UserWithTicketsResponse>> GetUserWithTicketsAsync(int userId)
         {
             var user = await userRepository.GetUserWithTicketsAsync(userId);

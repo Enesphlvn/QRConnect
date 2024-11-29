@@ -15,5 +15,15 @@ namespace App.Persistence.Venues
         {
             return await Context.Venues.Include(x => x.City).Where(x => x.DistrictId == districtId).ToListAsync();
         }
+
+        //public async Task<Venue> GetVenueWithEventsAsync(int districtId)
+        //{
+        //    return await Context.Venues.Include(x => x.City).Where(x => x.DistrictId == districtId).ToListAsync();
+        //}
+
+        //public async Task<List<Venue>> GetVenueByDistrictAsync(int districtId)
+        //{
+        //    return await Context.Venues.Include(x => x.City).Where(x => x.DistrictId == districtId).ToListAsync();
+        //}
     }
 }

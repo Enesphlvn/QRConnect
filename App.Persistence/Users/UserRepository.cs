@@ -11,6 +11,11 @@ namespace App.Persistence.Users
             return await Context.Users.Include(x => x.Tickets).FirstOrDefaultAsync(x => x.Id == userId);
         }
 
+        public async Task<List<User>> GetUsersWithTicketsAsync()
+        {
+            return await Context.Users.Include(x => x.Tickets).ToListAsync();
+        }
+
         public async Task<User> GetUserByEmailAsync(string email)
         {
             return (await Context.Users.FirstOrDefaultAsync(x => x.Email.ToLower() == email.ToLower()))!;

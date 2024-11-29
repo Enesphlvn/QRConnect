@@ -41,6 +41,12 @@ namespace App.API.Controllers
             return CreateActionResult(await userService.GetUserWithTicketsAsync(id));
         }
 
+        [HttpGet("tickets")]
+        public async Task<IActionResult> GetUsersWithTickets()
+        {
+            return CreateActionResult(await userService.GetUsersWithTicketsAsync());
+        }
+
         [HttpGet("qrcode/{userId:int}")]
         public async Task<IActionResult> GetQRCode(int userId)
         {
