@@ -27,6 +27,12 @@ namespace App.API.Controllers
             return CreateActionResult(await operationClaimService.GetByIdAsync(id));
         }
 
+        [HttpGet("{id:int}/useroperationclaims")]
+        public async Task<IActionResult> GetOperationClaimWithUserOperationClaims(int id)
+        {
+            return CreateActionResult(await operationClaimService.GetOperationClaimWithUserOperationClaimsAsync(id));
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateOperationClaim(CreateOperationClaimRequest request)
         {
