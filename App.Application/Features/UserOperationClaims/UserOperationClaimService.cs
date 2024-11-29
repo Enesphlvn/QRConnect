@@ -75,6 +75,15 @@ namespace App.Application.Features.UserOperationClaims
             return ServiceResult<List<UserOperationClaimResponse>>.Success(userOperationClaimsAsDto);
         }
 
+        public async Task<ServiceResult<List<UserOperationClaimWithDetailResponse>>> GetUserOperationClaimWithDetailAsync()
+        {
+            var userOperationClaims = await userOperationClaimRepository.GetUserOperationClaimsWithDetailAsync();
+
+            var userOperationClaimsAsDto = mapper.Map<List<UserOperationClaimWithDetailResponse>>(userOperationClaims);
+
+            return ServiceResult<List<UserOperationClaimWithDetailResponse>>.Success(userOperationClaimsAsDto);
+        }
+
         public async Task<ServiceResult> PassiveAsync(int id)
         {
             await userOperationClaimRepository.PassiveAsync(id);

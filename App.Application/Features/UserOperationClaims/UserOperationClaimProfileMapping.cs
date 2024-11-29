@@ -11,9 +11,8 @@ namespace App.Application.Features.UserOperationClaims
         public UserOperationClaimProfileMapping()
         {
             CreateMap<UserOperationClaimResponse, UserOperationClaim>().ReverseMap();
-
             CreateMap<UpdateUserOperationClaimRequest, UserOperationClaim>();
-
+            CreateMap<UserOperationClaim, UserOperationClaimWithDetailResponse>();
             CreateMap<CreateUserOperationClaimRequest, UserOperationClaim>();
         }
     }

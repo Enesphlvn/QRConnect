@@ -74,6 +74,20 @@ namespace App.Application.Features.OperationClaims
             return ServiceResult<OperationClaimWithUserOperationClaimsResponse>.Success(operationClaimAsDto);
         }
 
+        public async Task<ServiceResult<List<OperationClaimWithUserOperationClaimsResponse>>> GetOperationClaimWithUserOperationClaimsAsync()
+        {
+            var operationClaims = await operationClaimRepository.GetOperationCalimWithUserOperationClaimsAsync();
+
+            if (operationClaims.Count == 0)
+            {
+                return ServiceResult<List<OperationClaimWithUserOperationClaimsResponse>>.Fail("OperationClaim bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var operationClaimsAsDto = mapper.Map<List<OperationClaimWithUserOperationClaimsResponse>>(operationClaims);
+
+            return ServiceResult<List<OperationClaimWithUserOperationClaimsResponse>>.Success(operationClaimsAsDto);
+        }
+
         public async Task<ServiceResult<List<OperationClaimResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize)
         {
             if (pageNumber <= 0 || pageSize <= 0)

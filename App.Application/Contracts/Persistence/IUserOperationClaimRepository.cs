@@ -4,5 +4,6 @@ namespace App.Application.Contracts.Persistence
 {
     public interface IUserOperationClaimRepository : IGenericRepository<UserOperationClaim, int>
     {
+        Task<List<UserOperationClaim>> GetUserOperationClaimsWithDetailAsync();
     }
 }

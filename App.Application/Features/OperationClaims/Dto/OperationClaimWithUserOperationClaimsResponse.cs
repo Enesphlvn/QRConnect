@@ -2,4 +2,4 @@
 
 namespace App.Application.Features.OperationClaims.Dto;
 
-public record OperationClaimWithUserOperationClaimsResponse(int Id, string Name, List<UserOperationClaimResponse> UserOperationClaims);
+public record OperationClaimWithUserOperationClaimsResponse(int Id, string Name, List<UserOperationClaimWithDetailResponse> UserOperationClaims);

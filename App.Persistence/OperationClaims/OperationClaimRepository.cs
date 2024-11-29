@@ -8,12 +8,13 @@ namespace App.Persistence.OperationClaims
     {
         public async Task<OperationClaim> GetOperationCalimWithUserOperationClaimsAsync(int id)
         {
-            return (await Context.OperationClaims.Include(x => x.UserOperationClaims).FirstOrDefaultAsync(x => x.Id == id))!;
+            return (await Context.OperationClaims.Include(x => x.UserOperationClaims).ThenInclude(x => x.User)
+                .FirstOrDefaultAsync(x => x.Id == id))!;
         }
 
         public async Task<List<OperationClaim>> GetOperationCalimWithUserOperationClaimsAsync()
         {
-            return await Context.OperationClaims.Include(x => x.UserOperationClaims).ToListAsync();
+            return await Context.OperationClaims.Include(x => x.UserOperationClaims).ThenInclude(x => x.User).ToListAsync();
         }
     }
 }

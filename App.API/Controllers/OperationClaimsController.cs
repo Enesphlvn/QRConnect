@@ -33,6 +33,12 @@ namespace App.API.Controllers
             return CreateActionResult(await operationClaimService.GetOperationClaimWithUserOperationClaimsAsync(id));
         }
 
+        [HttpGet("useroperationclaims")]
+        public async Task<IActionResult> GetOperationClaimWithUserOperationClaims()
+        {
+            return CreateActionResult(await operationClaimService.GetOperationClaimWithUserOperationClaimsAsync());
+        }
+
         [HttpPost]
         public async Task<IActionResult> CreateOperationClaim(CreateOperationClaimRequest request)
         {

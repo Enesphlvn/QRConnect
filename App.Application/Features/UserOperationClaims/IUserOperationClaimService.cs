@@ -7,6 +7,7 @@ namespace App.Application.Features.UserOperationClaims
     public interface IUserOperationClaimService
     {
         Task<ServiceResult<List<UserOperationClaimResponse>>> GetAllListAsync();
+        Task<ServiceResult<List<UserOperationClaimWithDetailResponse>>> GetUserOperationClaimWithDetailAsync();
         Task<ServiceResult<List<UserOperationClaimResponse>>> GetPagedAllListAsync(int pageNumber, int pageSize);
         Task<ServiceResult<UserOperationClaimResponse>> GetByIdAsync(int id);
         Task<ServiceResult<int>> CreateAsync(CreateUserOperationClaimRequest request);
