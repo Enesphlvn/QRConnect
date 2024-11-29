@@ -27,6 +27,25 @@ namespace App.API.Controllers
             return CreateActionResult(await ticketService.GetByIdAsync(id));
         }
 
+        [ServiceFilter(typeof(NotFoundFilter<Ticket, int>))]
+        [HttpGet("ticketcountbyevent/{id:int}")]
+        public async Task<IActionResult> GetTicketCountByEvent(int id)
+        {
+            return CreateActionResult(await ticketService.GetTicketCountByEventAsync(id));
+        }
+
+        [HttpGet("detail")]
+        public async Task<IActionResult> GetTicketsWithDetail()
+        {
+            return CreateActionResult(await ticketService.GetTicketsWithDetailAsync());
+        }
+
+        [HttpGet("hasuserticket/{userId:int}/{eventId:int}")]
+        public async Task<IActionResult> HasUserTicketForEvent(int userId, int eventId)
+        {
+            return CreateActionResult(await ticketService.HasUserTicketForEventAsync(userId, eventId));
+        }
+
         [HttpGet("byevent/{eventId:int}")]
         public async Task<IActionResult> TicketsByEventAsync(int eventId)
         {
@@ -37,6 +56,12 @@ namespace App.API.Controllers
         public async Task<IActionResult> TicketsByUserAsync(int userId)
         {
             return CreateActionResult(await ticketService.GetTicketsByUserAsync(userId));
+        }
+
+        [HttpGet("daterange/{startDate}/{endDate}")]
+        public async Task<IActionResult> GetTicketsByDateRange(DateTimeOffset startDate, DateTimeOffset endDate)
+        {
+            return CreateActionResult(await ticketService.GetTicketsByDateRangeAsync(startDate, endDate));
         }
 
         [HttpGet("qrcode/{eventId:int}/{userId:int}")]

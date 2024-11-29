@@ -75,6 +75,34 @@ namespace App.Application.Features.UserOperationClaims
             return ServiceResult<List<UserOperationClaimResponse>>.Success(userOperationClaimsAsDto);
         }
 
+        public async Task<ServiceResult<List<UserOperationClaimByOperationClaimResponse>>> GetUserOperationClaimByOperationClaimAsync(int operationClaimId)
+        {
+            var operationClaims = await userOperationClaimRepository.GetUserOperationClaimByOperationClaimAsync(operationClaimId);
+
+            if (operationClaims.Count == 0)
+            {
+                return ServiceResult<List<UserOperationClaimByOperationClaimResponse>>.Fail("OperationClaim veya operationClaim'e ait UserOperationClaim  bulunamadı.");
+            }
+
+            var operationClaimAsDto = mapper.Map<List<UserOperationClaimByOperationClaimResponse>>(operationClaims);
+
+            return ServiceResult<List<UserOperationClaimByOperationClaimResponse>>.Success(operationClaimAsDto);
+        }
+
+        public async Task<ServiceResult<List<UserOperationClaimByUserResponse>>> GetUserOperationClaimByUserAsync(int userId)
+        {
+            var users = await userOperationClaimRepository.GetUserOperationClaimByUserAsync(userId);
+
+            if (users.Count == 0)
+            {
+                return ServiceResult<List<UserOperationClaimByUserResponse>>.Fail("User veya user'a ait UserOperationClaim bulunamadı.");
+            }
+
+            var userAsDto = mapper.Map<List<UserOperationClaimByUserResponse>>(users);
+
+            return ServiceResult<List<UserOperationClaimByUserResponse>>.Success(userAsDto);
+        }
+
         public async Task<ServiceResult<List<UserOperationClaimWithDetailResponse>>> GetUserOperationClaimWithDetailAsync()
         {
             var userOperationClaims = await userOperationClaimRepository.GetUserOperationClaimsWithDetailAsync();

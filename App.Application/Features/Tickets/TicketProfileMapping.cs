@@ -15,7 +15,7 @@ namespace App.Application.Features.Tickets
             CreateMap<Ticket, TicketsByUserResponse>();
             CreateMap<CreateTicketRequest, Ticket>()
                 .ForMember(dest => dest.PurchaseDate, opt => opt.MapFrom(_ => DateTimeOffset.Now));
-
+            CreateMap<Ticket, TicketWithDetailResponse>();
             CreateMap<UpdateTicketRequest, Ticket>();
         }
     }

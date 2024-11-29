@@ -77,6 +77,30 @@ namespace App.Application.Features.Tickets
             return ServiceResult<List<TicketResponse>>.Success(ticketAsDto);
         }
 
+        public async Task<ServiceResult<int>> GetTicketCountByEventAsync(int id)
+        {
+            var hasEvent = await eventRepository.GetByIdAsync(id);
+
+            var ticketCount = await ticketRepository.GetTicketCountByEventAsync(id);
+
+            return ServiceResult<int>.Success(ticketCount);
+
+        }
+
+        public async Task<ServiceResult<List<TicketWithDetailResponse>>> GetTicketsByDateRangeAsync(DateTimeOffset startDate, DateTimeOffset endDate)
+        {
+            var tickets = await ticketRepository.GetTicketsByDateRangeAsync(startDate, endDate);
+
+            if (tickets.Count == 0)
+            {
+                return ServiceResult<List<TicketWithDetailResponse>>.Fail("Bu tarih aralığında bilet bulunamadı.");
+            }
+
+            var ticketsAsDto = mapper.Map<List<TicketWithDetailResponse>>(tickets);
+
+            return ServiceResult<List<TicketWithDetailResponse>>.Success(ticketsAsDto);
+        }
+
         public async Task<ServiceResult<List<TicketsByEventResponse>>> GetTicketsByEventAsync(int eventId)
         {
             var ticketsByEvent = await ticketRepository.GetTicketsByEventAsync(eventId);
@@ -103,6 +127,39 @@ namespace App.Application.Features.Tickets
             var ticketsByUserAsDto = mapper.Map<List<TicketsByUserResponse>>(ticketsByUser);
 
             return ServiceResult<List<TicketsByUserResponse>>.Success(ticketsByUserAsDto);
+        }
+
+        public async Task<ServiceResult<List<TicketWithDetailResponse>>> GetTicketsWithDetailAsync()
+        {
+            var tickets = await ticketRepository.GetTicketsWithDetailAsync();
+
+            var ticketsAsDto = mapper.Map<List<TicketWithDetailResponse>>(tickets);
+
+            return ServiceResult<List<TicketWithDetailResponse>>.Success(ticketsAsDto);
+        }
+
+        public async Task<ServiceResult<bool>> HasUserTicketForEventAsync(int userId, int eventId)
+        {
+            var hasUser = await userRepository.GetByIdAsync(userId);
+            if (hasUser is null)
+            {
+                return ServiceResult<bool>.Fail("User bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var hasEvent = await eventRepository.GetByIdAsync(eventId);
+            if (hasEvent is null)
+            {
+                return ServiceResult<bool>.Fail("Event bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var hasTicket = await ticketRepository.HasUserTicketForEventAsync(userId, eventId);
+
+            if (!hasTicket)
+            {
+                return ServiceResult<bool>.Fail("Kullanıcının bu etkinlik için bir bileti bulunmamaktadır");
+            }
+
+            return ServiceResult<bool>.Success(true);
         }
 
         public async Task<ServiceResult> PassiveAsync(int id)

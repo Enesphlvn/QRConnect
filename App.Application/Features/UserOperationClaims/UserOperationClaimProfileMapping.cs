@@ -13,6 +13,8 @@ namespace App.Application.Features.UserOperationClaims
             CreateMap<UserOperationClaimResponse, UserOperationClaim>().ReverseMap();
             CreateMap<UpdateUserOperationClaimRequest, UserOperationClaim>();
             CreateMap<UserOperationClaim, UserOperationClaimWithDetailResponse>();
+            CreateMap<UserOperationClaim, UserOperationClaimByUserResponse>().ReverseMap();
+            CreateMap<UserOperationClaim, UserOperationClaimByOperationClaimResponse>().ReverseMap();
             CreateMap<CreateUserOperationClaimRequest, UserOperationClaim>();
         }
     }
