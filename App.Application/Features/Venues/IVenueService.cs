@@ -11,6 +11,8 @@ namespace App.Application.Features.Venues
         Task<ServiceResult<List<VenueByCityResponse>>> GetVenueByCityAsync(int cityId);
         Task<ServiceResult<List<VenueByDistrictResponse>>> GetVenueByDistrictAsync(int districtId);
         Task<ServiceResult<VenueResponse>> GetByIdAsync(int id);
+        Task<ServiceResult<VenueWithEventsResponse>> GetVenueWithEventsAsync(int venueId);
+        Task<ServiceResult<List<VenueWithEventsResponse>>> GetVenuesWithEventsAsync();
         Task<ServiceResult<int>> CreateAsync(CreateVenueRequest request);
         Task<ServiceResult> UpdateAsync(int id, UpdateVenueRequest request);
         Task<ServiceResult> DeleteAsync(int id);

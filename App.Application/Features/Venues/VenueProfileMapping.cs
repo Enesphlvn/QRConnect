@@ -12,6 +12,7 @@ namespace App.Application.Features.Venues
         {
             CreateMap<VenueResponse, Venue>().ReverseMap();
             CreateMap<VenueWithDetailResponse, Venue>().ReverseMap();
+            CreateMap<Venue, VenueWithEventsResponse>().ReverseMap();
             CreateMap<Venue, VenueByCityResponse>();
             CreateMap<Venue, VenueByDistrictResponse>();
             CreateMap<CreateVenueRequest, Venue>();

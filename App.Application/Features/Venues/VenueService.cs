@@ -103,6 +103,29 @@ namespace App.Application.Features.Venues
             return ServiceResult<List<VenueByDistrictResponse>>.Success(venueByDistrictAsDto);
         }
 
+        public async Task<ServiceResult<List<VenueWithEventsResponse>>> GetVenuesWithEventsAsync()
+        {
+            var venues = await venueRepository.GetVenuesWithEventsAsync();
+
+            var venuesAsDto = mapper.Map<List<VenueWithEventsResponse>>(venues);
+
+            return ServiceResult<List<VenueWithEventsResponse>>.Success(venuesAsDto);
+        }
+
+        public async Task<ServiceResult<VenueWithEventsResponse>> GetVenueWithEventsAsync(int venueId)
+        {
+            var venue = await venueRepository.GetVenueWithEventsAsync(venueId);
+
+            if (venue is null)
+            {
+                return ServiceResult<VenueWithEventsResponse>.Fail("Venue bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var venueAsDto = mapper.Map<VenueWithEventsResponse>(venue);
+
+            return ServiceResult<VenueWithEventsResponse>.Success(venueAsDto);
+        }
+
         public async Task<ServiceResult> PassiveAsync(int id)
         {
             await venueRepository.PassiveAsync(id);

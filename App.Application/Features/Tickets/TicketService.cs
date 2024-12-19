@@ -10,7 +10,7 @@ using System.Text.Json;
 
 namespace App.Application.Features.Tickets
 {
-    public class TicketService(IUserRepository userRepository, IEventRepository eventRepository, ITicketRepository ticketRepository, IUnitOfWork unitOfWork, IMapper mapper, IQRCodeService qRCodeService) : ITicketService
+    public class TicketService(IUserRepository userRepository, IEventRepository eventRepository, IVenueRepository venueRepository, ITicketRepository ticketRepository, IUnitOfWork unitOfWork, IMapper mapper, IQRCodeService qRCodeService) : ITicketService
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateTicketRequest request)
         {
@@ -20,6 +20,14 @@ namespace App.Application.Features.Tickets
             if (eventEntityExists is null || userEntityExists is null)
             {
                 return ServiceResult<int>.Fail("Etkinlik veya kullanıcı bulunamadı", HttpStatusCode.NotFound);
+            }
+
+            var venueId = eventEntityExists.VenueId;
+            var capacityUpdated = await venueRepository.DecreaseCapacityAsync(venueId);
+
+            if (!capacityUpdated)
+            {
+                return ServiceResult<int>.Fail("Bilet almak istediğiniz mekan dolu.", HttpStatusCode.Conflict);
             }
 
             var newTicket = mapper.Map<Ticket>(request);

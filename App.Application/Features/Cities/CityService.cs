@@ -12,6 +12,8 @@ namespace App.Application.Features.Cities
     {
         public async Task<ServiceResult<int>> CreateAsync(CreateCityRequest request)
         {
+            var ss = request.Name;
+
             var isSameCity = await cityRepository.AnyAsync(x => x.Name.ToLower() == request.Name.ToLower());
 
             if (isSameCity)
